@@ -1,8 +1,8 @@
 import { View, Text, StyleSheet, Button } from "react-native";
 import React from "react";
-import MyButton from "../compoonents/MyButton";
+import MyButton from "../components/MyButton";
 import Register4 from "./Register4";
-import Footer from "../compoonents/Footer";
+import Footer from "../components/Footer";
 
 export default function Activitiy4({ navigation }) {
   return (

@@ -9,10 +9,10 @@ import {
 import React, { useEffect, useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
-import MyButton from "../compoonents/MyButton";
+import MyButton from "../components/MyButton";
 import db from "../config";
-import Footer from "../compoonents/Footer";
-import MyTittle from "../compoonents/MyTittle";
+import Footer from "../components/Footer";
+import MyTittle from "../components/MyTittle";
 
 export default function Register4() {
   const navigation = useNavigation();
