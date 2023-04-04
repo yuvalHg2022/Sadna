@@ -1,10 +1,10 @@
 import { View, Text, StyleSheet, Button } from "react-native";
 import React from "react";
-import MyButton from "../compoonents/MyButton";
+import MyButton from "../components/MyButton";
 import { FontAwesome } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
-import Footer from "../compoonents/Footer";
+import Footer from "../components/Footer";
 
 export default function Home3({ navigation }) {
   return (

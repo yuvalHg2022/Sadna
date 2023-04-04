@@ -9,7 +9,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { StyleSheet, View, Text, Button } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
-import MyButton from "../compoonents/MyButton";
+import MyButton from "../components/MyButton";
 import db from "../config";
 import Footer from "../compoonents/Footer";
 import MyTittle from "../compoonents/MyTittle";
