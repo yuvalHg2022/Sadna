@@ -7,13 +7,14 @@ import {
   where,
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Button } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import MyButton from "../components/MyButton";
 import db from "../config";
 import Footer from "../compoonents/Footer";
 import MyTittle from "../compoonents/MyTittle";
 import Toggle from "react-native-toggle-element";
+import LogOutButton from "../compoonents/LogOutButton";
 
 export default function Register4() {
   const navigation = useNavigation();
@@ -21,6 +22,7 @@ export default function Register4() {
   const [place, setPlace] = useState("");
   const [hour, setHour] = useState("");
   const [date, setDate] = useState("");
+  const [details, setDetails] = useState("");
   const [error, setError] = useState(false);
   const [toggleValue, setToggleValue] = useState(false);
 
@@ -58,6 +60,7 @@ export default function Register4() {
   return (
     <>
       <View style={styles.container}>
+        <LogOutButton title="איזור אישי" />
         <MyTittle text="יצירת פעולה" />
         <View style={styles.labaelAndTextInputCotainer}>
           <Text style={styles.label}>נושא הפעולה</Text>
@@ -104,7 +107,7 @@ export default function Register4() {
             rightTitle="הזנת פרטי הפעילות"
             trackBarStyle={{
               width: 300,
-              height: 50,
+              height: 40,
 
               backgroundColor: toggleValue ? "#36454F" : "#A9A9A9",
             }}
@@ -114,30 +117,33 @@ export default function Register4() {
               activeColor: "#A9A9A9",
               inActiveColor: "black",
               width: 150,
-              animationDuration: "700",
+              height: 40,
             }}
+            animationDuration={500}
           />
         </View>
-        <MyButton
-          style={{ width: "50%", height: 40, fontSize: 15 }}
-          color="yellow"
-          title="פרסם"
+        {toggleValue && (
+          <TextInput
+            style={styles.taskDetails}
+            onChangeText={(e) => setDetails(e)}
+            value={details}
+            placeholder="הקלד כאן.."
+          />
+        )}
+        <View
+          style={styles.publishButton}
           onPress={() =>
             addRecordTodb({
               subject,
               place,
               hour,
               date,
+              details,
             })
           }
-        />
-
-        <MyButton
-          style={{ width: "50%", height: 40 }}
-          title="הביתה"
-          color="white"
-          onPress={() => navigation.navigate("Home3")}
-        />
+        >
+          <Text>פרסם</Text>
+        </View>
       </View>
       <Footer />
     </>
@@ -150,14 +156,14 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     justifyContent: "flex-start",
     alignItems: "center",
-    paddingTop: 35,
+    paddingTop: 20,
   },
   text: {
     borderWidth: 1,
     width: 300,
     fontSize: 24,
     borderRadius: 15,
-    height: 40,
+    height: 35,
     padding: 10,
   },
   errorMsg: {
@@ -166,12 +172,31 @@ const styles = StyleSheet.create({
   },
   labaelAndTextInputCotainer: {},
   label: {
-    marginTop: 10,
+    marginTop: 5,
     marginBottom: 5,
     fontSize: 15,
     marginHorizontal: 20,
   },
   toggleContainer: {
-    marginVertical: 15,
+    marginTop: 10,
+    marginBottom: 6,
+  },
+  taskDetails: {
+    width: 300,
+    fontSize: 15,
+    borderRadius: 15,
+    height: 100,
+    textAlign: "right",
+    paddingRight: 10,
+    backgroundColor: "#FFEFFF",
+  },
+  publishButton: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: 100,
+    padding: 10,
+    backgroundColor: "#fffd8d",
+    marginVertical: 6,
   },
 });
