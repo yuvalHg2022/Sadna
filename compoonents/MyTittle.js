@@ -16,9 +16,10 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "center",
     marginVertical: 5,
+    paddingTop: 35,
   },
   text: {
-    fontSize: 40,
+    fontSize: 30,
     fontWeight: "bold",
   },
 });
