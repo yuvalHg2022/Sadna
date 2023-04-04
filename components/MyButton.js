@@ -1,7 +1,8 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
+import { COLORS } from "../utils/StyleGuide";
 
-const MyButton = ({ title, onPress, color, icon, style }) => {
+const MyButton = ({ title, onPress, color = COLORS.light_gray, icon, style }) => {
   return (
     <TouchableOpacity
       style={[styles.container, { backgroundColor: color }, style]}
@@ -18,27 +19,27 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "flex-end",
-    height: 70,
-    width: "90%",
-    borderRadius: 30,
+    height: 52,
+    width: 312,
+    borderRadius: 15,
     marginVertical: 8,
     borderWidth: 1,
-    borderColor: "black",
+    borderColor: COLORS.black,
   },
   title: {
     textTransform: "capitalize",
-    fontSize: 30,
-    fontWeight: "bold",
-    color: "black",
+    fontSize: 24,
+    fontWeight: "700",
+    lineHeight: 29,
+    color: COLORS.black,
   },
   titleAndIconContainer: {
-    display: "flex",
     flexDirection: "row",
     justifyContent: "flex-start",
-    alignItems: "flex-start",
+    alignItems: "center",
   },
   icon: {
-    marginVertical: 6,
+    // marginVertical: 6,
     marginHorizontal: 20,
   },
 });
