@@ -13,6 +13,7 @@ import MyButton from "../compoonents/MyButton";
 import db from "../config";
 import Footer from "../compoonents/Footer";
 import MyTittle from "../compoonents/MyTittle";
+import Toggle from "react-native-toggle-element";
 
 export default function Register4() {
   const navigation = useNavigation();
@@ -21,6 +22,7 @@ export default function Register4() {
   const [hour, setHour] = useState("");
   const [date, setDate] = useState("");
   const [error, setError] = useState(false);
+  const [toggleValue, setToggleValue] = useState(false);
 
   const addRecordTodb = async (obj) => {
     try {
@@ -94,6 +96,28 @@ export default function Register4() {
             <Text style={styles.errorMsg}>Fill The Form Again</Text>
           </View>
         )}
+        <View style={styles.toggleContainer}>
+          <Toggle
+            value={toggleValue}
+            onPress={(newState) => setToggleValue(newState)}
+            leftTitle="בחירה מפעולות עבר"
+            rightTitle="הזנת פרטי הפעילות"
+            trackBarStyle={{
+              width: 300,
+              height: 50,
+
+              backgroundColor: toggleValue ? "#36454F" : "#A9A9A9",
+            }}
+            thumbButton={{
+              inActiveBackgroundColor: "#36454F",
+              activeBackgroundColor: "#A9A9A9",
+              activeColor: "#A9A9A9",
+              inActiveColor: "black",
+              width: 150,
+              animationDuration: "700",
+            }}
+          />
+        </View>
         <MyButton
           style={{ width: "50%", height: 40, fontSize: 15 }}
           color="yellow"
@@ -107,6 +131,7 @@ export default function Register4() {
             })
           }
         />
+
         <MyButton
           style={{ width: "50%", height: 40 }}
           title="הביתה"
@@ -125,14 +150,14 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     justifyContent: "flex-start",
     alignItems: "center",
-    paddingTop: 50,
+    paddingTop: 35,
   },
   text: {
     borderWidth: 1,
     width: 300,
     fontSize: 24,
-    borderRadius: 20,
-    height: 50,
+    borderRadius: 15,
+    height: 40,
     padding: 10,
   },
   errorMsg: {
@@ -145,5 +170,8 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     fontSize: 15,
     marginHorizontal: 20,
+  },
+  toggleContainer: {
+    marginVertical: 15,
   },
 });
