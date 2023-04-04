@@ -11,10 +11,10 @@ import { StyleSheet, View, Text, Button } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import MyButton from "../components/MyButton";
 import db from "../config";
-import Footer from "../compoonents/Footer";
-import MyTittle from "../compoonents/MyTittle";
+import Footer from "../components/Footer";
+import MyTittle from "../components/MyTittle";
 import Toggle from "react-native-toggle-element";
-import LogOutButton from "../compoonents/LogOutButton";
+import LogOutButton from "../components/LogOutButton";
 
 export default function Register4() {
   const navigation = useNavigation();

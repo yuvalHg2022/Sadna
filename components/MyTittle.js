@@ -1,10 +1,10 @@
 import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 
-const MyTittle = ({ text }) => {
+const MyTittle = ({ text, styleContainer, styleText }) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>{text}</Text>
+    <View style={[styles.container,styleContainer]}>
+      <Text style={[styles.text, styleText]}>{text}</Text>
     </View>
   );
 };
@@ -13,13 +13,11 @@ export default MyTittle;
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
-    alignItems: "center",
     marginVertical: 5,
-    paddingTop: 35,
   },
   text: {
-    fontSize: 30,
-    fontWeight: "bold",
+    fontSize: 32,
+    fontWeight: "700",
+    paddingHorizontal: 10,
   },
 });
