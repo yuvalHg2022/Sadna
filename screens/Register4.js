@@ -7,12 +7,12 @@ import {
   where,
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import MyButton from "../compoonents/MyButton";
 import db from "../config";
 import Footer from "../compoonents/Footer";
-import Swal from "sweetalert2";
+import MyTittle from "../compoonents/MyTittle";
 
 export default function Register4() {
   const navigation = useNavigation();
@@ -20,28 +20,30 @@ export default function Register4() {
   const [place, setPlace] = useState("");
   const [hour, setHour] = useState("");
   const [date, setDate] = useState("");
+  const [error, setError] = useState(false);
 
   const addRecordTodb = async (obj) => {
     try {
       const coll = collection(db, "tasks");
       let docRef;
+      // MAKE SUBJECT FIELD UNIQUE
       const q = query(coll, where("subject", "==", obj?.subject));
-      const q1 = query(coll, where("place", "==", obj?.place));
-      const q2 = query(coll, where("hour", "==", obj?.hour));
-      const q3 = query(coll, where("date", "==", obj?.date));
+
       const snapshot = await getCountFromServer(q);
-      const snapshot1 = await getCountFromServer(q1);
-      const snapshot2 = await getCountFromServer(q2);
-      const snapshot3 = await getCountFromServer(q3);
+
       if (
         snapshot.data().count === 0 &&
-        snapshot1.data().count === 0 &&
-        snapshot2.data().count === 0 &&
-        snapshot3.data().count === 0
+        subject !== "" &&
+        place !== "" &&
+        hour !== "" &&
+        date !== ""
       ) {
+        setError(false);
         docRef = await addDoc(collection(db, "tasks"), obj);
         console.log("Document written with ID: ", docRef?.id);
       } else {
+        setError(true);
+
         console.log("not added");
       }
     } catch (e) {
@@ -54,33 +56,36 @@ export default function Register4() {
   return (
     <>
       <View style={styles.container}>
+        <MyTittle text="יצירת פעולה" />
         <TextInput
-          placeholder="subject"
           style={styles.text}
           onChangeText={(e) => setSubject(e)}
           value={subject}
         />
         <TextInput
-          placeholder="place"
           style={styles.text}
           onChangeText={(e) => setPlace(e)}
           value={place}
         />
         <TextInput
-          placeholder="hour"
           style={styles.text}
           onChangeText={(e) => setHour(e)}
           value={hour}
         />
         <TextInput
-          placeholder="date"
           style={styles.text}
           onChangeText={(e) => setDate(e)}
           value={date}
         />
+        {error && (
+          <View>
+            <Text style={styles.errorMsg}>Fill The Form Again</Text>
+          </View>
+        )}
         <MyButton
-          color="white"
-          title="שלח"
+          style={{ width: "50%", height: 40, fontSize: 15 }}
+          color="yellow"
+          title="פרסם"
           onPress={() =>
             addRecordTodb({
               subject,
@@ -91,6 +96,7 @@ export default function Register4() {
           }
         />
         <MyButton
+          style={{ width: "50%", height: 40 }}
           title="הביתה"
           color="white"
           onPress={() => navigation.navigate("Home3")}
@@ -117,5 +123,9 @@ const styles = StyleSheet.create({
     height: 50,
     marginVertical: 8,
     padding: 10,
+  },
+  errorMsg: {
+    color: "red",
+    fontSize: 15,
   },
 });
