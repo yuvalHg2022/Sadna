@@ -13,7 +13,9 @@ export default Footer;
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 100,
-    marginBottom: 10,
+    backgroundColor: "white",
+    width: "100%",
+    alignItems: "center",
+    paddingBottom: 10,
   },
 });

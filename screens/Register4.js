@@ -52,50 +52,52 @@ export default function Register4() {
   useEffect(() => {}, []);
 
   return (
-    <View style={styles.container}>
-      <TextInput
-        placeholder="subject"
-        style={styles.text}
-        onChangeText={(e) => setSubject(e)}
-        value={subject}
-      />
-      <TextInput
-        placeholder="place"
-        style={styles.text}
-        onChangeText={(e) => setPlace(e)}
-        value={place}
-      />
-      <TextInput
-        placeholder="hour"
-        style={styles.text}
-        onChangeText={(e) => setHour(e)}
-        value={hour}
-      />
-      <TextInput
-        placeholder="date"
-        style={styles.text}
-        onChangeText={(e) => setDate(e)}
-        value={date}
-      />
-      <MyButton
-        color="red"
-        title="שלח"
-        onPress={() =>
-          addRecordTodb({
-            subject,
-            place,
-            hour,
-            date,
-          })
-        }
-      />
-      <MyButton
-        title="הביתה"
-        color="#CCCCFF"
-        onPress={() => navigation.navigate("Home3")}
-      />
+    <>
+      <View style={styles.container}>
+        <TextInput
+          placeholder="subject"
+          style={styles.text}
+          onChangeText={(e) => setSubject(e)}
+          value={subject}
+        />
+        <TextInput
+          placeholder="place"
+          style={styles.text}
+          onChangeText={(e) => setPlace(e)}
+          value={place}
+        />
+        <TextInput
+          placeholder="hour"
+          style={styles.text}
+          onChangeText={(e) => setHour(e)}
+          value={hour}
+        />
+        <TextInput
+          placeholder="date"
+          style={styles.text}
+          onChangeText={(e) => setDate(e)}
+          value={date}
+        />
+        <MyButton
+          color="white"
+          title="שלח"
+          onPress={() =>
+            addRecordTodb({
+              subject,
+              place,
+              hour,
+              date,
+            })
+          }
+        />
+        <MyButton
+          title="הביתה"
+          color="white"
+          onPress={() => navigation.navigate("Home3")}
+        />
+      </View>
       <Footer />
-    </View>
+    </>
   );
 }
 

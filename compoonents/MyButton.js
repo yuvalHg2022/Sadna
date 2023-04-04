@@ -22,12 +22,14 @@ const styles = StyleSheet.create({
     width: "90%",
     borderRadius: 30,
     marginVertical: 8,
+    borderWidth: 1,
+    borderColor: "black",
   },
   title: {
     textTransform: "capitalize",
     fontSize: 30,
     fontWeight: "bold",
-    color: "#23297a",
+    color: "black",
   },
   titleAndIconContainer: {
     display: "flex",
