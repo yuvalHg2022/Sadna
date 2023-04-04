@@ -14,7 +14,7 @@ import db from "../config";
 import Footer from "../compoonents/Footer";
 import Swal from "sweetalert2";
 
-export default function Third() {
+export default function Register4() {
   const navigation = useNavigation();
   const [subject, setSubject] = useState("");
   const [place, setPlace] = useState("");
@@ -92,7 +92,7 @@ export default function Third() {
       <MyButton
         title="הביתה"
         color="#CCCCFF"
-        onPress={() => navigation.navigate("Home")}
+        onPress={() => navigation.navigate("Home3")}
       />
       <Footer />
     </View>

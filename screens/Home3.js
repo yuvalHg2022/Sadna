@@ -6,7 +6,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import Footer from "../compoonents/Footer";
 
-export default function Home({ navigation }) {
+export default function Home3({ navigation }) {
   return (
     <View style={styles.container}>
       <Text>Home</Text>
@@ -14,7 +14,7 @@ export default function Home({ navigation }) {
       <MyButton
         title="פעילויות"
         color="#CCCCFF"
-        onPress={() => navigation.navigate("About")}
+        onPress={() => navigation.navigate("Activitiy4")}
         icon={<FontAwesome name="calendar" size={24} color="black" />}
       />
       <MyButton

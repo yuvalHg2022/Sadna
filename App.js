@@ -2,9 +2,9 @@ import { View, Text, StyleSheet, Button } from "react-native";
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
-import Home from "./screens/Home";
-import About from "./screens/About";
-import Third from "./screens/Third";
+import Home3 from "./screens/Home3";
+import Activitiy4 from "./screens/Activitiy4";
+import Register4 from "./screens/Register4";
 
 const App = () => {
   const Stack = createStackNavigator();
@@ -13,18 +13,18 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="Home"
-          component={Home}
+          name="Home3"
+          component={Home3}
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="About"
-          component={About}
+          name="Activitiy4"
+          component={Activitiy4}
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="Third"
-          component={Third}
+          name="Register4"
+          component={Register4}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
