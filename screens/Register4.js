@@ -57,26 +57,38 @@ export default function Register4() {
     <>
       <View style={styles.container}>
         <MyTittle text="יצירת פעולה" />
-        <TextInput
-          style={styles.text}
-          onChangeText={(e) => setSubject(e)}
-          value={subject}
-        />
-        <TextInput
-          style={styles.text}
-          onChangeText={(e) => setPlace(e)}
-          value={place}
-        />
-        <TextInput
-          style={styles.text}
-          onChangeText={(e) => setHour(e)}
-          value={hour}
-        />
-        <TextInput
-          style={styles.text}
-          onChangeText={(e) => setDate(e)}
-          value={date}
-        />
+        <View style={styles.labaelAndTextInputCotainer}>
+          <Text style={styles.label}>נושא הפעולה</Text>
+          <TextInput
+            style={styles.text}
+            onChangeText={(e) => setSubject(e)}
+            value={subject}
+          />
+        </View>
+        <View style={styles.labaelAndTextInputCotainer}>
+          <Text style={styles.label}>מיקום</Text>
+          <TextInput
+            style={styles.text}
+            onChangeText={(e) => setPlace(e)}
+            value={place}
+          />
+        </View>
+        <View style={styles.labaelAndTextInputCotainer}>
+          <Text style={styles.label}>שעה</Text>
+          <TextInput
+            style={styles.text}
+            onChangeText={(e) => setHour(e)}
+            value={hour}
+          />
+        </View>
+        <View style={styles.labaelAndTextInputCotainer}>
+          <Text style={styles.label}>תאריך</Text>
+          <TextInput
+            style={styles.text}
+            onChangeText={(e) => setDate(e)}
+            value={date}
+          />
+        </View>
         {error && (
           <View>
             <Text style={styles.errorMsg}>Fill The Form Again</Text>
@@ -121,11 +133,17 @@ const styles = StyleSheet.create({
     fontSize: 24,
     borderRadius: 20,
     height: 50,
-    marginVertical: 8,
     padding: 10,
   },
   errorMsg: {
     color: "red",
     fontSize: 15,
+  },
+  labaelAndTextInputCotainer: {},
+  label: {
+    marginTop: 10,
+    marginBottom: 5,
+    fontSize: 15,
+    marginHorizontal: 20,
   },
 });
