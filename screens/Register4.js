@@ -7,7 +7,13 @@ import {
   where,
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
-import { StyleSheet, View, Text, Button } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Button,
+  KeyboardAvoidingView,
+} from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import MyButton from "../components/MyButton";
 import db from "../config";
@@ -58,101 +64,103 @@ export default function Register4() {
 
   return (
     <>
-      <View style={styles.container}>
-        <LogOutButton title="אזור אישי" />
-        <MyTittle text="יצירת פעולה" styleContainer={styles.title} />
-        <View style={styles.labaelAndTextInputCotainer}>
-          <Text style={styles.label}>נושא הפעולה</Text>
-          <TextInput
-            style={styles.text}
-            onChangeText={(e) => setSubject(e)}
-            value={subject}
-          />
-        </View>
-        <View style={styles.labaelAndTextInputCotainer}>
-          <Text style={styles.label}>מיקום</Text>
-          <TextInput
-            style={styles.text}
-            onChangeText={(e) => setPlace(e)}
-            value={place}
-          />
-        </View>
-        <View style={styles.labaelAndTextInputCotainer}>
-          <Text style={styles.label}>שעה</Text>
-          <TextInput
-            style={styles.text}
-            onChangeText={(e) => setHour(e)}
-            value={hour}
-          />
-        </View>
-        <View style={styles.labaelAndTextInputCotainer}>
-          <Text style={styles.label}>תאריך</Text>
-          <TextInput
-            style={styles.text}
-            onChangeText={(e) => setDate(e)}
-            value={date}
-          />
-        </View>
-        {error && (
-          <View>
-            <Text style={styles.errorMsg}>Fill The Form Again</Text>
+      <KeyboardAvoidingView style={{ flex: 1 }}>
+        <View style={styles.container}>
+          <LogOutButton title="אזור אישי" />
+          <MyTittle text="יצירת פעולה" styleContainer={styles.title} />
+          <View style={styles.labaelAndTextInputCotainer}>
+            <Text style={styles.label}>נושא הפעולה</Text>
+            <TextInput
+              style={styles.text}
+              onChangeText={(e) => setSubject(e)}
+              value={subject}
+            />
           </View>
-        )}
-        <View style={styles.toggleContainer}>
-          <Toggle
-            value={toggleValue}
-            onPress={(newState) => setToggleValue(newState)}
-            leftTitle="בחירה מפעולות עבר"
-            rightTitle="הזנת פרטי הפעילות"
-            trackBarStyle={{
-              width: 300,
-              height: 40,
+          <View style={styles.labaelAndTextInputCotainer}>
+            <Text style={styles.label}>מיקום</Text>
+            <TextInput
+              style={styles.text}
+              onChangeText={(e) => setPlace(e)}
+              value={place}
+            />
+          </View>
+          <View style={styles.labaelAndTextInputCotainer}>
+            <Text style={styles.label}>שעה</Text>
+            <TextInput
+              style={styles.text}
+              onChangeText={(e) => setHour(e)}
+              value={hour}
+            />
+          </View>
+          <View style={styles.labaelAndTextInputCotainer}>
+            <Text style={styles.label}>תאריך</Text>
+            <TextInput
+              style={styles.text}
+              onChangeText={(e) => setDate(e)}
+              value={date}
+            />
+          </View>
+          {error && (
+            <View>
+              <Text style={styles.errorMsg}>Fill The Form Again</Text>
+            </View>
+          )}
+          <View style={styles.toggleContainer}>
+            <Toggle
+              value={toggleValue}
+              onPress={(newState) => setToggleValue(newState)}
+              leftTitle="בחירה מפעולות עבר"
+              rightTitle="הזנת פרטי הפעילות"
+              trackBarStyle={{
+                width: 300,
+                height: 40,
 
-              backgroundColor: toggleValue
-                ? COLORS.gray_blue
-                : COLORS.light_gray,
-            }}
-            thumbButton={{
-              inActiveBackgroundColor: COLORS.gray_blue,
-              activeBackgroundColor: COLORS.light_gray,
-              activeColor: COLORS.light_gray,
-              inActiveColor: COLORS.black,
-              width: 150,
-              height: 40,
-            }}
-            animationDuration={500}
-          />
+                backgroundColor: toggleValue
+                  ? COLORS.gray_blue
+                  : COLORS.light_gray,
+              }}
+              thumbButton={{
+                inActiveBackgroundColor: COLORS.gray_blue,
+                activeBackgroundColor: COLORS.light_gray,
+                activeColor: COLORS.light_gray,
+                inActiveColor: COLORS.black,
+                width: 150,
+                height: 40,
+              }}
+              animationDuration={500}
+            />
+          </View>
+          {toggleValue && (
+            <TextInput
+              style={styles.taskDetails}
+              onChangeText={(e) => setDetails(e)}
+              value={details}
+              placeholder="הקלד כאן.."
+            />
+          )}
+          <View
+            style={[
+              styles.publishButton,
+              {
+                height: !toggleValue ? 40 : 40,
+                width: !toggleValue ? 100 : 100,
+              },
+            ]}
+            onPress={() =>
+              addRecordTodb({
+                subject,
+                place,
+                hour,
+                date,
+                details,
+              })
+            }
+          >
+            <Text>פרסם</Text>
+          </View>
         </View>
-        {toggleValue && (
-          <TextInput
-            style={styles.taskDetails}
-            onChangeText={(e) => setDetails(e)}
-            value={details}
-            placeholder="הקלד כאן.."
-          />
-        )}
-        <View
-          style={[
-            styles.publishButton,
-            {
-              height: !toggleValue ? 40 : 35,
-              width: !toggleValue ? 100 : 95,
-            },
-          ]}
-          onPress={() =>
-            addRecordTodb({
-              subject,
-              place,
-              hour,
-              date,
-              details,
-            })
-          }
-        >
-          <Text>פרסם</Text>
-        </View>
-      </View>
-      <Footer />
+        <Footer />
+      </KeyboardAvoidingView>
     </>
   );
 }
@@ -193,7 +201,7 @@ const styles = StyleSheet.create({
     width: 338,
     fontSize: 15,
     borderRadius: 15,
-    height: 90,
+    height: 100,
     textAlign: "right",
     paddingRight: 10,
     backgroundColor: COLORS.pink,
@@ -208,6 +216,6 @@ const styles = StyleSheet.create({
     marginVertical: 6,
   },
   title: {
-    paddingTop: 55,
+    paddingTop: 56,
   },
 });

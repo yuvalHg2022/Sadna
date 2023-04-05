@@ -4,7 +4,7 @@ import React from "react";
 const Footer = () => {
   return (
     <View style={styles.container}>
-      <Image source={require("../assets/logo.png")} />
+      <Image source={require("../assets/logo2.png")} />
     </View>
   );
 };
@@ -16,6 +16,6 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     width: "100%",
     alignItems: "center",
-    paddingBottom: 10,
+    paddingVertical: 15,
   },
 });
