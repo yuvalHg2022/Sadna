@@ -6,7 +6,7 @@ import EventList from "../components/EventList";
 import { COLORS } from "../utils/StyleGuide";
 import ActionButton from "../components/ActionButton";
 
-export default function Activitiy4({ navigation }) {
+export default function RecentActivities({ navigation }) {
   return (
     <>
       <View style={styles.container}>
@@ -18,8 +18,8 @@ export default function Activitiy4({ navigation }) {
             title=" יצירת פעולה חדשה"
             onPress={() => navigation.navigate("Register4")}
           />
-          <MyButton title="הפעולה הקרובה" onPress={() => navigation.navigate('CloseActivity')} />
-          <MyButton title="פעולות קודמות" onPress={() => navigation.navigate('RecentActivities')} />
+          <MyButton title="הפעולה הקרובה" />
+          <MyButton title="פעולות קודמות" />
         </View>
         <EventList />
       </View>

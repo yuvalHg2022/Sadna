@@ -6,6 +6,8 @@ import Home3 from "./screens/Home3";
 import Activitiy4 from "./screens/Activitiy4";
 import Register4 from "./screens/Register4";
 import Students4 from "./screens/Students4";
+import RecentActivities from "./screens/RecentActivities";
+import CloseActivity from "./screens/CloseActivity";
 
 const App = () => {
   const Stack = createStackNavigator();
@@ -33,6 +35,16 @@ const App = () => {
         component={Students4}
         options={{ title: "חניכים" }}
       />
+         <Stack.Screen
+        name="CloseActivity"
+        component={CloseActivity}
+        options={{ headerShown: false }}
+        />
+         <Stack.Screen
+        name="RecentActivities"
+        component={RecentActivities}
+        options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
