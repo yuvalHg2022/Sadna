@@ -13,6 +13,8 @@ import {
   Text,
   Button,
   KeyboardAvoidingView,
+  TouchableOpacity,
+  Pressable,
 } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import MyButton from "../components/MyButton";
@@ -22,6 +24,8 @@ import MyTittle from "../components/MyTittle";
 import Toggle from "react-native-toggle-element";
 import LogOutButton from "../components/LogOutButton";
 import { COLORS } from "../utils/StyleGuide";
+import { PAST_TASKS } from "../data";
+import PastTaks from "../components/PastTaks";
 
 export default function Register4() {
   const navigation = useNavigation();
@@ -61,6 +65,8 @@ export default function Register4() {
       console.error("Error adding document: ", e);
     }
   };
+
+  useEffect(() => {}, [toggleValue]);
 
   return (
     <>
@@ -130,15 +136,29 @@ export default function Register4() {
               animationDuration={500}
             />
           </View>
-          {toggleValue && (
+          {toggleValue ? (
             <TextInput
               style={styles.taskDetails}
               onChangeText={(e) => setDetails(e)}
               value={details}
               placeholder="הקלד כאן.."
             />
+          ) : (
+            PAST_TASKS?.map((item) => (
+              <PastTaks
+                key={item.id}
+                id={item.id}
+                subject={item.subject}
+                onPress={() => {
+                  setDate(item.date);
+                  setHour(item.hour);
+                  setPlace(item.place);
+                  setSubject(item.subject);
+                }}
+              />
+            ))
           )}
-          <View
+          <Pressable
             style={[
               styles.publishButton,
               {
@@ -156,8 +176,8 @@ export default function Register4() {
               })
             }
           >
-            <Text>פרסם</Text>
-          </View>
+            <Text>פרסום</Text>
+          </Pressable>
         </View>
         <Footer />
       </KeyboardAvoidingView>
@@ -176,11 +196,12 @@ const styles = StyleSheet.create({
   text: {
     borderWidth: 1,
     width: 300,
-    fontSize: 24,
+    fontSize: 13,
     borderRadius: 15,
     height: 35,
     padding: 10,
     backgroundColor: COLORS.very_light_gray,
+    textAlign: "right",
   },
   errorMsg: {
     color: COLORS.red,
