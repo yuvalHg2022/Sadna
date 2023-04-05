@@ -7,6 +7,8 @@ import { AntDesign } from "@expo/vector-icons";
 import Footer from "../components/Footer";
 import { COLORS } from "../utils/StyleGuide";
 import LogOutButton from "../components/LogOutButton";
+import Students4 from '../screens/Students4';
+
 
 export default function Home3({ navigation }) {
   return (
@@ -22,6 +24,7 @@ export default function Home3({ navigation }) {
         <MyButton
           title="חניכים"
           color={COLORS.light_gray}
+          onPress={() => navigation.navigate("Students4")}
           icon={
             <Ionicons name="person-outline" size={24} color={COLORS.black} />
           }
@@ -36,6 +39,7 @@ export default function Home3({ navigation }) {
     </>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
