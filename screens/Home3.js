@@ -12,7 +12,7 @@ const IMAGE_HEIGHT = 288
 
 export default function Home3({ navigation }) {
 
-  const onLogout = ()=> {
+  const onLogout = () => {
     //TODO: call logout function
     // navigation.navigate('') //TODO: navigate to home 
   }
@@ -20,7 +20,7 @@ export default function Home3({ navigation }) {
   return (
     <>
       <ImageBackground source={require("../assets/images/home.png")} style={{ height: IMAGE_HEIGHT, width: '100%', flex: 1, }} resizeMode="cover">
-        <View style={{ marginTop: 24 }}>
+        <View style={{ marginTop: 5 }}>
           <ActionButton title="התנתקות" onPress={onLogout} />
         </View>
         <View style={styles.container}>
@@ -35,6 +35,7 @@ export default function Home3({ navigation }) {
               title="חניכים"
               color={COLORS.white}
               icon={<Ionicons name="person-outline" size={24} />}
+              onPress={() => navigation.navigate("Students4")}
             />
             <MyButton
               title="הודעות"

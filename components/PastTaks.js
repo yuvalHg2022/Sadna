@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
+import { COLORS } from "../utils/StyleGuide";
 
 const PastTaks = ({ subject, id, onPress }) => {
   return (
@@ -23,8 +24,6 @@ const styles = StyleSheet.create({
     width: 300,
     textAlign: "center",
     fontSize: 13,
-  },
-  id: {
-    textAlign: "start",
+    backgroundColor: COLORS.pink,
   },
 });

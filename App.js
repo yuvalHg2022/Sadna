@@ -5,6 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import Home3 from "./screens/Home3";
 import Activitiy4 from "./screens/Activitiy4";
 import Register4 from "./screens/Register4";
+import Students4 from "./screens/Students4";
 
 const App = () => {
   const Stack = createStackNavigator();
@@ -27,6 +28,11 @@ const App = () => {
           component={Register4}
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+        name="Students4"
+        component={Students4}
+        options={{ title: "חניכים" }}
+      />
       </Stack.Navigator>
     </NavigationContainer>
   );

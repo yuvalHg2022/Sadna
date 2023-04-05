@@ -106,11 +106,7 @@ export default function Register4() {
               value={date}
             />
           </View>
-          {error && (
-            <View>
-              <Text style={styles.errorMsg}>Fill The Form Again</Text>
-            </View>
-          )}
+
           <View style={styles.toggleContainer}>
             <Toggle
               value={toggleValue}
@@ -158,14 +154,8 @@ export default function Register4() {
               />
             ))
           )}
-          <Pressable
-            style={[
-              styles.publishButton,
-              {
-                height: !toggleValue ? 40 : 40,
-                width: !toggleValue ? 100 : 100,
-              },
-            ]}
+          <TouchableOpacity
+            style={styles.publishButton}
             onPress={() =>
               addRecordTodb({
                 subject,
@@ -177,7 +167,7 @@ export default function Register4() {
             }
           >
             <Text>פרסום</Text>
-          </Pressable>
+          </TouchableOpacity>
         </View>
         <Footer />
       </KeyboardAvoidingView>
@@ -209,8 +199,8 @@ const styles = StyleSheet.create({
   },
   labaelAndTextInputCotainer: {},
   label: {
-    marginTop: 2,
-    marginBottom: 5,
+    marginTop: 1,
+    marginBottom: 3,
     fontSize: 17,
     marginHorizontal: 20,
   },
@@ -234,7 +224,8 @@ const styles = StyleSheet.create({
     width: 160,
     height: 40,
     backgroundColor: COLORS.yellow,
-    marginVertical: 6,
+    marginVertical: 3,
+    padding: 2,
   },
   title: {
     paddingTop: 56,
