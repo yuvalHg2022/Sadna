@@ -13,6 +13,8 @@ import {
   Text,
   Button,
   KeyboardAvoidingView,
+  TouchableOpacity,
+  Pressable,
 } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import MyButton from "../components/MyButton";
@@ -22,6 +24,8 @@ import MyTittle from "../components/MyTittle";
 import Toggle from "react-native-toggle-element";
 import LogOutButton from "../components/LogOutButton";
 import { COLORS } from "../utils/StyleGuide";
+import { PAST_TASKS } from "../data";
+import PastTaks from "../components/PastTaks";
 
 export default function Register4() {
   const navigation = useNavigation();
@@ -62,6 +66,8 @@ export default function Register4() {
     }
   };
 
+  useEffect(() => {}, [toggleValue]);
+
   return (
     <>
       <KeyboardAvoidingView style={{ flex: 1 }}>
@@ -100,11 +106,7 @@ export default function Register4() {
               value={date}
             />
           </View>
-          {error && (
-            <View>
-              <Text style={styles.errorMsg}>Fill The Form Again</Text>
-            </View>
-          )}
+
           <View style={styles.toggleContainer}>
             <Toggle
               value={toggleValue}
@@ -130,22 +132,30 @@ export default function Register4() {
               animationDuration={500}
             />
           </View>
-          {toggleValue && (
+          {toggleValue ? (
             <TextInput
               style={styles.taskDetails}
               onChangeText={(e) => setDetails(e)}
               value={details}
               placeholder="הקלד כאן.."
             />
+          ) : (
+            PAST_TASKS?.map((item) => (
+              <PastTaks
+                key={item.id}
+                id={item.id}
+                subject={item.subject}
+                onPress={() => {
+                  setDate(item.date);
+                  setHour(item.hour);
+                  setPlace(item.place);
+                  setSubject(item.subject);
+                }}
+              />
+            ))
           )}
-          <View
-            style={[
-              styles.publishButton,
-              {
-                height: !toggleValue ? 40 : 40,
-                width: !toggleValue ? 100 : 100,
-              },
-            ]}
+          <TouchableOpacity
+            style={styles.publishButton}
             onPress={() =>
               addRecordTodb({
                 subject,
@@ -156,8 +166,8 @@ export default function Register4() {
               })
             }
           >
-            <Text>פרסם</Text>
-          </View>
+            <Text>פרסום</Text>
+          </TouchableOpacity>
         </View>
         <Footer />
       </KeyboardAvoidingView>
@@ -176,11 +186,12 @@ const styles = StyleSheet.create({
   text: {
     borderWidth: 1,
     width: 300,
-    fontSize: 24,
+    fontSize: 13,
     borderRadius: 15,
     height: 35,
     padding: 10,
     backgroundColor: COLORS.very_light_gray,
+    textAlign: "right",
   },
   errorMsg: {
     color: COLORS.red,
@@ -188,8 +199,8 @@ const styles = StyleSheet.create({
   },
   labaelAndTextInputCotainer: {},
   label: {
-    marginTop: 2,
-    marginBottom: 5,
+    marginTop: 1,
+    marginBottom: 3,
     fontSize: 17,
     marginHorizontal: 20,
   },
@@ -213,7 +224,8 @@ const styles = StyleSheet.create({
     width: 160,
     height: 40,
     backgroundColor: COLORS.yellow,
-    marginVertical: 6,
+    marginVertical: 3,
+    padding: 2,
   },
   title: {
     paddingTop: 56,

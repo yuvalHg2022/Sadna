@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet, ImageBackground } from "react-native";
 import React from "react";
 import MyButton from "../components/MyButton";
 import { FontAwesome } from "@expo/vector-icons";
@@ -10,9 +10,12 @@ import LogOutButton from "../components/LogOutButton";
 import Students4 from '../screens/Students4';
 
 
+const IMAGE_HEIGHT = 288
+
 export default function Home3({ navigation }) {
   return (
     <>
+<<<<<<< HEAD
       <View style={styles.container}>
         <LogOutButton title="התנתקות" />
         <MyButton
@@ -35,6 +38,34 @@ export default function Home3({ navigation }) {
           icon={<AntDesign name="message1" size={24} color={COLORS.black} />}
         />
       </View>
+=======
+
+      <ImageBackground source={require("../assets/images/home.png")} style={{ height: IMAGE_HEIGHT, width: '100%', flex: 1, }} resizeMode="cover">
+        <View style={{ marginTop: 24 }}>
+          <LogOutButton title="איזור אישי" />
+        </View>
+        <View style={styles.container}>
+          <View style={styles.menu}>
+            <MyButton
+              title="פעילויות"
+              color={COLORS.white}
+              onPress={() => navigation.navigate("Activitiy4")}
+              icon={<FontAwesome name="calendar" size={24} />}
+            />
+            <MyButton
+              title="חניכים"
+              color={COLORS.white}
+              icon={<Ionicons name="person-outline" size={24} />}
+            />
+            <MyButton
+              title="הודעות"
+              color={COLORS.white}
+              icon={<AntDesign name="message1" size={24} />}
+            />
+          </View>
+        </View>
+      </ImageBackground>
+>>>>>>> dd5fc9af7166db58fd1a6ee8a3f10791e64e0ba7
       <Footer />
     </>
   );
@@ -44,7 +75,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.white,
-    justifyContent: "center",
-    alignItems: "center",
+    top: IMAGE_HEIGHT - 50,
+    backgroundColor: COLORS.white,
+    alignItems: 'center',
+    borderTopStartRadius: 30,
+    borderTopEndRadius: 30
+  },
+  menu: {
+    top: 64
   },
 });
