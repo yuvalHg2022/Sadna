@@ -6,27 +6,29 @@ import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import Footer from "../components/Footer";
 import { COLORS } from "../utils/StyleGuide";
+import LogOutButton from "../components/LogOutButton";
 
 export default function Home3({ navigation }) {
   return (
     <>
       <View style={styles.container}>
-        <Text>Home</Text>
-
+        <LogOutButton title="התנתקות" />
         <MyButton
           title="פעילויות"
-          color={COLORS.white}
+          color={COLORS.light_gray}
           onPress={() => navigation.navigate("Activitiy4")}
           icon={<FontAwesome name="calendar" size={24} color={COLORS.black} />}
         />
         <MyButton
           title="חניכים"
-          color={COLORS.white}
-          icon={<Ionicons name="person-outline" size={24} color={COLORS.black} />}
+          color={COLORS.light_gray}
+          icon={
+            <Ionicons name="person-outline" size={24} color={COLORS.black} />
+          }
         />
         <MyButton
           title="הודעות"
-          color={COLORS.white}
+          color={COLORS.light_gray}
           icon={<AntDesign name="message1" size={24} color={COLORS.black} />}
         />
       </View>
@@ -37,7 +39,7 @@ export default function Home3({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: COLORS.white,
     justifyContent: "center",
     alignItems: "center",
   },

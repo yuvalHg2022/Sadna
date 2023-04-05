@@ -15,6 +15,7 @@ import Footer from "../components/Footer";
 import MyTittle from "../components/MyTittle";
 import Toggle from "react-native-toggle-element";
 import LogOutButton from "../components/LogOutButton";
+import { COLORS } from "../utils/StyleGuide";
 
 export default function Register4() {
   const navigation = useNavigation();
@@ -55,13 +56,11 @@ export default function Register4() {
     }
   };
 
-  useEffect(() => {}, []);
-
   return (
     <>
       <View style={styles.container}>
-        <LogOutButton title="איזור אישי" />
-        <MyTittle text="יצירת פעולה" />
+        <LogOutButton title="אזור אישי" />
+        <MyTittle text="יצירת פעולה" styleContainer={styles.title} />
         <View style={styles.labaelAndTextInputCotainer}>
           <Text style={styles.label}>נושא הפעולה</Text>
           <TextInput
@@ -109,13 +108,15 @@ export default function Register4() {
               width: 300,
               height: 40,
 
-              backgroundColor: toggleValue ? "#36454F" : "#A9A9A9",
+              backgroundColor: toggleValue
+                ? COLORS.gray_blue
+                : COLORS.light_gray,
             }}
             thumbButton={{
-              inActiveBackgroundColor: "#36454F",
-              activeBackgroundColor: "#A9A9A9",
-              activeColor: "#A9A9A9",
-              inActiveColor: "black",
+              inActiveBackgroundColor: COLORS.gray_blue,
+              activeBackgroundColor: COLORS.light_gray,
+              activeColor: COLORS.light_gray,
+              inActiveColor: COLORS.black,
               width: 150,
               height: 40,
             }}
@@ -131,7 +132,13 @@ export default function Register4() {
           />
         )}
         <View
-          style={styles.publishButton}
+          style={[
+            styles.publishButton,
+            {
+              height: !toggleValue ? 40 : 35,
+              width: !toggleValue ? 100 : 95,
+            },
+          ]}
           onPress={() =>
             addRecordTodb({
               subject,
@@ -153,7 +160,7 @@ export default function Register4() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: COLORS.white,
     justifyContent: "flex-start",
     alignItems: "center",
     paddingTop: 20,
@@ -165,16 +172,17 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     height: 35,
     padding: 10,
+    backgroundColor: COLORS.very_light_gray,
   },
   errorMsg: {
-    color: "red",
+    color: COLORS.red,
     fontSize: 15,
   },
   labaelAndTextInputCotainer: {},
   label: {
-    marginTop: 5,
+    marginTop: 2,
     marginBottom: 5,
-    fontSize: 15,
+    fontSize: 17,
     marginHorizontal: 20,
   },
   toggleContainer: {
@@ -182,21 +190,24 @@ const styles = StyleSheet.create({
     marginBottom: 6,
   },
   taskDetails: {
-    width: 300,
+    width: 338,
     fontSize: 15,
     borderRadius: 15,
-    height: 100,
+    height: 90,
     textAlign: "right",
     paddingRight: 10,
-    backgroundColor: "#FFEFFF",
+    backgroundColor: COLORS.pink,
   },
   publishButton: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    width: 100,
-    padding: 10,
-    backgroundColor: "#fffd8d",
+    width: 160,
+    height: 40,
+    backgroundColor: COLORS.yellow,
     marginVertical: 6,
+  },
+  title: {
+    paddingTop: 55,
   },
 });

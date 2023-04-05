@@ -1,11 +1,11 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 
 const LogOutButton = ({ title }) => {
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container}>
       <Text style={styles.text}>{title}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -13,17 +13,20 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "black",
     position: "absolute",
-    top: 20,
-    left: 20,
+    top: 40,
+    left: 10,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 20,
+    borderRadius: 13,
+    width: 112,
+    height: 42,
   },
   text: {
     color: "white",
-    fontSize: 16,
-    padding: 13,
+    fontSize: 14,
+    padding: 10,
+    fontWeight: "bold",
   },
 });
 export default LogOutButton;
