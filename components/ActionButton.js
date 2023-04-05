@@ -1,9 +1,9 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 
-const LogOutButton = ({ title }) => {
+const ActionButton = ({ title, onPress = () => { } }) => {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <Text style={styles.text}>{title}</Text>
     </TouchableOpacity>
   );
@@ -29,4 +29,4 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 });
-export default LogOutButton;
+export default ActionButton;

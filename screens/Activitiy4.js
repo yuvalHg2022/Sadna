@@ -4,13 +4,13 @@ import MyButton from "../components/MyButton";
 import Footer from "../components/Footer";
 import EventList from "../components/EventList";
 import { COLORS } from "../utils/StyleGuide";
-import LogOutButton from "../components/LogOutButton";
+import ActionButton from "../components/ActionButton";
 
 export default function Activitiy4({ navigation }) {
   return (
     <>
       <View style={styles.container}>
-        <LogOutButton title="אזור אישי" />
+        <ActionButton title="אזור אישי" />
 
         <View style={{ flex: 0.2 }} />
         <View style={styles.menu}>
