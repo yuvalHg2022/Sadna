@@ -4,12 +4,15 @@ import MyButton from "../components/MyButton";
 import Footer from "../components/Footer";
 import EventList from "../components/EventList";
 import { COLORS } from "../utils/StyleGuide";
+import LogOutButton from "../components/LogOutButton";
 
 export default function Activitiy4({ navigation }) {
   return (
     <>
       <View style={styles.container}>
-        <View style={{flex:.2}}/>
+        <LogOutButton title="אזור אישי" />
+
+        <View style={{ flex: 0.2 }} />
         <View style={styles.menu}>
           <MyButton
             title=" יצירת פעולה חדשה"
@@ -31,9 +34,9 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
   },
   menu: {
-    flex: .3,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingBottom: '5%',
+    flex: 0.3,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingBottom: "5%",
   },
 });

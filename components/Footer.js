@@ -7,7 +7,7 @@ const SCREEN_HEIGHT = Dimensions.get("screen").height
 const Footer = () => {
   return (
     <View style={styles.container}>
-      <Image source={require("../assets/images/logo.png")} style={{ height: SCREEN_HEIGHT * 0.1 }} resizeMode={'contain'} />
+      <Image source={require("../assets/images/logo2.png")} style={{ height: SCREEN_HEIGHT * 0.1 }} resizeMode={'contain'} />
     </View>
   );
 };
@@ -19,6 +19,6 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
     width: "100%",
     alignItems: "center",
-    paddingBottom: 16,
+    paddingVertical: 16,
   },
 });
