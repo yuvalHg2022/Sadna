@@ -6,6 +6,7 @@ import { COLORS } from "../utils/StyleGuide";
 import ActionButton from "../components/ActionButton";
 import MyTittle from "../components/MyTittle";
 import { FontAwesome } from "@expo/vector-icons";
+import eventListData from '../assets/mocks/eventList.json'
 
 export default function CloseActivity({ navigation }) {
 
@@ -43,7 +44,10 @@ export default function CloseActivity({ navigation }) {
               </TouchableOpacity>
             </View>
           </View>
-          <EventList containerStyle={{ flex: 1 }} />
+          <EventList
+            containerStyle={{ flex: 1 }}
+            title={"לוח אירועים"}
+            list={eventListData} />
         </View>
       </View>
       <Footer />

@@ -1,15 +1,12 @@
 import { View, Text, StyleSheet, Image } from "react-native";
 import React from "react";
+import { ICONS } from "../assets/icons";
 
 function convertFahrenheitToCelsius(degrees) {
   return Math.floor((5 / 9) * (degrees - 32));
 }
 
-const ForecasrItem = ({ phrase, icon = 1, maxTemp, minTemp }) => {
-  console.log("🚀 ~ file: ForecasrItem.js:9 ~ ForecasrItem ~ icon:", icon)
-  // const iconPath = `../icons/${icon}.png`
-  var icon2 = require("../assets/icons/1.png");  
-  // console.log("🚀 ~ file: ForecasrItem.js:12 ~ ForecasrItem ~ iconPath:", iconPath)
+const ForecastItem = ({ phrase, icon = 1, maxTemp, minTemp }) => {
 
   return (
     <View style={styles.continaer}>
@@ -17,11 +14,11 @@ const ForecasrItem = ({ phrase, icon = 1, maxTemp, minTemp }) => {
       <Text style={styles.text}> {phrase}</Text>
       <Text style={styles.text}>מקס {convertFahrenheitToCelsius(maxTemp)}</Text>
 
-      <Image style={styles.img} source={icon2} />
+      <Image style={styles.img} source={ICONS[+icon]} />
     </View>
   );
 };
-export default ForecasrItem;
+export default ForecastItem;
 
 const styles = StyleSheet.create({
   continaer: {

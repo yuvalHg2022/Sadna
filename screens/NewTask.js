@@ -28,7 +28,7 @@ import { COLORS } from "../utils/StyleGuide";
 import { PAST_TASKS } from "../data";
 import PastTaks from "../components/PastTaks";
 import axios from "axios";
-import ForecasrItem from "../components/ForecasrItem";
+import ForecastItem from "../components/ForecastItem";
 
 export default function NewTask() {
   const navigation = useNavigation();
@@ -203,7 +203,7 @@ export default function NewTask() {
         <View style={styles.foreCastContainer}>
           {forecastFlag &&
             forecast.map((item, index) => (
-              <ForecasrItem
+              <ForecastItem
                 key={index}
                 maxTemp={parseInt(item?.Temperature?.Maximum?.Value)}
                 minTemp={parseInt(item?.Temperature?.Minimum?.Value)}
@@ -246,6 +246,7 @@ const styles = StyleSheet.create({
     marginBottom: 3,
     fontSize: 17,
     marginHorizontal: 20,
+    textAlign: 'right',
   },
   toggleContainer: {
     marginTop: 10,

@@ -11,17 +11,9 @@ export default function RecentActivities({ navigation }) {
     <>
       <View style={styles.container}>
         <ActionButton title="אזור אישי" />
-
-        <View style={{ flex: 0.2 }} />
         <View style={styles.menu}>
-          <MyButton
-            title=" יצירת פעולה חדשה"
-            onPress={() => navigation.navigate("Register4")}
-          />
-          <MyButton title="הפעולה הקרובה" />
-          <MyButton title="פעולות קודמות" />
+          <EventList title={"פעילויות קודמות"} list={[]} />
         </View>
-        <EventList />
       </View>
       <Footer />
     </>
@@ -34,9 +26,8 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
   },
   menu: {
-    flex: 0.3,
-    justifyContent: "center",
-    alignItems: "center",
+    flex: 1,
+    marginTop: 80,
     paddingBottom: "5%",
   },
 });

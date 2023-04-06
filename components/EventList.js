@@ -3,7 +3,6 @@ import React, { useCallback } from "react";
 import MyTittle from "./MyTittle";
 import { COLORS } from "../utils/StyleGuide";
 import { FontAwesome } from "@expo/vector-icons";
-import eventListData from '../assets/mocks/eventList.json'
 import { TouchableOpacity } from "react-native";
 
 const SCREEN_WIDTH = Dimensions.get("screen").width
@@ -28,11 +27,11 @@ const EventList = (props) => {
     <View style={[styles.container, props.containerStyle]}>
       <View style={styles.title}>
         <FontAwesome name="calendar" size={24} color={COLORS.black} />
-        <MyTittle text="לוח אירועים" />
+        <MyTittle text={props.title} />
       </View>
       <View style={styles.listContainer}>
         <FlatList
-          data={eventListData}
+          data={props.list}
           renderItem={renderItem}
           keyExtractor={(item, index) => item.id}
         />
