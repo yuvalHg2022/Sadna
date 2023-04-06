@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import EventList from "../components/EventList";
 import { COLORS } from "../utils/StyleGuide";
 import ActionButton from "../components/ActionButton";
+import eventListData from '../assets/mocks/eventList.json'
 
 export default function Activitiy({ navigation }) {
   return (
@@ -21,7 +22,7 @@ export default function Activitiy({ navigation }) {
           <MyButton title="הפעולה הקרובה" onPress={() => navigation.navigate('CloseActivity')} />
           <MyButton title="פעולות קודמות" onPress={() => navigation.navigate('RecentActivities')} />
         </View>
-        <EventList />
+        <EventList title={"לוח אירועים"} list={eventListData}/>
       </View>
       <Footer />
     </>
