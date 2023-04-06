@@ -169,8 +169,8 @@ export default function Register4() {
             <Text>פרסום</Text>
           </TouchableOpacity>
         </View>
-        <Footer />
       </KeyboardAvoidingView>
+      <Footer />
     </>
   );
 }
