@@ -8,9 +8,9 @@ import Footer from "../components/Footer";
 import { COLORS } from "../utils/StyleGuide";
 import ActionButton from "../components/ActionButton";
 
-const IMAGE_HEIGHT = 288
+const IMAGE_HEIGHT = 288;
 
-export default function Home3({ navigation }) {
+export default function Home({ navigation }) {
 
   const onLogout = () => {
     //TODO: call logout function
@@ -28,7 +28,7 @@ export default function Home3({ navigation }) {
             <MyButton
               title="פעילויות"
               color={COLORS.white}
-              onPress={() => navigation.navigate("Activitiy4")}
+              onPress={() => navigation.navigate("Activitiy")}
               icon={<FontAwesome name="calendar" size={24} />}
             />
             <MyButton
@@ -55,11 +55,11 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
     top: IMAGE_HEIGHT - 50,
     backgroundColor: COLORS.white,
-    alignItems: 'center',
+    alignItems: "center",
     borderTopStartRadius: 30,
-    borderTopEndRadius: 30
+    borderTopEndRadius: 30,
   },
   menu: {
-    top: 64
+    top: 64,
   },
 });

@@ -17,13 +17,13 @@ export default PastTaks;
 const styles = StyleSheet.create({
   container: {
     borderWidth: 1,
-    height: 25,
+    backgroundColor: COLORS.pink,
+    height: 40,
   },
   text: {
     padding: 2,
     width: 300,
     textAlign: "center",
-    fontSize: 13,
-    backgroundColor: COLORS.pink,
+    fontSize: 18,
   },
 });
