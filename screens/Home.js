@@ -6,20 +6,22 @@ import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import Footer from "../components/Footer";
 import { COLORS } from "../utils/StyleGuide";
-import LogOutButton from "../components/LogOutButton";
+import ActionButton from "../components/ActionButton";
 
 const IMAGE_HEIGHT = 288;
 
 export default function Home({ navigation }) {
+
+  const onLogout = () => {
+    //TODO: call logout function
+    // navigation.navigate('') //TODO: navigate to home 
+  }
+
   return (
     <>
-      <ImageBackground
-        source={require("../assets/images/home.png")}
-        style={{ height: IMAGE_HEIGHT, width: "100%", flex: 1 }}
-        resizeMode="cover"
-      >
-        <View style={{ marginTop: 24 }}>
-          <LogOutButton title="איזור אישי" />
+      <ImageBackground source={require("../assets/images/home.png")} style={{ height: IMAGE_HEIGHT, width: '100%', flex: 1, }} resizeMode="cover">
+        <View style={{ marginTop: 5 }}>
+          <ActionButton title="התנתקות" onPress={onLogout} />
         </View>
         <View style={styles.container}>
           <View style={styles.menu}>
@@ -33,6 +35,7 @@ export default function Home({ navigation }) {
               title="חניכים"
               color={COLORS.white}
               icon={<Ionicons name="person-outline" size={24} />}
+              onPress={() => navigation.navigate("Students4")}
             />
             <MyButton
               title="הודעות"

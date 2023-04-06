@@ -8,7 +8,7 @@ import { TouchableOpacity } from "react-native";
 
 const SCREEN_WIDTH = Dimensions.get("screen").width
 
-const EventList = () => {
+const EventList = (props) => {
 
   const renderItem = useCallback(({ item, index }) => (
     <TouchableOpacity style={styles.eventItem} onPress={() => { console.log('item pressed:', item) }}>
@@ -25,7 +25,7 @@ const EventList = () => {
   ), [])
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, props.containerStyle]}>
       <View style={styles.title}>
         <FontAwesome name="calendar" size={24} color={COLORS.black} />
         <MyTittle text="לוח אירועים" />
