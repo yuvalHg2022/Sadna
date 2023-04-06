@@ -6,7 +6,7 @@ import EventList from "../components/EventList";
 import { COLORS } from "../utils/StyleGuide";
 import LogOutButton from "../components/LogOutButton";
 
-export default function Activitiy4({ navigation }) {
+export default function Activitiy({ navigation }) {
   return (
     <>
       <View style={styles.container}>
@@ -16,7 +16,7 @@ export default function Activitiy4({ navigation }) {
         <View style={styles.menu}>
           <MyButton
             title=" יצירת פעולה חדשה"
-            onPress={() => navigation.navigate("Register4")}
+            onPress={() => navigation.navigate("NewTask")}
           />
           <MyButton title="הפעולה הקרובה" />
           <MyButton title="פעולות קודמות" />

@@ -8,13 +8,16 @@ import Footer from "../components/Footer";
 import { COLORS } from "../utils/StyleGuide";
 import LogOutButton from "../components/LogOutButton";
 
-const IMAGE_HEIGHT = 288
+const IMAGE_HEIGHT = 288;
 
-export default function Home3({ navigation }) {
+export default function Home({ navigation }) {
   return (
     <>
-
-      <ImageBackground source={require("../assets/images/home.png")} style={{ height: IMAGE_HEIGHT, width: '100%', flex: 1, }} resizeMode="cover">
+      <ImageBackground
+        source={require("../assets/images/home.png")}
+        style={{ height: IMAGE_HEIGHT, width: "100%", flex: 1 }}
+        resizeMode="cover"
+      >
         <View style={{ marginTop: 24 }}>
           <LogOutButton title="איזור אישי" />
         </View>
@@ -23,7 +26,7 @@ export default function Home3({ navigation }) {
             <MyButton
               title="פעילויות"
               color={COLORS.white}
-              onPress={() => navigation.navigate("Activitiy4")}
+              onPress={() => navigation.navigate("Activitiy")}
               icon={<FontAwesome name="calendar" size={24} />}
             />
             <MyButton
@@ -49,11 +52,11 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
     top: IMAGE_HEIGHT - 50,
     backgroundColor: COLORS.white,
-    alignItems: 'center',
+    alignItems: "center",
     borderTopStartRadius: 30,
-    borderTopEndRadius: 30
+    borderTopEndRadius: 30,
   },
   menu: {
-    top: 64
+    top: 64,
   },
 });
