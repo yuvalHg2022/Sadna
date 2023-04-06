@@ -5,8 +5,11 @@ function convertFahrenheitToCelsius(degrees) {
   return Math.floor((5 / 9) * (degrees - 32));
 }
 
-const ForecasrItem = ({ phrase, icon, maxTemp, minTemp }) => {
-  var icon2 = require("../icons/1.png");
+const ForecasrItem = ({ phrase, icon = 1, maxTemp, minTemp }) => {
+  console.log("🚀 ~ file: ForecasrItem.js:9 ~ ForecasrItem ~ icon:", icon)
+  // const iconPath = `../icons/${icon}.png`
+  var icon2 = require("../assets/icons/1.png");  
+  // console.log("🚀 ~ file: ForecasrItem.js:12 ~ ForecasrItem ~ iconPath:", iconPath)
 
   return (
     <View style={styles.continaer}>
