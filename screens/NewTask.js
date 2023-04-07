@@ -246,7 +246,7 @@ const styles = StyleSheet.create({
     marginBottom: 3,
     fontSize: 17,
     marginHorizontal: 20,
-    textAlign: 'right',
+    textAlign: "right",
   },
   toggleContainer: {
     marginTop: 10,
