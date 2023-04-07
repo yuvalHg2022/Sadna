@@ -1,5 +1,5 @@
 import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
-import react, { useEffect } from "react";
+import react, { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import EventList from "../components/EventList";
 import { COLORS } from "../utils/StyleGuide";
@@ -11,19 +11,18 @@ import { getDocs, collection } from "firebase/firestore";
 import db from "../config";
 
 export default function CloseActivity({ navigation }) {
-  let activities = []; // useState here couse infinite loop
+  const [closeActivity, setCloseActivity] = useState({})
+
   const getActivitiesAndSortByDate = async () => {
     let querySnapshot = await getDocs(collection(db, "tasks"));
+    let activities = [];
     querySnapshot.forEach((doc) => {
       activities.push(doc.data());
     });
     activities = activities.sort((a, b) =>
       a.date > b.date ? -1 : b.date > a.date ? 1 : 0
     );
-    console.log("------");
-    console.log("Close activity");
-    console.log(activities[0]);
-    console.log("------");
+    setCloseActivity(activities[0])
   };
 
   const onActivity = (action) => {
@@ -41,6 +40,7 @@ export default function CloseActivity({ navigation }) {
   useEffect(() => {
     getActivitiesAndSortByDate();
   }, []);
+
   return (
     <>
       <View style={styles.container}>
@@ -51,7 +51,20 @@ export default function CloseActivity({ navigation }) {
               text="הפעילות הקרובה"
               styleText={{ textAlign: "right", paddingRight: 22 }}
             />
-            <View style={styles.activity}></View>
+            <View style={styles.activity}>
+              <View style={styles.row}>
+                <Text style={styles.activityText}>{closeActivity.date}</Text>
+                <FontAwesome name="calendar" size={26} color={COLORS.black} />
+              </View>
+              <View style={styles.row}>
+                <Text style={styles.activityText}>{closeActivity.hour}</Text>
+                <FontAwesome name="check" size={26} color={COLORS.black} />
+              </View>
+              <View style={styles.row}>
+                <Text style={styles.activityText}>{closeActivity.place}</Text>
+                <FontAwesome name="home" size={26} color={COLORS.black} />
+              </View>
+            </View>
             <View style={styles.buttonsLine}>
               <TouchableOpacity
                 style={[
@@ -103,6 +116,19 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.light_gray,
     borderRadius: 25,
     marginBottom: 11,
+    justifyContent: 'center',
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems:'center',
+    paddingVertical: 5,
+    paddingHorizontal: 15,
+  },
+  activityText: {
+    color: COLORS.black,
+    fontSize: 26,
+    paddingHorizontal: 20,
   },
   buttonsLine: {
     flexDirection: "row-reverse",
