@@ -8,22 +8,21 @@ import ActionButton from "../components/ActionButton";
 import react, { useEffect } from "react";
 import { getDocs, collection } from "firebase/firestore";
 import db from "../config";
+import ActivityList from "../components/ActivityList";
 
 export default function RecentActivities({ navigation }) {
-  let activities = []; // useState here couse infinite loop
+  const [activities, setActivities] = useState([])
 
   const getActivitiesAndSortByDate = async () => {
     let querySnapshot = await getDocs(collection(db, "tasks"));
+    let activities = []
     querySnapshot.forEach((doc) => {
       activities.push(doc.data());
     });
     activities = activities.sort((a, b) =>
       a.date > b.date ? -1 : b.date > a.date ? 1 : 0
     );
-    console.log("------");
-    console.log("Activities ");
-    console.log(activities);
-    console.log("------");
+    setActivities(activities)
   };
 
   useEffect(() => {
@@ -34,7 +33,7 @@ export default function RecentActivities({ navigation }) {
       <View style={styles.container}>
         <ActionButton title="אזור אישי" />
         <View style={styles.menu}>
-          <EventList title={"פעילויות קודמות"} list={[]} />
+          <ActivityList title={"פעילויות קודמות"} list={activities} />
         </View>
       </View>
       <Footer />
