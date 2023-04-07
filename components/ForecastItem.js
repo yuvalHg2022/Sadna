@@ -6,14 +6,13 @@ function convertFahrenheitToCelsius(degrees) {
   return Math.floor((5 / 9) * (degrees - 32));
 }
 
-const ForecastItem = ({ phrase, icon = 1, maxTemp, minTemp }) => {
-
+const ForecastItem = ({ phrase, icon = 1, maxTemp, minTemp, date }) => {
+  const formatDate = new Date(date).toJSON().slice(0, 10)
   return (
-    <View style={styles.continaer}>
-      <Text style={styles.text}>מינ {convertFahrenheitToCelsius(minTemp)}</Text>
+    <View style={styles.container}>
+      <Text style={[styles.text, { fontWeight: 'bold' }]}>{formatDate}</Text>
+      <Text style={styles.text}>min {convertFahrenheitToCelsius(minTemp)}- max {convertFahrenheitToCelsius(maxTemp)}</Text>
       <Text style={styles.text}> {phrase}</Text>
-      <Text style={styles.text}>מקס {convertFahrenheitToCelsius(maxTemp)}</Text>
-
       <Image style={styles.img} source={ICONS[+icon]} />
     </View>
   );
@@ -21,15 +20,14 @@ const ForecastItem = ({ phrase, icon = 1, maxTemp, minTemp }) => {
 export default ForecastItem;
 
 const styles = StyleSheet.create({
-  continaer: {
-    height: 160,
+  container: {
     width: 160,
     borderWidth: 1,
   },
   text: {
     fontSize: 18,
     textAlign: "center",
-    padding: 5,
+    padding: 2,
   },
   img: {
     alignSelf: "center",
