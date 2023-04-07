@@ -74,7 +74,7 @@ export default function NewTask() {
   const getWether = async () => {
     const baseUrl =
       "http://dataservice.accuweather.com/forecasts/v1/daily/5day/";
-    const apiKey = "7UDxsN63GyG3bdWXtaE9nUytYtlvAg0T";
+    const apiKey = "UfFg41zHgZRBjNZ6bGCG1TRooW3dNhz6";
     const cityCode = "215854";
     const language = "he";
     const query = `?apikey=${apiKey}&language=${language}`;
@@ -209,6 +209,7 @@ export default function NewTask() {
                 minTemp={parseInt(item?.Temperature?.Minimum?.Value)}
                 phrase={item?.Day?.IconPhrase}
                 icon={item?.Day?.Icon}
+                date={item.Date}
               />
             ))}
         </View>
