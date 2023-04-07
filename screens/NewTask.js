@@ -6,19 +6,15 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   View,
   Text,
-  Button,
   KeyboardAvoidingView,
   TouchableOpacity,
-  Pressable,
-  FlatList,
 } from "react-native";
 import { ScrollView, TextInput } from "react-native-gesture-handler";
-import MyButton from "../components/MyButton";
 import db from "../config";
 import Footer from "../components/Footer";
 import MyTittle from "../components/MyTittle";
@@ -31,7 +27,6 @@ import axios from "axios";
 import ForecastItem from "../components/ForecastItem";
 
 export default function NewTask() {
-  const navigation = useNavigation();
   const [subject, setSubject] = useState("");
   const [place, setPlace] = useState("");
   const [hour, setHour] = useState("");
@@ -83,7 +78,7 @@ export default function NewTask() {
     setForecast(res.data.DailyForecasts);
     setForecastFlag(true);
   };
-  useEffect(() => {}, [forecastFlag]);
+  useEffect(() => { }, [forecastFlag]);
 
   return (
     <>
@@ -156,6 +151,7 @@ export default function NewTask() {
                 onChangeText={(e) => setDetails(e)}
                 value={details}
                 placeholder="הקלד כאן.."
+                multiline={true}
               />
             ) : (
               PAST_TASKS?.map((item) => (
@@ -257,10 +253,11 @@ const styles = StyleSheet.create({
     width: 339,
     fontSize: 15,
     borderRadius: 15,
-    height: 140,
+    paddingBottom: 20,
     textAlign: "right",
     paddingRight: 10,
     backgroundColor: COLORS.pink,
+    justifyContent: 'flex-start',
   },
   publishButton: {
     display: "flex",
