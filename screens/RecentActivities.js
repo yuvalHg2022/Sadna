@@ -11,23 +11,29 @@ import db from "../config";
 import ActivityList from "../components/ActivityList";
 
 export default function RecentActivities({ navigation }) {
-  const [activities, setActivities] = useState([])
+  const [activities, setActivities] = useState([]);
 
   const getActivitiesAndSortByDate = async () => {
+    const todayDate = new Date();
     let querySnapshot = await getDocs(collection(db, "tasks"));
-    let activities = []
+    let activities = [];
     querySnapshot.forEach((doc) => {
       activities.push(doc.data());
     });
+
+    activities = activities.filter(
+      (item) => todayDate.getTime() >= new Date(item.date).getTime()
+    );
     activities = activities.sort((a, b) =>
       a.date > b.date ? -1 : b.date > a.date ? 1 : 0
     );
-    setActivities(activities)
+    setActivities(activities);
   };
 
   useEffect(() => {
     getActivitiesAndSortByDate();
   }, []);
+
   return (
     <>
       <View style={styles.container}>
