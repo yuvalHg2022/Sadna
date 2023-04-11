@@ -12,17 +12,18 @@ const Studentlist = () => {
 
   const renderItem = useCallback(({ item, index }) => (
     <TouchableOpacity style={styles.eventItem} onPress={() => { console.log('item pressed:', item) }}>
+      <View style={styles.arrowContainer}>
+        <FontAwesome name="arrow-left" size={20} color={COLORS.light_blue} />
+      </View>
       <View style={styles.dateCube}>
-        <Text style={styles.eventItemText}>{item.day}</Text>
-        <Text style={styles.eventItemText}>{item.month}</Text>
+        <Text style={styles.eventItemText}>{index + 1}</Text>
       </View>
       <View style={styles.eventDetails}>
-        <Text style={styles.eventItemText}>{item.title}</Text>
-        <Text style={[styles.eventItemText, { fontWeight: "300" }]}>{item.location}</Text>
+        <Text style={styles.eventItemText}>{item.Name}</Text>
       </View>
-      {item.url ? <FontAwesome name="arrow-left" size={18} color={COLORS.light_gray} /> : <View />}
     </TouchableOpacity>
   ), [])
+
 
   return (
     <View style={styles.container}>
@@ -46,6 +47,7 @@ export default Studentlist;
 const styles = StyleSheet.create({
   container: {
     flex: .4,
+    paddingTop: 30,
     alignItems: 'flex-end',
     right: 28,
   },
@@ -61,16 +63,22 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 25,
     width: SCREEN_WIDTH - (25 * 2),
+    height: 480,
   },
   eventItem: {
     flexDirection: 'row-reverse',
-    justifyContent: 'space-between',
     alignItems: 'center',
     padding: 8,
     marginHorizontal: 5,
     borderBottomWidth: 2,
     borderBottomColor: COLORS.light_gray,
-
+    height: 75,
+    position: 'relative',
+  },
+  arrowContainer: {
+    position: 'absolute',
+    left: 320,
+    top: 25,
   },
   eventItemText: {
     color: COLORS.white,
