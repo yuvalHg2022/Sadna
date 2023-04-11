@@ -7,12 +7,12 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDrMVYclzkPbdjUxApDcMP5SIW2mYJgoPk",
-  authDomain: "igiapp-88187.firebaseapp.com",
-  projectId: "igiapp-88187",
-  storageBucket: "igiapp-88187.appspot.com",
-  messagingSenderId: "392600003604",
-  appId: "1:392600003604:web:57bb519b92eee1dc85b301",
+  apiKey: "AIzaSyDhzhSJRuLuYqmHKircusXq6mziJha7nj8",
+  authDomain: "igiapp2.firebaseapp.com",
+  projectId: "igiapp2",
+  storageBucket: "igiapp2.appspot.com",
+  messagingSenderId: "666374193845",
+  appId: "1:666374193845:web:954d82218110a6ab9f74fc",
 };
 
 // Initialize Firebase
