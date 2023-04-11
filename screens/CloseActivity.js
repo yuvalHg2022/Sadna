@@ -52,6 +52,7 @@ export default function CloseActivity({ navigation }) {
               styleText={{ textAlign: "right", paddingRight: 22 }}
             />
             <View style={styles.activity}>
+              <Text style={[styles.activityText, { fontWeight: 'bold', fontSize: 24 }]}>{closeActivity.subject}</Text>
               <View style={styles.row}>
                 <Text style={styles.activityText}>{closeActivity.date}</Text>
                 <FontAwesome name="calendar" size={26} color={COLORS.black} />
@@ -64,6 +65,7 @@ export default function CloseActivity({ navigation }) {
                 <Text style={styles.activityText}>{closeActivity.place}</Text>
                 <FontAwesome name="home" size={26} color={COLORS.black} />
               </View>
+              <Text style={styles.activityText} numberOfLines={5}>{closeActivity.details}</Text>
             </View>
             <View style={styles.buttonsLine}>
               <TouchableOpacity
@@ -89,7 +91,7 @@ export default function CloseActivity({ navigation }) {
             </View>
           </View>
           <EventList
-            containerStyle={{ flex: 1 }}
+            containerStyle={{ flex: .8 }}
             title={"לוח אירועים"}
             list={eventListData}
           />
@@ -107,11 +109,10 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    marginTop: 80,
+    marginTop: 70,
   },
   activity: {
-    padding: 10,
-    height: 180,
+    padding: 5,
     marginHorizontal: 22,
     backgroundColor: COLORS.light_gray,
     borderRadius: 25,
@@ -121,20 +122,21 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    alignItems:'center',
-    paddingVertical: 5,
+    alignItems: 'center',
+    paddingVertical: 2,
     paddingHorizontal: 15,
   },
   activityText: {
     color: COLORS.black,
-    fontSize: 26,
+    fontSize: 18,
     paddingHorizontal: 20,
+    textAlign: 'right',
   },
   buttonsLine: {
     flexDirection: "row-reverse",
     justifyContent: "space-evenly",
     alignItems: "center",
-    marginBottom: 32,
+    marginBottom: 10,
   },
   buttonContainer: {
     flexDirection: "row",
@@ -142,7 +144,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 15,
     paddingHorizontal: 14,
-    paddingVertical: 8,
+    paddingVertical: 4,
   },
   buttonText: {
     color: COLORS.black,

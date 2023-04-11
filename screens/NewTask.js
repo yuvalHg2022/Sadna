@@ -36,8 +36,12 @@ export default function NewTask() {
   const [toggleValue, setToggleValue] = useState(false);
   const [forecast, setForecast] = useState([]);
   const [forecastFlag, setForecastFlag] = useState(false);
-
+  const [dateError, setdateError] = useState(true);
   const addRecordTodb = async (obj) => {
+    if (dateError) {
+      console.log("date is invaid");
+      return;
+    }
     try {
       const coll = collection(db, "tasks");
       let docRef;
@@ -53,13 +57,10 @@ export default function NewTask() {
         hour !== "" &&
         date !== ""
       ) {
-        setError(false);
         docRef = await addDoc(collection(db, "tasks"), obj);
         console.log("Document written with ID: ", docRef?.id);
       } else {
-        setError(true);
-
-        console.log("not added");
+        console.log("subject is not unique record not added");
       }
     } catch (e) {
       console.error("Error adding document: ", e);
@@ -78,7 +79,19 @@ export default function NewTask() {
     setForecast(res.data.DailyForecasts);
     setForecastFlag(true);
   };
-  useEffect(() => { }, [forecastFlag]);
+
+  const onChangeDate = (e) => {
+    setDate(e);
+    let year = e.split("-")[0]?.length;
+    let month = e.split("-")[1]?.length;
+    let day = e.split("-")[2]?.length;
+    if (year === 4 && month === 2 && day === 2) {
+      setdateError(false);
+    } else {
+      setdateError(true);
+    }
+  };
+  useEffect(() => {}, [forecastFlag]);
 
   return (
     <>
@@ -115,11 +128,16 @@ export default function NewTask() {
               <Text style={styles.label}>תאריך</Text>
               <TextInput
                 style={styles.text}
-                onChangeText={(e) => setDate(e)}
+                onChangeText={(e) => onChangeDate(e)}
+                placeholder="YYYY-MM-DD"
                 value={date}
               />
             </View>
-
+            {dateError && (
+              <View>
+                <Text style={styles.errorMsg}>Date format "YYYY-MM-DD"</Text>
+              </View>
+            )}
             <View style={styles.toggleContainer}>
               <Toggle
                 value={toggleValue}
@@ -232,6 +250,7 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: COLORS.very_light_gray,
     textAlign: "right",
+    fontWeight: "bold",
   },
   errorMsg: {
     color: COLORS.red,
@@ -257,7 +276,7 @@ const styles = StyleSheet.create({
     textAlign: "right",
     paddingRight: 10,
     backgroundColor: COLORS.pink,
-    justifyContent: 'flex-start',
+    justifyContent: "flex-start",
   },
   publishButton: {
     display: "flex",
