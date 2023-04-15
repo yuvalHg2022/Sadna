@@ -12,8 +12,7 @@ const IMAGE_HEIGHT = 288;
 
 export default function Home({ navigation }) {
   const onLogout = () => {
-    //TODO: call logout function
-    // navigation.navigate('') //TODO: navigate to home
+    navigation.navigate("StartScreen");
   };
 
   return (

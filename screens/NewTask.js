@@ -38,10 +38,6 @@ export default function NewTask() {
   const [forecastFlag, setForecastFlag] = useState(false);
   const [dateError, setdateError] = useState(true);
   const addRecordTodb = async (obj) => {
-    if (dateError) {
-      console.log("date is invaid");
-      return;
-    }
     try {
       const coll = collection(db, "tasks");
       let docRef;
