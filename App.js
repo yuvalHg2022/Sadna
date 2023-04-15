@@ -31,7 +31,7 @@ const App = () => {
               headerShown: false,
             }}
           >
-            <Stack.Screen name="StartScreen" component={StartScreen} />
+            <Stack.Screen name="StartScreen" component={StartScreen}/>
             <Stack.Screen name="LoginScreen" component={LoginScreen} />
             <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
             <Stack.Screen name="Dashboard" component={Dashboard} />

@@ -50,7 +50,7 @@ export default Studentlist;
 const styles = StyleSheet.create({
   container: {
     flex: .4,
-    // paddingTop: 30,
+    paddingTop: 40,
     alignItems: 'flex-end',
     right: 28,
   },

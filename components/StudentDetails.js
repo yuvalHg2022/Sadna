@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingTop: 30,
+    paddingTop: 25,
     height: "25%",
     width: "80%",
   },
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: COLORS.black,
     fontSize: 18,
-    lineHeight: 16,
+    lineHeight: 18,
     fontWeight: "700",
   },
 });

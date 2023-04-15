@@ -55,6 +55,7 @@ export default function NewTask() {
       ) {
         docRef = await addDoc(collection(db, "tasks"), obj);
         console.log("Document written with ID: ", docRef?.id);
+        window.alert("הפעילות נוספה בהצלחה");
       } else {
         console.log("subject is not unique record not added");
       }
@@ -196,7 +197,7 @@ export default function NewTask() {
               }
             >
               <Text>פרסום</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> 
             {!forecastFlag && (
               <TouchableOpacity
                 onPress={getWether}
