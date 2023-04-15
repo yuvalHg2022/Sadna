@@ -5,14 +5,17 @@ import { COLORS } from "../utils/StyleGuide";
 import { FontAwesome } from "@expo/vector-icons";
 import StudentListData from '../assets/mocks/studentList.json';
 import { TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const SCREEN_WIDTH = Dimensions.get("screen").width
 
 const Studentlist = () => {
+  const navigation = useNavigation();
 
   const renderItem = useCallback(({ item, index }) => (
-    <TouchableOpacity style={styles.eventItem} onPress={() => { console.log('item pressed:', item) }}>
-      <View style={styles.arrowContainer}>
+    <TouchableOpacity style={styles.eventItem} onPress={() => {
+      navigation.navigate("StudentDetails", { student: item });}}>
+          <View style={styles.arrowContainer}>
         <FontAwesome name="arrow-left" size={20} color={COLORS.light_blue} />
       </View>
       <View style={styles.dateCube}>
@@ -22,7 +25,7 @@ const Studentlist = () => {
         <Text style={styles.eventItemText}>{item.Name}</Text>
       </View>
     </TouchableOpacity>
-  ), [])
+  ), [navigation])
 
 
   return (
@@ -47,23 +50,24 @@ export default Studentlist;
 const styles = StyleSheet.create({
   container: {
     flex: .4,
-    paddingTop: 30,
+    // paddingTop: 30,
     alignItems: 'flex-end',
     right: 28,
   },
   title: {
     flexDirection: 'row',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
     alignItems: 'center',
     writingDirection: 'rtl'
   },
   listContainer: {
     backgroundColor: COLORS.dark_gray,
-    padding: 10,
     borderWidth: 1,
     borderRadius: 25,
     width: SCREEN_WIDTH - (25 * 2),
     height: 480,
+    justifyContent: 'center',
+
   },
   eventItem: {
     flexDirection: 'row-reverse',
