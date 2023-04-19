@@ -7,59 +7,56 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Button from '../components/Button';
 import TextInput from '../components/TextInput';
-import BackButton from '../components/BackButton';
 import { theme } from '../core/theme';
-import { emailValidator, passwordValidator, nameValidator } from '../helpers/validation';
 import CustomBackButton from '../components/CustomBackButton';
-import  db  from '../config';
-import { addDoc, collection } from 'firebase/firestore';
-import { validateRegisterFields } from '../helpers/validation';
+import db from '../config';
+import {
+  addDoc,
+  collection,
+  where,
+  query,
+  getDocs,
+} from 'firebase/firestore';
+import { nameValidator,emailValidator,passwordValidator  } from '../helpers/validation';
 
 export default function RegisterScreen({ navigation }) {
   const [name, setName] = useState({ value: '', error: '' });
   const [email, setEmail] = useState({ value: '', error: '' });
   const [password, setPassword] = useState({ value: '', error: '' });
 
-  const onSignUpPressed = async () => {
-    const nameError = nameValidator(name.value)
-    const emailError = emailValidator(email.value)
-    const passwordError = passwordValidator(password.value)
-    if (emailError || passwordError || nameError) {
-      setName({ ...name, error: nameError })
-      setEmail({ ...email, error: emailError })
-      setPassword({ ...password, error: passwordError })
-      return
-    }
-  
-    const user = {
-      name: name.value,
-      email: email.value,
-      password: password.value,
+  async function saveUser(name, email, password) {
+    const validationResult = {
+      name: nameValidator(name),
+      email: emailValidator(email),
+      password: passwordValidator(password)
     };
-  
-    const validationError = validateRegisterFields(user);
-    if (validationError) {
-      window.alert(validationError);
-      return;
+    
+    console.log(validationResult); // add this line to log the validationResult object
+    if (validationResult.success) {
+      // Check if email already exists
+      const usersRef = collection(db, 'Try');
+      try {
+        const usersQuery = query(usersRef, where('email', '==', email));
+        const querySnapshot = await getDocs(usersQuery);
+        if (querySnapshot.size > 0) {
+          alert('This email address is already registered');
+          return { success: false };
+        }
+        // Hash the password and add the user to the collection
+        // const docRef = await addDoc(usersRef, { name, email, password });
+        console.log(`Document written with ID: ${docRef.id}`);
+        alert('User added successfully');
+        navigation.navigate('LoginScreen');
+        return { success: true, message: 'User added successfully' };
+      } catch (error) {
+        console.log('Error while getting documents:', error);
+        return { success: false, message: 'An error occurred while checking for existing email' };
+      }
+    } else {
+      alert(validationResult.message);
+      return validationResult;
     }
-  
-    try {
-      const coll = collection(db, "Try");
-      const docRef = await addDoc(coll, user);
-      console.log("Document written with ID: ", docRef.id);
-    } catch (error) {
-      console.error("Error adding document: ", error);
-      // Handle the promise rejection here
-      alert("There was an error registering the user.");
-      return;
-    }
-  
-    navigation.reset({
-      index: 0,
-      routes: [{ name: 'Dashboard' }],
-    })
   }
-  
 
   return (
     <Background>
@@ -96,21 +93,15 @@ export default function RegisterScreen({ navigation }) {
         secureTextEntry
       />
       <Button
-      mode="contained"
+      
+      mode="contained" 
       onPress={() => {
-        // onSignUpPressed();
+        saveUser(name.value, email.value, password.value);
         console.log('User details:', {
           name: name.value,
           email: email.value,
           password: password.value,
         });
-        if (name.value === '' || email.value === '' || password.value === '') {
-          alert('אנא מלא את כל השדות');
-          return;
-        }
-        else {
-        alert('משתמש נוצר בהצלחה');
-        }
       }}
         style={{ marginTop: 24 }}
       >

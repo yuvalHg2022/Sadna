@@ -37,6 +37,7 @@ export default function NewTask() {
   const [forecast, setForecast] = useState([]);
   const [forecastFlag, setForecastFlag] = useState(false);
   const [dateError, setdateError] = useState(true);
+  
   const addRecordTodb = async (obj) => {
     try {
       const coll = collection(db, "tasks");
