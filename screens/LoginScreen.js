@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { TouchableOpacity, StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-paper';
 import Background from '../components/Background';
 import Logo from '../components/Logo';
@@ -13,13 +12,17 @@ import { emailValidator } from '../helpers/emailValidator';
 import { passwordValidator } from '../helpers/passwordValidator';
 import FancySwitchSelector from '../components/SwitchSelector';
 import CustomBackButton from '../components/CustomBackButton';
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import db from '../config';
+import { TouchableOpacity, StyleSheet, View } from 'react-native';
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState({ value: '', error: '' });
   const [password, setPassword] = useState({ value: '', error: '' });
   const [toggleValue, setToggleValue] = useState(false);
 
-  const onLoginPressed = () => {
+  async function signIn(email, password) {
+    // Validate input fields
     const emailError = emailValidator(email.value);
     const passwordError = passwordValidator(password.value);
     if (emailError || passwordError) {
@@ -27,11 +30,35 @@ export default function LoginScreen({ navigation }) {
       setPassword({ ...password, error: passwordError });
       return;
     }
-    navigation.reset({
-      index: 0,
-      routes: [{ name: 'Home' }],
-    });
-  };
+
+    const usersRef = collection(db, 'Try');
+    try {
+      const usersQuery = query(usersRef, where('email', '==', email.value));
+      const querySnapshot = await getDocs(usersQuery);
+      if (querySnapshot.size === 0) {
+        alert('This email address is not registered');
+        return;
+      }
+      const userDoc = querySnapshot.docs[0];
+      const userData = userDoc.data();
+      if (password.value === userData.password) {
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'Dashboard' }],
+        })
+        navigation.navigate('Home');
+      } else {
+        alert('Invalid email or password');
+      }
+    } catch (error) {
+      console.log('Error while getting documents:', error);
+      alert('An error occurred while signing in');
+    }
+  }
+
+  function onLoginPressed() {
+    signIn(email, password);
+  }
 
   return (
     <Background>

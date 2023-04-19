@@ -17,21 +17,30 @@ import {
   query,
   getDocs,
 } from 'firebase/firestore';
-import { nameValidator,emailValidator,passwordValidator  } from '../helpers/validation';
+import { emailValidator } from '../helpers/emailValidator';
+import { passwordValidator } from '../helpers/passwordValidator';
+import { nameValidator } from '../helpers/nameValidator';
 
 export default function RegisterScreen({ navigation }) {
-  const [name, setName] = useState({ value: '', error: '' });
-  const [email, setEmail] = useState({ value: '', error: '' });
-  const [password, setPassword] = useState({ value: '', error: '' });
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  async function saveUser(name, email, password) {
-    const validationResult = {
-      name: nameValidator(name),
-      email: emailValidator(email),
-      password: passwordValidator(password)
-    };
-    
-    console.log(validationResult); // add this line to log the validationResult object
+  const onSignUpPressed = async () => {
+    const nameError = nameValidator(name);
+    const emailError = emailValidator(email);
+    const passwordError = passwordValidator(password);
+
+    if (emailError || passwordError || nameError) {
+      setName({ ...name, error: nameError });
+      setEmail({ ...email, error: emailError });
+      setPassword({ ...password, error: passwordError });
+      return;
+    }
+
+    const validationResult = { success: true };
+
+    console.log(validationResult);
     if (validationResult.success) {
       // Check if email already exists
       const usersRef = collection(db, 'Try');
@@ -43,7 +52,7 @@ export default function RegisterScreen({ navigation }) {
           return { success: false };
         }
         // Hash the password and add the user to the collection
-        // const docRef = await addDoc(usersRef, { name, email, password });
+        const docRef = await addDoc(usersRef, { name, email, password });
         console.log(`Document written with ID: ${docRef.id}`);
         alert('User added successfully');
         navigation.navigate('LoginScreen');
@@ -58,6 +67,7 @@ export default function RegisterScreen({ navigation }) {
     }
   }
 
+
   return (
     <Background>
       <CustomBackButton goBack={navigation.goBack} />
@@ -67,7 +77,7 @@ export default function RegisterScreen({ navigation }) {
         label="שם מלא"
         returnKeyType="next"
         value={name.value}
-        onChangeText={(text) => setName({ value: text, error: '' })}
+        onChangeText={(text) => setName({ value: text})}
         error={!!name.error}
         errorText={name.error}
       />
@@ -75,7 +85,7 @@ export default function RegisterScreen({ navigation }) {
         label="כתובת אימייל"
         returnKeyType="next"
         value={email.value}
-        onChangeText={(text) => setEmail({ value: text, error: '' })}
+        onChangeText={(text) => setEmail({ value: text})}
         error={!!email.error}
         errorText={email.error}
         autoCapitalize="none"
@@ -87,7 +97,7 @@ export default function RegisterScreen({ navigation }) {
         label="סיסמה"
         returnKeyType="done"
         value={password.value}
-        onChangeText={(text) => setPassword({ value: text, error: '' })}
+        onChangeText={(text) => setPassword({ value: text })}
         error={!!password.error}
         errorText={password.error}
         secureTextEntry
@@ -96,7 +106,7 @@ export default function RegisterScreen({ navigation }) {
       
       mode="contained" 
       onPress={() => {
-        saveUser(name.value, email.value, password.value);
+        onSignUpPressed ();
         console.log('User details:', {
           name: name.value,
           email: email.value,
