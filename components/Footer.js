@@ -1,22 +1,19 @@
+import React from 'react'
 import { View, Image, StyleSheet, Dimensions } from "react-native";
-import React from "react";
-import { COLORS } from "../utils/StyleGuide";
 
-const SCREEN_HEIGHT = Dimensions.get("screen").height
 
-const Footer = () => {
+export default function Footer() {
   return (
     <View style={styles.container}>
-      <Image source={require("../assets/images/small_logo.png")} style={{ height: SCREEN_HEIGHT * 0.1 }} resizeMode={'contain'} />
+      <Image source={require('../assets/IGI.png')} style={{ height: SCREEN_HEIGHT * 0.1 }} resizeMode={'contain'} />
     </View>
-  );
-};
+  )
+}
+const SCREEN_HEIGHT = Dimensions.get("screen").height
 
-export default Footer;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: COLORS.white,
     width: "100%",
     alignItems: "center",
     paddingVertical: 16,

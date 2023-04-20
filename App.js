@@ -14,7 +14,8 @@ import RegisterScreen from "./screens/RegisterScreen";
 import ResetPasswordScreen from "./screens/ResetPasswordScreen";
 import Dashboard from "./screens/Dashboard";
 import StudentDetails from "./components/StudentDetails";
-
+import PersonalDetailsScreen from "./screens/PersonalDetailsScreen";
+import GroupSelectionScreen from "./screens/GroupSelectionScreen";
 
 import { Provider } from 'react-native-paper'
 import { theme } from './core/theme'
@@ -34,6 +35,8 @@ const App = () => {
             <Stack.Screen name="StartScreen" component={StartScreen}/>
             <Stack.Screen name="LoginScreen" component={LoginScreen} />
             <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
+            <Stack.Screen name="PersonalDetailsScreen" component={PersonalDetailsScreen} />
+            <Stack.Screen name="GroupSelectionScreen" component={GroupSelectionScreen} />
             <Stack.Screen name="Dashboard" component={Dashboard} />
             <Stack.Screen name="ResetPasswordScreen" component={ResetPasswordScreen} />
             <Stack.Screen

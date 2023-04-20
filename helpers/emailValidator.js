@@ -1,6 +1,6 @@
-export const emailValidator = (email) => {
+export function emailValidator(email) {
   const re = /\S+@\S+\.\S+/
-  if (!email || email.length === 0) return 'אימייל לא יכול להיות ריק'
-  if (!re.test(email)) return 'אימייל לא תקין'
+  if (!email) return "שדה חובה"
+  if (!re.test(email)) return 'אופס! נדרש כתובת דוא"ל חוקית'
   return ''
 }

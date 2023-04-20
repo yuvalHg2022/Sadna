@@ -9,10 +9,9 @@ export default function Dashboard({ navigation }) {
   return (
     <Background>
       <Logo />
-      <Header>Let’s start</Header>
+      <Header>אפליקציית איגי</Header>
       <Paragraph>
-        Your amazing app starts here. Open you favorite code editor and start
-        editing this project.
+        מיכל, ארד, ליאת ויובל
       </Paragraph>
       <Button
         mode="outlined"
@@ -23,7 +22,7 @@ export default function Dashboard({ navigation }) {
           })
         }
       >
-        Logout
+        התנתקות
       </Button>
     </Background>
   )

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import { Text } from 'react-native-paper';
+import { Text, RadioButton } from 'react-native-paper';
 import Background from '../components/Background';
-import Logo from '../components/Logo';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Button from '../components/Button';
@@ -21,24 +20,30 @@ import { emailValidator } from '../helpers/emailValidator';
 import { passwordValidator } from '../helpers/passwordValidator';
 import { nameValidator } from '../helpers/nameValidator';
 
+
 export default function RegisterScreen({ navigation }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [role, setRole] = useState('');
+  const [disableButton, setDisableButton] = useState(true);
 
   const onSignUpPressed = async () => {
-    const nameError = nameValidator(name);
-    const emailError = emailValidator(email);
-    const passwordError = passwordValidator(password);
+    const nameError = nameValidator(name.value);
+    const emailError = emailValidator(email.value);
+    const passwordError = passwordValidator(password.value);
 
-    if (emailError || passwordError || nameError) {
+    if (emailError || passwordError || nameError || !role) {
       setName({ ...name, error: nameError });
       setEmail({ ...email, error: emailError });
       setPassword({ ...password, error: passwordError });
+      setDisableButton(true);
       return;
     }
+  // Navigate to the next screen
+  navigation.navigate('PersonalDetailsScreen');
 
-    const validationResult = { success: true };
+  const validationResult = { success: true };
 
     console.log(validationResult);
     if (validationResult.success) {
@@ -67,17 +72,34 @@ export default function RegisterScreen({ navigation }) {
     }
   }
 
-
   return (
     <Background>
       <CustomBackButton goBack={navigation.goBack} />
-      <Logo />
       <Header>הרשמה</Header>
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+  <Text style={[styles.label,]}>תפקיד:</Text>
+  <View style={[styles.radioGroup, { flex: 2 }]}>
+    <TouchableOpacity
+      onPress={() => setRole('חניך/ה')}
+      style={[styles.radioButton, { marginRight: 4 }]}
+    >
+      {role === 'חניך/ה' && <View style={styles.radioButtonSelected} />}
+    </TouchableOpacity>
+    <Text style={[styles.label, styles.radioButtonText, { flex: 2 }]}>חניך/ה</Text>
+    <TouchableOpacity
+      onPress={() => setRole('מדריך/ה')}
+      style={[styles.radioButton, { marginRight: 4 }]}
+    >
+      {role === 'מדריך/ה' && <View style={styles.radioButtonSelected} />}
+    </TouchableOpacity>
+    <Text style={[styles.label, styles.radioButtonText, { flex: 4 }]}>מדריך/ה</Text>
+  </View>
+</View>
       <TextInput
         label="שם מלא"
         returnKeyType="next"
         value={name.value}
-        onChangeText={(text) => setName({ value: text})}
+        onChangeText={(text) => setName({ value: text, error: '' })}
         error={!!name.error}
         errorText={name.error}
       />
@@ -85,7 +107,7 @@ export default function RegisterScreen({ navigation }) {
         label="כתובת אימייל"
         returnKeyType="next"
         value={email.value}
-        onChangeText={(text) => setEmail({ value: text})}
+        onChangeText={(text) => setEmail({ value: text, error: '' })}
         error={!!email.error}
         errorText={email.error}
         autoCapitalize="none"
@@ -97,13 +119,12 @@ export default function RegisterScreen({ navigation }) {
         label="סיסמה"
         returnKeyType="done"
         value={password.value}
-        onChangeText={(text) => setPassword({ value: text })}
+        onChangeText={(text) => setPassword({ value: text, error: '' })}
         error={!!password.error}
         errorText={password.error}
         secureTextEntry
       />
-      <Button
-      
+   <Button
       mode="contained" 
       onPress={() => {
         onSignUpPressed ();
@@ -115,15 +136,13 @@ export default function RegisterScreen({ navigation }) {
       }}
         style={{ marginTop: 24 }}
       >
-        המשך
-      </Button>
+       המשך
+</Button>
       <View style={styles.row}>
         <Text style={{ marginRight: 3 }}>כבר יש לך חשבון? </Text>
         <TouchableOpacity
-          onPress={() => {
-            navigation.replace('LoginScreen');
-          }}
-            style={{ alignSelf: 'center', marginTop: 2 }}
+          onPress={() => navigation.replace('LoginScreen')}
+          style={{ alignSelf: 'center', marginTop: 2 }}
         >
           <Text style={styles.link}>התחבר</Text>
         </TouchableOpacity>
@@ -147,6 +166,38 @@ const styles = StyleSheet.create({
     bottom: 0,
     width: '100%',
   },
-})
-  
+  label: {
+    fontWeight: 'bold',
+    marginTop: 2,
+    marginBottom: 5,
+    marginRight: 15,
+  },
+  radioGroup: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  radioButton: {
+    height: 24,
+    width: 24,
+    borderRadius: 12,
+    borderWidth: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 4,
+    borderColor: theme.colors.primary,
+    alignSelf: 'center',
+  },
+  radioButtonText: {
+    marginLeft: 8,
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: theme.colors.text,
+  },
+  radioButtonSelected: {
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    backgroundColor: theme.colors.primary,
+  },
+});
  

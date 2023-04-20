@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import Background from '../components/Background'
-import BackButton from '../components/BackButton'
 import Logo from '../components/Logo'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -9,7 +8,6 @@ import Button from '../components/Button'
 import { emailValidator } from '../helpers/emailValidator'
 import CustomBackButton from '../components/CustomBackButton';
 import { Text } from 'react-native';
-
 
 
 export default function ResetPasswordScreen({ navigation }) {
@@ -40,7 +38,7 @@ export default function ResetPasswordScreen({ navigation }) {
         autoCompleteType="email"
         textContentType="emailAddress"
         keyboardType="email-address"
-        description="תקבל/י אימייל עם לינק לאיפוס סיסמה."
+        description="תקבל/י אימייל עם לינק לאיפוס סיסמה"
       />
       <Button
         mode="contained"
