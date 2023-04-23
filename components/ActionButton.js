@@ -1,9 +1,13 @@
 import { Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 
-const ActionButton = ({ title, onPress = () => { } }) => {
+const ActionButton = ({ title, navigation }) => {
+  const handlePress = () => {
+    navigation.goBack();
+  };
+
   return (
-    <TouchableOpacity style={styles.container} onPress={onPress}>
+    <TouchableOpacity style={styles.container} onPress={handlePress}>
       <Text style={styles.text}>{title}</Text>
     </TouchableOpacity>
   );
@@ -29,4 +33,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 });
+
 export default ActionButton;
+

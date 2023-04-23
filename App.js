@@ -16,6 +16,12 @@ import Dashboard from "./screens/Dashboard";
 import StudentDetails from "./components/StudentDetails";
 import PersonalDetailsScreen from "./screens/PersonalDetailsScreen";
 import GroupSelectionScreen from "./screens/GroupSelectionScreen";
+import HomePupil from "./screens/HomePupil";
+import ContactUs from "./screens/ContactUs";
+import ChatbotScreen from './screens/ChatbotScreen';
+import InstructorMessageScreen from './screens/InstructorMessageScreen';
+
+
 
 import { Provider } from 'react-native-paper'
 import { theme } from './core/theme'
@@ -39,10 +45,7 @@ const App = () => {
             <Stack.Screen name="GroupSelectionScreen" component={GroupSelectionScreen} />
             <Stack.Screen name="Dashboard" component={Dashboard} />
             <Stack.Screen name="ResetPasswordScreen" component={ResetPasswordScreen} />
-            <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{ headerShown: false }}
+            <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}
         />
         <Stack.Screen
           name="Activitiy"
@@ -74,6 +77,10 @@ const App = () => {
         component={StudentDetails}
         options={{ headerShown: false }}
         />
+            <Stack.Screen name="HomePupil" component={HomePupil} />
+            <Stack.Screen name="ContactUs" component={ContactUs} />
+            <Stack.Screen name="ChatbotScreen" component={ChatbotScreen} />
+            <Stack.Screen name="InstructorMessageScreen" component={InstructorMessageScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>
