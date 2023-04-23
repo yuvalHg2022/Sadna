@@ -30,7 +30,7 @@ export default function LoginScreen({ navigation }) {
       return;
     }
 
-    const usersRef = collection(db, 'Try');
+    const usersRef = collection(db, 'Users');
     try {
       const usersQuery = query(usersRef, where('email', '==', email.value));
       const querySnapshot = await getDocs(usersQuery);

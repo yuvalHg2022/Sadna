@@ -22,9 +22,9 @@ import { nameValidator } from '../helpers/nameValidator';
 
 
 export default function RegisterScreen({ navigation }) {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName] = useState({ value: '', error: '' });
+  const [email, setEmail] = useState({ value: '', error: '' });
+  const [password, setPassword] = useState({ value: '', error: '' });
   const [role, setRole] = useState('');
   const [disableButton, setDisableButton] = useState(true);
 
@@ -32,7 +32,7 @@ export default function RegisterScreen({ navigation }) {
     const nameError = nameValidator(name.value);
     const emailError = emailValidator(email.value);
     const passwordError = passwordValidator(password.value);
-
+  
     if (emailError || passwordError || nameError || !role) {
       setName({ ...name, error: nameError });
       setEmail({ ...email, error: emailError });
@@ -40,37 +40,36 @@ export default function RegisterScreen({ navigation }) {
       setDisableButton(true);
       return;
     }
-  // Navigate to the next screen
-  navigation.navigate('PersonalDetailsScreen');
-
-  const validationResult = { success: true };
-
-    console.log(validationResult);
-    if (validationResult.success) {
-      // Check if email already exists
-      const usersRef = collection(db, 'Try');
-      try {
-        const usersQuery = query(usersRef, where('email', '==', email));
-        const querySnapshot = await getDocs(usersQuery);
-        if (querySnapshot.size > 0) {
-          alert('This email address is already registered');
-          return { success: false };
-        }
-        // Hash the password and add the user to the collection
-        const docRef = await addDoc(usersRef, { name, email, password });
-        console.log(`Document written with ID: ${docRef.id}`);
-        alert('User added successfully');
-        navigation.navigate('LoginScreen');
-        return { success: true, message: 'User added successfully' };
-      } catch (error) {
-        console.log('Error while getting documents:', error);
-        return { success: false, message: 'An error occurred while checking for existing email' };
+  
+    const usersRef = collection(db, 'Users');
+  
+    try {
+      const usersQuery = query(usersRef, where('email', '==', email.value));
+      const querySnapshot = await getDocs(usersQuery);
+  
+      if (querySnapshot.size > 0) {
+        alert('This email address is already registered');
+        return;
       }
-    } else {
-      alert(validationResult.message);
-      return validationResult;
+  
+      navigation.navigate('PersonalDetailsScreen', {
+        name: name.value,
+        email: email.value,
+        password: password.value,
+        role: role,
+        Address: '',
+        Phone: '',
+        Grade : '',
+        Gender : '',
+        Region : '',
+        Group : '',
+      });
+        
+    } catch (error) {
+      console.log('Error while getting documents:', error);
+      alert('An error occurred while checking for existing email');
     }
-  }
+  };
 
   return (
     <Background>
@@ -127,12 +126,7 @@ export default function RegisterScreen({ navigation }) {
    <Button
       mode="contained" 
       onPress={() => {
-        onSignUpPressed ();
-        console.log('User details:', {
-          name: name.value,
-          email: email.value,
-          password: password.value,
-        });
+        onSignUpPressed ();;
       }}
         style={{ marginTop: 24 }}
       >

@@ -7,10 +7,12 @@ import Header from '../components/Header';
 import Footer from '../components/Footer'
 import Button from '../components/Button';
 import { theme } from '../core/theme';
-import ActionButton from "../components/ActionButton";
+import { collection, addDoc } from 'firebase/firestore';
+import db from '../config';
 
 
-export default function PersonalDetailsScreen({ navigation }) {
+
+export default function PersonalDetailsScreen({ navigation, route }) {
   const [city, setCity] = useState('');
   const [phone, setPhone] = useState('');
   const [classGrade, setClassGrade] = useState('');
@@ -42,12 +44,24 @@ export default function PersonalDetailsScreen({ navigation }) {
     return true;
   };
 
-
-const onContinuePressed = () => {
-  if (validateForm()) {
-    navigation.navigate('GroupSelectionScreen');
-  }
-};
+  const onContinuePressed = () => {
+    if (validateForm()) {
+      navigation.navigate('GroupSelectionScreen', {
+        name: route.params.name,
+        email: route.params.email,
+        password: route.params.password,
+        role: route.params.role,
+        Address: city,
+        Phone: phone,
+        Grade : classGrade,
+        Gender : contactLanguage,
+        Region : groupDistrict,
+        Group : '',
+      });
+    }
+  };
+  
+  
   return (
     <Background>
     <CustomBackButton goBack={navigation.goBack} />
