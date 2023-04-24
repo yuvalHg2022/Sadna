@@ -20,7 +20,7 @@ const items = [
   { label: 'דרום', value: 'דרום' },
   ];
 
-  export default function PersonalDetailsScreen({ navigation }) {
+  export default function PersonalDetailsScreen({ navigation, route }) {
   const [city, setCity] = useState('');
   const [phone, setPhone] = useState('');
   const [classGrade, setClassGrade] = useState('');
@@ -57,19 +57,74 @@ const items = [
     try {
     switch (groupDistrict) {
     case "מרכז":
-    navigation.navigate('GroupSelectionScreenCenter');
+    navigation.navigate('GroupSelectionScreenCenter', {
+      name: route.params.name,
+      email: route.params.email,
+      password: route.params.password,
+      role: route.params.role,
+      Address: city,
+      Phone: phone,
+      Grade : classGrade,
+      Gender : contactLanguage,
+      Region : groupDistrict,
+      Group : '',
+    });
     break;
     case "צפון":
-    navigation.navigate('GroupSelectionScreenNorth');
+    navigation.navigate('GroupSelectionScreenNorth', {
+      name: route.params.name,
+      email: route.params.email,
+      password: route.params.password,
+      role: route.params.role,
+      Address: city,
+      Phone: phone,
+      Grade : classGrade,
+      Gender : contactLanguage,
+      Region : groupDistrict,
+      Group : '',
+    });
     break;
     case "שרון":
-    navigation.navigate('GroupSelectionScreenSharon');
+    navigation.navigate('GroupSelectionScreenSharon', {
+      name: route.params.name,
+      email: route.params.email,
+      password: route.params.password,
+      role: route.params.role,
+      Address: city,
+      Phone: phone,
+      Grade : classGrade,
+      Gender : contactLanguage,
+      Region : groupDistrict,
+      Group : '',
+    });
     break;
     case "שפלה וירושלים":
-    navigation.navigate('GroupSelectionScreenShfelaAndJerusalem');
+    navigation.navigate('GroupSelectionScreenShfelaAndJerusalem', {
+      name: route.params.name,
+      email: route.params.email,
+      password: route.params.password,
+      role: route.params.role,
+      Address: city,
+      Phone: phone,
+      Grade : classGrade,
+      Gender : contactLanguage,
+      Region : groupDistrict,
+      Group : '',
+    });
     break;
     case "דרום":
-    navigation.navigate('GroupSelectionScreenSouth');
+    navigation.navigate('GroupSelectionScreenSouth', {
+      name: route.params.name,
+      email: route.params.email,
+      password: route.params.password,
+      role: route.params.role,
+      Address: city,
+      Phone: phone,
+      Grade : classGrade,
+      Gender : contactLanguage,
+      Region : groupDistrict,
+      Group : '',
+    });
     break;
     }
     } catch (error) {

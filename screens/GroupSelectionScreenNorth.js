@@ -7,13 +7,11 @@ import Header from '../components/Header';
 import Footer from '../components/Footer'
 import Button from '../components/Button';
 import { theme } from '../core/theme';
-import ActionButton from "../components/ActionButton";
-import { useNavigation } from '@react-navigation/native';
+import { collection, addDoc } from 'firebase/firestore';
+import db from '../config';
 
-
-export default function GroupSelectionScreenNorth() {
+export default function GroupSelectionScreenNorth({ navigation, route }) {
   const [selectedValue, setSelectedValue] = useState('');
-  const navigation = useNavigation();
 
   const groups = [
     'סניף חיפה',
@@ -26,11 +24,32 @@ export default function GroupSelectionScreenNorth() {
     'סניף קריית שמונה',
   ];
 
-  const onSubmitPressed = () => {
+  const onSubmitPressed = async () => {
     if (selectedValue) {
-      navigation.navigate('AppointmentSchedulingScreen');
+      const usersRef = collection(db, 'Users');
+      console.log(route.params.Grade);
+      try {
+        const docRef = await addDoc(usersRef, {
+          name: route.params.name,
+          email: route.params.email,
+          password: route.params.password,
+          role: route.params.role,
+          Address: route.params.Address,
+          Phone: route.params.Phone,
+          Grade: route.params.Grade,
+          Gender: route.params.Gender,
+          Region: route.params.Region,
+          group: selectedValue,
+        });
+        console.log(`Document written with ID: ${docRef.id}`);
+        navigation.navigate('AppointmentSchedulingScreen');
+      } catch (error) {
+        console.log('Error while getting documents:', error);
+        alert('An error occurred while saving data to the DB');
+        return;
+      }
     }
-  }; 
+  };
 
   return (
     <Background>
