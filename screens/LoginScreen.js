@@ -123,7 +123,7 @@ export default function LoginScreen({ navigation }) {
       <Footer />
     </Background>
   );
-}
+
 
 const styles = StyleSheet.create({
   forgotPassword: {
