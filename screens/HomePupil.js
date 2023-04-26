@@ -15,6 +15,7 @@ export default function HomePupil({ navigation }) {
     navigation.navigate("StartScreen");
   };
 
+  
   return (
     <>
       <ImageBackground
