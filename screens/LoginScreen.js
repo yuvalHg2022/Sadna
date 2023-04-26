@@ -58,6 +58,19 @@ export default function LoginScreen({ navigation }) {
   function onLoginPressed() {
     signIn(email, password);
   }
+    let homePage = 'Home';
+
+    if (toggleValue === true) {
+      homePage = 'Home';
+    } else {
+      homePage = 'HomePupil';
+    }
+
+    navigation.reset({
+      index: 0,
+      routes: [{ name: homePage }],
+    });
+  };
 
   return (
     <Background>
@@ -110,7 +123,7 @@ export default function LoginScreen({ navigation }) {
       <Footer />
     </Background>
   );
-}
+
 
 const styles = StyleSheet.create({
   forgotPassword: {

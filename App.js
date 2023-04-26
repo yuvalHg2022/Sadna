@@ -15,6 +15,13 @@ import ResetPasswordScreen from "./screens/ResetPasswordScreen";
 import Dashboard from "./screens/Dashboard";
 import StudentDetails from "./components/StudentDetails";
 import PersonalDetailsScreen from "./screens/PersonalDetailsScreen";
+import GroupSelectionScreen from "./screens/GroupSelectionScreen";
+import HomePupil from "./screens/HomePupil";
+import ContactUs from "./screens/ContactUs";
+import ChatbotScreen from './screens/ChatbotScreen';
+import InstructorMessageScreen from './screens/InstructorMessageScreen';
+
+
 import GroupSelectionScreenCenter from "./screens/GroupSelectionScreenCenter";
 import GroupSelectionScreenNorth from "./screens/GroupSelectionScreenNorth";
 import GroupSelectionScreenSharon from "./screens/GroupSelectionScreenSharon";
@@ -51,10 +58,7 @@ const App = () => {
             <Stack.Screen name="GoogleCalendarScreen" component={GoogleCalendarScreen} />
             <Stack.Screen name="Dashboard" component={Dashboard} />
             <Stack.Screen name="ResetPasswordScreen" component={ResetPasswordScreen} />
-            <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{ headerShown: false }}
+            <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}
         />
         <Stack.Screen
           name="Activitiy"
@@ -86,6 +90,10 @@ const App = () => {
         component={StudentDetails}
         options={{ headerShown: false }}
         />
+            <Stack.Screen name="HomePupil" component={HomePupil} />
+            <Stack.Screen name="ContactUs" component={ContactUs} />
+            <Stack.Screen name="ChatbotScreen" component={ChatbotScreen} />
+            <Stack.Screen name="InstructorMessageScreen" component={InstructorMessageScreen} />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>
