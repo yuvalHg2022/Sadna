@@ -41,11 +41,18 @@ export default function LoginScreen({ navigation }) {
       const userDoc = querySnapshot.docs[0];
       const userData = userDoc.data();
       if (password.value === userData.password) {
+        let homePage = 'Home';
+
+        if (toggleValue === true) {
+          homePage = 'Home';
+        } else {
+          homePage = 'HomePupil';
+        }
+
         navigation.reset({
           index: 0,
-          routes: [{ name: 'Dashboard' }],
-        })
-        navigation.navigate('Home');
+          routes: [{ name: homePage }],
+        });
       } else {
         alert('Invalid email or password');
       }
@@ -58,19 +65,6 @@ export default function LoginScreen({ navigation }) {
   function onLoginPressed() {
     signIn(email, password);
   }
-    let homePage = 'Home';
-
-    if (toggleValue === true) {
-      homePage = 'Home';
-    } else {
-      homePage = 'HomePupil';
-    }
-
-    navigation.reset({
-      index: 0,
-      routes: [{ name: homePage }],
-    });
-  };
 
   return (
     <Background>
@@ -123,24 +117,24 @@ export default function LoginScreen({ navigation }) {
       <Footer />
     </Background>
   );
-
+}
 
 const styles = StyleSheet.create({
   forgotPassword: {
     width: '100%',
     alignItems:
     'flex-end',
-marginBottom: 24,
-},
-row: {
-flexDirection: 'row',
-},
-forgot: {
-fontSize: 13,
-color: theme.colors.secondary,
-},
-link: {
-fontWeight: 'bold',
-color: theme.colors.primary,
-},
+    marginBottom: 24,
+    },
+    row: {
+    flexDirection: 'row',
+    },
+    forgot: {
+    fontSize: 13,
+    color: theme.colors.secondary,
+    },
+    link: {
+    fontWeight: 'bold',
+    color: theme.colors.primary,
+    },
 });
