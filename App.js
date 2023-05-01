@@ -20,6 +20,7 @@ import HomePupil from "./screens/HomePupil";
 import ContactUs from "./screens/ContactUs";
 import ChatbotScreen from './screens/ChatbotScreen';
 import InstructorMessageScreen from './screens/InstructorMessageScreen';
+import CloseActivityPupil from "./screens/CloseActivityPupil";
 
 
 import GroupSelectionScreenCenter from "./screens/GroupSelectionScreenCenter";
@@ -92,6 +93,7 @@ const App = () => {
         />
             <Stack.Screen name="HomePupil" component={HomePupil} />
             <Stack.Screen name="ContactUs" component={ContactUs} />
+            <Stack.Screen name="CloseActivityPupil" component={CloseActivityPupil} />
             <Stack.Screen name="ChatbotScreen" component={ChatbotScreen} />
             <Stack.Screen name="InstructorMessageScreen" component={InstructorMessageScreen} />
           </Stack.Navigator>
