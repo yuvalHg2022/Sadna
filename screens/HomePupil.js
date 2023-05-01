@@ -31,7 +31,7 @@ export default function HomePupil({ navigation }) {
             <MyButton
               title="פעילויות"
               color={COLORS.white}
-              onPress={() => navigation.navigate("Activitiy")}
+              onPress={() => navigation.navigate("CloseActivityPupil")}
               icon={<FontAwesome name="calendar" size={24} />}
             />
             <MyButton
