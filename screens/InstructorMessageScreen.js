@@ -18,23 +18,23 @@ const InstructorMessageScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Send Message to Instructor</Text>
+      <Text style={styles.heading}>שלח הודעה למדריך</Text>
       <TextInput
         style={styles.input}
-        placeholder="Subject"
+        placeholder="נושא"
         value={subject}
         onChangeText={text => setSubject(text)}
       />
       <TextInput
-        style={styles.input}
-        placeholder="Body"
+        style={styles.body}
+        placeholder="תוכן"
         value={body}
         onChangeText={text => setBody(text)}
         multiline={true}
         numberOfLines={5}
       />
       <TouchableOpacity onPress={handleSendEmail} style={styles.button}>
-        <Text style={styles.buttonText}>Send Message</Text>
+        <Text style={styles.buttonText}>שלח הודעה</Text>
       </TouchableOpacity>
     </View>
   );
@@ -51,6 +51,16 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 20,
   },
+  body: {
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 5,
+    padding: 10,
+    width: '80%',
+    height: 100,
+    marginBottom: 20,
+    textAlign: 'right',
+  },
   input: {
     borderWidth: 1,
     borderColor: 'gray',
@@ -58,10 +68,12 @@ const styles = StyleSheet.create({
     padding: 10,
     width: '80%',
     marginBottom: 20,
+    textAlign: 'right',
+
   },
   button: {
     backgroundColor: 'blue',
-    padding: 10,
+    padding: 15,
     borderRadius: 5,
   },
   buttonText: {

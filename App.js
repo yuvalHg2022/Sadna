@@ -21,7 +21,6 @@ import ContactUs from "./screens/ContactUs";
 import ChatbotScreen from './screens/ChatbotScreen';
 import InstructorMessageScreen from './screens/InstructorMessageScreen';
 
-
 import GroupSelectionScreenCenter from "./screens/GroupSelectionScreenCenter";
 import GroupSelectionScreenNorth from "./screens/GroupSelectionScreenNorth";
 import GroupSelectionScreenSharon from "./screens/GroupSelectionScreenSharon";
@@ -58,8 +57,7 @@ const App = () => {
             <Stack.Screen name="GoogleCalendarScreen" component={GoogleCalendarScreen} />
             <Stack.Screen name="Dashboard" component={Dashboard} />
             <Stack.Screen name="ResetPasswordScreen" component={ResetPasswordScreen} />
-            <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}
-        />
+            <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}/>
         <Stack.Screen
           name="Activitiy"
           component={Activitiy}
@@ -85,11 +83,12 @@ const App = () => {
         component={RecentActivities}
         options={{ headerShown: false }}
         />
-        <Stack.Screen
+
+      <Stack.Screen
         name="StudentDetails"
         component={StudentDetails}
         options={{ headerShown: false }}
-        />
+      />
             <Stack.Screen name="HomePupil" component={HomePupil} />
             <Stack.Screen name="ContactUs" component={ContactUs} />
             <Stack.Screen name="ChatbotScreen" component={ChatbotScreen} />
