@@ -9,6 +9,7 @@ import { FontAwesome } from "@expo/vector-icons";
 import eventListData from "../assets/mocks/eventList.json";
 import { getDocs, collection } from "firebase/firestore";
 import db from "../config";
+import { AntDesign } from '@expo/vector-icons';
 
 export default function CloseActivity({ navigation }) {
   const [closeActivity, setCloseActivity] = useState({})
@@ -55,15 +56,15 @@ export default function CloseActivity({ navigation }) {
               <Text style={[styles.activityText, { fontWeight: 'bold', fontSize: 24 }]}>{closeActivity.subject}</Text>
               <View style={styles.row}>
                 <Text style={styles.activityText}>{closeActivity.date}</Text>
-                <FontAwesome name="calendar" size={26} color={COLORS.black} />
+                <FontAwesome name="calendar" size={24} color={COLORS.black} />
               </View>
               <View style={styles.row}>
                 <Text style={styles.activityText}>{closeActivity.hour}</Text>
-                <FontAwesome name="check" size={26} color={COLORS.black} />
-              </View>
+                <AntDesign name="clockcircleo" size={24} color="black" />
+                </View>
               <View style={styles.row}>
                 <Text style={styles.activityText}>{closeActivity.place}</Text>
-                <FontAwesome name="home" size={26} color={COLORS.black} />
+                <FontAwesome name="home" size={24} color={COLORS.black} />
               </View>
               <Text style={styles.activityText} numberOfLines={5}>{closeActivity.details}</Text>
             </View>
@@ -96,8 +97,8 @@ export default function CloseActivity({ navigation }) {
             list={eventListData}
           />
         </View>
+        <Footer />
       </View>
-      <Footer />
     </>
   );
 }
