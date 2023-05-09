@@ -29,7 +29,7 @@ export default function LoginScreen({ navigation }) {
       setPassword({ ...password, error: passwordError });
       return;
     }
-
+  
     const usersRef = collection(db, 'Users');
     try {
       const usersQuery = query(usersRef, where('email', '==', email.value));
@@ -41,14 +41,17 @@ export default function LoginScreen({ navigation }) {
       const userDoc = querySnapshot.docs[0];
       const userData = userDoc.data();
       if (password.value === userData.password) {
-        let homePage = 'Home';
-
-        if (toggleValue === true) {
-          homePage = 'Home';
-        } else {
-          homePage = 'HomePupil';
+        // Check if the user's role matches the selected role
+        if (toggleValue === true && userData.role !== 'מדריך/ה') {
+          alert('Invalid role for this login');
+          return;
+        } else if (toggleValue === false && userData.role !== 'חניך/ה') {
+          alert('Invalid role for this login');
+          return;
         }
-
+  
+        let homePage = toggleValue ? 'Home' : 'HomePupil';
+  
         navigation.reset({
           index: 0,
           routes: [{ name: homePage }],
@@ -61,6 +64,7 @@ export default function LoginScreen({ navigation }) {
       alert('An error occurred while signing in');
     }
   }
+  
 
   function onLoginPressed() {
     signIn(email, password);

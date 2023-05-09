@@ -21,7 +21,7 @@ import ContactUs from "./screens/ContactUs";
 import ChatbotScreen from './screens/ChatbotScreen';
 import InstructorMessageScreen from './screens/InstructorMessageScreen';
 import CloseActivityPupil from "./screens/CloseActivityPupil";
-
+import Messages from "./components/Messages";
 import GroupSelectionScreenCenter from "./screens/GroupSelectionScreenCenter";
 import GroupSelectionScreenNorth from "./screens/GroupSelectionScreenNorth";
 import GroupSelectionScreenSharon from "./screens/GroupSelectionScreenSharon";
@@ -95,6 +95,7 @@ const App = () => {
             <Stack.Screen name="CloseActivityPupil" component={CloseActivityPupil} />
             <Stack.Screen name="ChatbotScreen" component={ChatbotScreen} />
             <Stack.Screen name="InstructorMessageScreen" component={InstructorMessageScreen} />
+            <Stack.Screen name="Messages" component={Messages}/>
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>

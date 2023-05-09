@@ -7,6 +7,8 @@ import { AntDesign } from "@expo/vector-icons";
 import Footer from "../components/Footer";
 import { COLORS } from "../utils/StyleGuide";
 import ActionButton from "../components/ActionButton";
+import { green } from "@mui/material/colors";
+
 
 const IMAGE_HEIGHT = 288;
 
@@ -41,9 +43,16 @@ export default function HomePupil({ navigation }) {
               onPress={() => navigation.navigate("ContactUs")}
             />
             <MyButton
+              title="הזמן חברים"
+              color={COLORS.white}
+              icon={<FontAwesome name="whatsapp" size={24} color={'green'}/>}
+              onPress={() => navigation.navigate("")}
+            />
+            <MyButton
               title="הודעות"
               color={COLORS.white}
               icon={<FontAwesome name="envelope-o" size={24} />}
+              onPress={() => navigation.navigate("Messages")}
             />
           </View>
         </View>
@@ -52,6 +61,7 @@ export default function HomePupil({ navigation }) {
     </>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
