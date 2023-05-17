@@ -12,7 +12,7 @@ import { passwordValidator } from '../helpers/passwordValidator';
 import FancySwitchSelector from '../components/SwitchSelector';
 import CustomBackButton from '../components/CustomBackButton';
 import { collection, query, where, getDocs } from 'firebase/firestore';
-import db from '../config';
+import db from '../config.js';
 import { TouchableOpacity, StyleSheet, View } from 'react-native';
 
 export default function LoginScreen({ navigation }) {

@@ -10,54 +10,61 @@ import ActionButton from "../components/ActionButton";
 const StudentDetails = ({ route }) => {
   const { student } = route.params;
 
+  const handleTransferClick = () => {
+    alert("התיק הועבר בהצלחה");
+  };
+
   return (
     <>
-    <View style={styles.container}>
-      <ActionButton title="אזור אישי" />
-      <View style={styles.title}>
-        <FontAwesome name="user" size={24} color={COLORS.black} />
-        <MyTittle text="תיק חניך" />
-      </View>
-      <View style={styles.listContainer}>
-        <View style={styles.eventItem}>
-          <View style={styles.eventDetails}>
-            <Text style={styles.eventItemText}>שם החניך: {student.Name}</Text>
+      <View style={styles.container}>
+        <ActionButton title="אזור אישי" />
+        <View style={styles.title}>
+          <FontAwesome name="user" size={30} color={COLORS.black} />
+          <Text style={styles.titleText}>תיק חניך</Text>
+        </View>
+        <View style={styles.listContainer}>
+          <View style={styles.eventItem}>
+            <View style={styles.eventDetails}>
+              <Text style={styles.eventItemText}>שם החניך: {student.Name}</Text>
+            </View>
+          </View>
+          <View style={styles.eventItem}>
+            <View style={styles.eventDetails}>
+              <Text style={styles.eventItemText}>כתובת: {student.Address}</Text>
+            </View>
+          </View>
+          <View style={styles.eventItem}>
+            <View style={styles.eventDetails}>
+              <Text style={styles.eventItemText}>כיתה: {student.Grade}</Text>
+            </View>
+          </View>
+          <View style={styles.eventItem}>
+            <View style={styles.eventDetails}>
+              <Text style={styles.eventItemText}>מספר טלפון: {student.Phone}</Text>
+            </View>
+          </View>
+          <View style={styles.eventItem}>
+            <View style={styles.eventDetails}>
+              <Text style={styles.eventItemText}>לשון פנייה: {student.Gender}</Text>
+            </View>
           </View>
         </View>
-        <View style={styles.eventItem}>
-          <View style={styles.eventDetails}>
-            <Text style={styles.eventItemText}>כתובת: {student.Address}</Text>
-          </View>
-        </View>
-        <View style={styles.eventItem}>
-          <View style={styles.eventDetails}>
-            <Text style={styles.eventItemText}>כיתה: {student.Grade}</Text>
-          </View>
-        </View>
-        <View style={styles.eventItem}>
-          <View style={styles.eventDetails}>
-            <Text style={styles.eventItemText}>מספר טלפון: {student.Phone}</Text>
-          </View>
-        </View>
-        <View style={styles.eventItem}>
-          <View style={styles.eventDetails}>
-            <Text style={styles.eventItemText}>לשון פנייה: {student.Gender}</Text>
-          </View>
-        </View>
-      </View>
-      <View style={styles.buttonContainer}>
+        <View style={styles.buttonContainer}>
           <TouchableOpacity style={styles.button}>
             <Text style={styles.buttonText}>חוות דעת מדריך</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button}>
             <Text style={styles.buttonText}>עדכון פרטים אישיים</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={handleTransferClick}
+          >
             <Text style={styles.buttonText}>העברת תיק לגורם סוציאלי</Text>
           </TouchableOpacity>
         </View>
-    </View>
-    <Footer />
+      </View>
+      <Footer />
     </>
   );
 };
@@ -73,6 +80,13 @@ const styles = StyleSheet.create({
     paddingTop: 140,
     alignItems: "center",
     backgroundColor: COLORS.white,
+  },
+  titleText: {
+    color: COLORS.black,
+    fontSize: 24,
+    lineHeight: 28,
+    fontWeight: "700",
+    paddingLeft: 10,
   },
   title: {
     flexDirection: "row",
