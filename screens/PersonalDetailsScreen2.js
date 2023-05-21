@@ -20,11 +20,9 @@ const items = [
   { label: 'דרום', value: 'דרום' },
   ];
 
-  export default function PersonalDetailsScreen({ navigation, route }) {
+  export default function PersonalDetailsScreen2({ navigation, route }) {
   const [city, setCity] = useState('');
   const [phone, setPhone] = useState('');
-  const [classGrade, setClassGrade] = useState('');
-  const [contactLanguage, setContactLanguage] = useState('');
   const [groupDistrict, setGroupDistrict] = useState('');
   const [pickerVisible, setPickerVisible] = useState(false);
 
@@ -33,16 +31,8 @@ const items = [
       alert('אנא הזן את העיר מגורים שלך');
       return false;
     }
-    if (!classGrade) {
-      alert('אנא הזן את הכיתה שלך');
-      return false;
-    }
     if (!phone.match(/^[0-9]{10}$/)) {
       alert('אנא הזן מספר טלפון חוקי (10 ספרות)');
-      return false;
-    }
-    if (!contactLanguage) {
-      alert('אנא הזן את לשון הפניה המעודף עליך');
       return false;
     }
     if (!groupDistrict) {
@@ -64,8 +54,6 @@ const items = [
       role: route.params.role,
       Address: city,
       Phone: phone,
-      Grade : classGrade,
-      Gender : contactLanguage,
       Region : groupDistrict,
       Group : '',
     });
@@ -78,8 +66,6 @@ const items = [
       role: route.params.role,
       Address: city,
       Phone: phone,
-      Grade : classGrade,
-      Gender : contactLanguage,
       Region : groupDistrict,
       Group : '',
     });
@@ -92,8 +78,6 @@ const items = [
       role: route.params.role,
       Address: city,
       Phone: phone,
-      Grade : classGrade,
-      Gender : contactLanguage,
       Region : groupDistrict,
       Group : '',
     });
@@ -106,8 +90,6 @@ const items = [
       role: route.params.role,
       Address: city,
       Phone: phone,
-      Grade : classGrade,
-      Gender : contactLanguage,
       Region : groupDistrict,
       Group : '',
     });
@@ -120,8 +102,6 @@ const items = [
       role: route.params.role,
       Address: city,
       Phone: phone,
-      Grade : classGrade,
-      Gender : contactLanguage,
       Region : groupDistrict,
       Group : '',
     });
@@ -138,7 +118,7 @@ const items = [
       <Background>
       <CustomBackButton goBack={navigation.goBack} />
       <View style={styles.form}>
-      <Header style={styles.header}>פרטים אישיים חניך/ה</Header>
+      <Header style={styles.header}>פרטים אישיים מדריך</Header>
       <Text style={[styles.label, styles.highlight]}>עיר מגורים:</Text>
       <TextInput
       style={styles.input}
@@ -146,26 +126,12 @@ const items = [
       value={city}
       onChangeText={setCity}
       />
-      <Text style={[styles.label, styles.highlight]}>כיתה:</Text>
-      <TextInput
-      style={styles.input}
-      mode="outlined"
-      value={classGrade}
-      onChangeText={setClassGrade}
-      />
       <Text style={[styles.label, styles.highlight]}>טלפון:</Text>
       <TextInput
       style={styles.input}
       mode="outlined"
       value={phone}
       onChangeText={setPhone}
-      />
-      <Text style={[styles.label, styles.highlight]}>לשון פניה:</Text>
-      <TextInput
-      style={styles.input}
-      mode="outlined"
-      value={contactLanguage}
-      onChangeText={setContactLanguage}
       />
       <Text style={[styles.label, styles.highlight]}>בחירת מחוז הקבוצה:</Text>
       <View style={styles.dropdown}>

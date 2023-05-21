@@ -50,7 +50,7 @@ export default function RegisterScreen({ navigation }) {
         alert('This email address is already registered');
         return;
       }
-  
+    if (role === 'חניך/ה') {
       navigation.navigate('PersonalDetailsScreen', {
         name: name.value,
         email: email.value,
@@ -63,6 +63,18 @@ export default function RegisterScreen({ navigation }) {
         Region : '',
         Group : '',
       });
+    } else if (role === 'מדריך/ה') {
+      navigation.navigate('PersonalDetailsScreen2', {
+        name: name.value,
+        email: email.value,
+        password: password.value,
+        role: role,
+        Address: '',
+        Phone: '',
+        Region : '',
+        Group : '',
+      });
+    }
         
     } catch (error) {
       console.log('Error while getting documents:', error);
