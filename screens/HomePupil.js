@@ -8,6 +8,7 @@ import Footer from "../components/Footer";
 import { COLORS } from "../utils/StyleGuide";
 import ActionButton from "../components/ActionButton";
 import { green } from "@mui/material/colors";
+import { Linking } from "react-native";
 
 
 const IMAGE_HEIGHT = 288;
@@ -46,7 +47,10 @@ export default function HomePupil({ navigation }) {
               title="הזמן חברים"
               color={COLORS.white}
               icon={<FontAwesome name="whatsapp" size={24} color={'green'}/>}
-              onPress={() => navigation.navigate("")}
+              onPress={() => {
+                const message = "היי, אני מזמין אותך להצטרף אליי בתנועת איגי!! תוכל לעשות זאת באמצעות הורדת האפליקציה בעזרת הקישור - appstore.igy";
+                Linking.openURL(`whatsapp://send?text=${message}`);
+               }}
             />
             <MyButton
               title="הודעות"

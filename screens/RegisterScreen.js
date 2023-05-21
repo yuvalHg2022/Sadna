@@ -9,16 +9,11 @@ import TextInput from '../components/TextInput';
 import { theme } from '../core/theme';
 import CustomBackButton from '../components/CustomBackButton';
 import db from '../config';
-import {
-  addDoc,
-  collection,
-  where,
-  query,
-  getDocs,
-} from 'firebase/firestore';
+import { addDoc, collection, where, query, getDocs, } from 'firebase/firestore';
 import { emailValidator } from '../helpers/emailValidator';
 import { passwordValidator } from '../helpers/passwordValidator';
 import { nameValidator } from '../helpers/nameValidator';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
 
 export default function RegisterScreen({ navigation }) {
@@ -42,8 +37,12 @@ export default function RegisterScreen({ navigation }) {
     }
   
     const usersRef = collection(db, 'Users');
+    const auth = getAuth();
   
     try {
+      const { user } = await createUserWithEmailAndPassword(auth, email.value, password.value);
+      console.log('User created successfully:', user);
+      
       const usersQuery = query(usersRef, where('email', '==', email.value));
       const querySnapshot = await getDocs(usersQuery);
   

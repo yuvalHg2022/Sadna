@@ -14,11 +14,15 @@ import CustomBackButton from '../components/CustomBackButton';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import db from '../config';
 import { TouchableOpacity, StyleSheet, View } from 'react-native';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import "firebase/auth";
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState({ value: '', error: '' });
   const [password, setPassword] = useState({ value: '', error: '' });
   const [toggleValue, setToggleValue] = useState(false);
+  const auth = getAuth();
+
 
   async function signIn(email, password) {
     // Validate input fields
@@ -29,7 +33,9 @@ export default function LoginScreen({ navigation }) {
       setPassword({ ...password, error: passwordError });
       return;
     }
-  
+    const userCredential = await signInWithEmailAndPassword(auth, email.value, password.value);
+    // Signed in
+    const user = userCredential.user;
     const usersRef = collection(db, 'Users');
     try {
       const usersQuery = query(usersRef, where('email', '==', email.value));

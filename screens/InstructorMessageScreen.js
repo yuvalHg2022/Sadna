@@ -1,85 +1,163 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import email from 'react-native-email';
+import React, { useState, useEffect } from "react";
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { useCollectionData } from "react-firebase-hooks/firestore";
+import { Picker } from "@react-native-picker/picker";
+import firebase from "../firebase";
+import "firebase/auth";
+import db from "../config";
+import { Button, Alert } from 'react-native';
 
-const InstructorMessageScreen = () => {
-  const [subject, setSubject] = useState('');
-  const [body, setBody] = useState('');
+export default function InstructorMessageScreen({ route }) {
+  const [instructors, setInstructors] = useState([]);
+  const [selectedInstructor, setSelectedInstructor] = useState(null);
+  const [messageText, setMessageText] = useState("");
+  const [currentUser, setCurrentUser] = useState(null);
 
-  const handleSendEmail = () => {
-    const to = 'guide@example.com';
-    email(to, {
-      subject: subject,
-      body: body
-    }).catch(console.error);
-    setSubject('');
-    setBody('');
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const user = firebase.auth().currentUser;
+        setCurrentUser(user);
+  
+        if (user) {
+          const studentRef = db.collection("Users").where("email", "==", user.email);
+          const studentSnapshot = await studentRef.get();
+  
+          if (!studentSnapshot.empty) {
+            const studentData = studentSnapshot.docs[0].data();
+            const instructorsRef = db.collection("Users").where("role", "==", "מדריך/ה").where("group", "==", studentData.group);
+            const instructorsSnapshot = await instructorsRef.get();
+            const instructorsData = instructorsSnapshot.docs.map((doc) => ({
+              name: doc.data().name,
+              email: doc.data().email,
+            }));
+            setInstructors(instructorsData);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+  
+    fetchData();
+  }, []);
+
+  const showUserInfo = () => {
+    if (currentUser) {
+      Alert.alert(
+        'User Information',
+        `Email: ${currentUser.email}\nUID: ${currentUser.uid}`,
+        [{ text: 'OK' }]
+      );
+    } else {
+      Alert.alert('User Information', 'No user logged in.', [{ text: 'OK' }]);
+    }
   };
+
+  const handleSendMessage = () => {
+    // get the current user's information from Firestore
+    db.collection("Users")
+      .doc(currentUser.uid)
+      .get()
+      .then((doc) => {
+        const currentUserData = doc.data();
+
+        // create a new message document in Firestore
+        db.collection("Messages")
+          .add({
+            senderId: currentUser.uid,
+            senderName: currentUserData.name,
+            recipientId: selectedInstructor,
+            messageText,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          })
+          .then(() => {
+            // reset the message text input after the message is sent
+            setMessageText("");
+          })
+          .catch((error) => {
+            console.error("Error sending message: ", error);
+          });
+      })
+      .catch((error) => {
+        console.error("Error getting current user information: ", error);
+      });
+  };
+ 
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>שלח הודעה למדריך</Text>
+      <Text style={styles.title}>Send Message to Instructor</Text>
+      <Text style={styles.label}>To:</Text>
+      <Picker
+        selectedValue={selectedInstructor}
+        onValueChange={(value) => setSelectedInstructor(value)}
+      >
+        <Picker.Item label="Select an Instructor" value={null} />
+        {instructors.map((instructor) => (
+          <Picker.Item key={instructor.id} label={instructor.name} value={instructor.id} />
+        ))}
+      </Picker>
+      <Text style={styles.label}>Message:</Text>
       <TextInput
-        style={styles.input}
-        placeholder="נושא"
-        value={subject}
-        onChangeText={text => setSubject(text)}
+        style={[styles.input, styles.messageInput]}
+        multiline
+        value={messageText}
+        onChangeText={setMessageText}
       />
-      <TextInput
-        style={styles.body}
-        placeholder="תוכן"
-        value={body}
-        onChangeText={text => setBody(text)}
-        multiline={true}
-        numberOfLines={5}
-      />
-      <TouchableOpacity onPress={handleSendEmail} style={styles.button}>
-        <Text style={styles.buttonText}>שלח הודעה</Text>
+      <TouchableOpacity
+        style={styles.sendButton}
+        onPress={handleSendMessage}
+        disabled={!selectedInstructor || !messageText}
+      >
+        <Text style={styles.sendButtonText}>Send</Text>
       </TouchableOpacity>
+      <Button title="Show User Info" onPress={showUserInfo} />
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    padding: 16,
   },
-  heading: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
+  title: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 16,
   },
-  body: {
-    borderWidth: 1,
-    borderColor: 'gray',
-    borderRadius: 5,
-    padding: 10,
-    width: '80%',
-    height: 100,
-    marginBottom: 20,
-    textAlign: 'right',
+  label: {
+    fontSize: 16,
+    fontWeight: "bold",
+    marginTop: 16,
+    marginBottom: 8,
   },
   input: {
     borderWidth: 1,
-    borderColor: 'gray',
-    borderRadius: 5,
-    padding: 10,
-    width: '80%',
-    marginBottom: 20,
-    textAlign: 'right',
-
+    borderColor: "#ccc",
+    borderRadius: 8,
+    padding: 8,
+    marginBottom: 16,
   },
-  button: {
-    backgroundColor: 'blue',
-    padding: 15,
-    borderRadius: 5,
+  messageInput: {
+    height: 120,
   },
-  buttonText: {
-    color: 'white',
-    fontSize: 18,
+  sendButton: {
+    backgroundColor: "blue",
+    padding: 16,
+    borderRadius: 8,
+    alignItems: "center",
+  },
+  sendButtonText: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  selectContainer: {
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 8,
+    marginBottom: 16,
   },
 });
-
-export default InstructorMessageScreen;
