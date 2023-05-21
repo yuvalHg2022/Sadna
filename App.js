@@ -15,7 +15,7 @@ import ResetPasswordScreen from "./screens/ResetPasswordScreen";
 import Dashboard from "./screens/Dashboard";
 import StudentDetails from "./components/StudentDetails";
 import PersonalDetailsScreen from "./screens/PersonalDetailsScreen";
-import GroupSelectionScreen from "./screens/GroupSelectionScreen";
+import PersonalDetailsScreen2 from "./screens/PersonalDetailsScreen2";
 import HomePupil from "./screens/HomePupil";
 import ContactUs from "./screens/ContactUs";
 import ChatbotScreen from './screens/ChatbotScreen';
@@ -27,8 +27,6 @@ import GroupSelectionScreenNorth from "./screens/GroupSelectionScreenNorth";
 import GroupSelectionScreenSharon from "./screens/GroupSelectionScreenSharon";
 import GroupSelectionScreenShfelaAndJerusalem from "./screens/GroupSelectionScreenShfelaAndJerusalem";
 import GroupSelectionScreenSouth from "./screens/GroupSelectionScreenSouth";
-import AppointmentSchedulingScreen from "./screens/AppointmentSchedulingScreen";
-import GoogleCalendarScreen from "./screens/GoogleCalendarScreen";
 
 import { Provider } from 'react-native-paper'
 import { theme } from './core/theme'
@@ -49,13 +47,12 @@ const App = () => {
             <Stack.Screen name="LoginScreen" component={LoginScreen} />
             <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
             <Stack.Screen name="PersonalDetailsScreen" component={PersonalDetailsScreen} />
+            <Stack.Screen name="PersonalDetailsScreen2" component={PersonalDetailsScreen2} />
             <Stack.Screen name="GroupSelectionScreenCenter" component={GroupSelectionScreenCenter} />
             <Stack.Screen name="GroupSelectionScreenNorth" component={GroupSelectionScreenNorth} />
             <Stack.Screen name="GroupSelectionScreenSharon" component={GroupSelectionScreenSharon} />
             <Stack.Screen name="GroupSelectionScreenShfelaAndJerusalem" component={GroupSelectionScreenShfelaAndJerusalem} />
             <Stack.Screen name="GroupSelectionScreenSouth" component={GroupSelectionScreenSouth} />
-            <Stack.Screen name="AppointmentSchedulingScreen" component={AppointmentSchedulingScreen} />
-            <Stack.Screen name="GoogleCalendarScreen" component={GoogleCalendarScreen} />
             <Stack.Screen name="Dashboard" component={Dashboard} />
             <Stack.Screen name="ResetPasswordScreen" component={ResetPasswordScreen} />
             <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}/>

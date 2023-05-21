@@ -42,7 +42,7 @@ export default function GroupSelectionScreenNorth({ navigation, route }) {
           group: selectedValue,
         });
         console.log(`Document written with ID: ${docRef.id}`);
-        navigation.navigate('AppointmentSchedulingScreen');
+        navigation.navigate('LoginScreen');
       } catch (error) {
         console.log('Error while getting documents:', error);
         alert('An error occurred while saving data to the DB');
