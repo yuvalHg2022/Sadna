@@ -4,7 +4,7 @@ import { Text } from 'react-native-paper';
 import Background from '../components/Background';
 import CustomBackButton from '../components/CustomBackButton';
 import Header from '../components/Header';
-import Footer from '../components/Footer'
+import Footer from '../components/Footer';
 import Button from '../components/Button';
 import { theme } from '../core/theme';
 import { collection, addDoc } from 'firebase/firestore';
@@ -22,29 +22,52 @@ export default function GroupSelectionScreenCenter({ navigation, route }) {
     'סניף גבעתיים',
   ];
 
+  const { role } = route.params; // Extract 'role' from route params
+
   const onSubmitPressed = async () => {
-    if (selectedValue) {
-      const usersRef = collection(db, 'Users');
-      console.log(route.params.Grade);
-      try {
-        const docRef = await addDoc(usersRef, {
-          name: route.params.name,
-          email: route.params.email,
-          password: route.params.password,
-          role: route.params.role,
-          Address: route.params.Address,
-          Phone: route.params.Phone,
-          Grade: route.params.Grade,
-          Gender: route.params.Gender,
-          Region: route.params.Region,
-          group: selectedValue,
-        });
-        console.log(`Document written with ID: ${docRef.id}`);
-        navigation.navigate('LoginScreen');
-      } catch (error) {
-        console.log('Error while getting documents:', error);
-        alert('An error occurred while saving data to the DB');
-        return;
+    if (role === 'חניך/ה') {
+      if (selectedValue) {
+        const usersRef = collection(db, 'Users');
+        try {
+          const docRef = await addDoc(usersRef, {
+            name: route.params.name,
+            email: route.params.email,
+            password: route.params.password,
+            role: route.params.role,
+            Address: route.params.Address,
+            Phone: route.params.Phone,
+            Grade: route.params.Grade,
+            Gender: route.params.Gender,
+            Region: route.params.Region,
+            group: selectedValue,
+          });
+          console.log(`Document written with ID: ${docRef.id}`);
+          navigation.navigate('LoginScreen');
+        } catch (error) {
+          console.log('Error while getting documents:', error);
+          alert('An error occurred while saving data to the DB');
+        }
+      }
+    } else if (role === 'מדריך/ה') {
+      if (selectedValue) {
+        const usersRef = collection(db, 'Users');
+        try {
+          const docRef = await addDoc(usersRef, {
+            name: route.params.name,
+            email: route.params.email,
+            password: route.params.password,
+            role: route.params.role,
+            Address: route.params.Address,
+            Phone: route.params.Phone,
+            Region: route.params.Region,
+            group: selectedValue,
+          });
+          console.log(`Document written with ID: ${docRef.id}`);
+          navigation.navigate('LoginScreen');
+        } catch (error) {
+          console.log('Error while getting documents:', error);
+          alert('An error occurred while saving data to the DB');
+        }
       }
     }
   };
@@ -54,7 +77,7 @@ export default function GroupSelectionScreenCenter({ navigation, route }) {
       <CustomBackButton goBack={navigation.goBack} />
       <Header>בחירת קבוצה</Header>
       <View style={styles.contentContainer}>
-      <Text style={[styles.title, {textAlign: 'center'}]}>מחוז מרכז:</Text>
+        <Text style={[styles.title, { textAlign: 'center' }]}>מחוז מרכז:</Text>
         {groups.map((group) => (
           <TouchableOpacity
             key={group}
@@ -116,7 +139,7 @@ const styles = StyleSheet.create({
   radioButton: {
     borderWidth: 2,
     borderRadius: 50,
-    borderColor:  theme.colors.primary,
+    borderColor: theme.colors.primary,
     height: 24,
     width: 24,
     justifyContent: 'center',

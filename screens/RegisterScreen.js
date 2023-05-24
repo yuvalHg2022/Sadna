@@ -77,6 +77,8 @@ export default function RegisterScreen({ navigation }) {
         role: role,
         Address: '',
         Phone: '',
+        Grade : '',
+        Gender : '',
         Region : '',
         Group : '',
       });

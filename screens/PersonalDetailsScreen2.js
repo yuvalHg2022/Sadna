@@ -54,6 +54,8 @@ const items = [
       role: route.params.role,
       Address: city,
       Phone: phone,
+      Grade : '',
+      Gender : '',
       Region : groupDistrict,
       Group : '',
     });
@@ -66,6 +68,8 @@ const items = [
       role: route.params.role,
       Address: city,
       Phone: phone,
+      Grade : '',
+      Gender : '',
       Region : groupDistrict,
       Group : '',
     });
@@ -78,6 +82,8 @@ const items = [
       role: route.params.role,
       Address: city,
       Phone: phone,
+      Grade : '',
+      Gender : '',
       Region : groupDistrict,
       Group : '',
     });
@@ -90,6 +96,8 @@ const items = [
       role: route.params.role,
       Address: city,
       Phone: phone,
+      Grade : '',
+      Gender : '',
       Region : groupDistrict,
       Group : '',
     });
@@ -102,6 +110,8 @@ const items = [
       role: route.params.role,
       Address: city,
       Phone: phone,
+      Grade : '',
+      Gender : '',
       Region : groupDistrict,
       Group : '',
     });
