@@ -6,6 +6,7 @@ import firebase from "../firebase";
 import "firebase/auth";
 import db from "../config";
 import { Button, Alert } from 'react-native';
+import { cos } from "react-native-reanimated";
 
 export default function InstructorMessageScreen({ route }) {
   const [instructors, setInstructors] = useState([]);
@@ -18,6 +19,7 @@ export default function InstructorMessageScreen({ route }) {
       try {
         const user = firebase.auth().currentUser;
         setCurrentUser(user);
+        cosnole.log(user);
   
         if (user) {
           const studentRef = db.collection("Users").where("email", "==", user.email);
@@ -110,7 +112,7 @@ export default function InstructorMessageScreen({ route }) {
         onPress={handleSendMessage}
         disabled={!selectedInstructor || !messageText}
       >
-        <Text style={styles.sendButtonText}>Send</Text>
+        <Text style={styles.sendButtonText} onPress={ console.log(currentUser)}>Send</Text>
       </TouchableOpacity>
       <Button title="Show User Info" onPress={showUserInfo} />
     </View>

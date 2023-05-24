@@ -1,24 +1,44 @@
 import React , { useEffect } from "react";
 import { Text, StyleSheet, TouchableOpacity } from "react-native";
 import { auth } from "../config.js"; // Assuming you have a custom hook for Firebase authentication
+import  db from '../config';
+import { collection, query, where, getDocs } from "firebase/firestore";
+
+
 
 const ActionButton = ({ title }) => {
   const { currentUser } = auth; // Get the current user from the Firebase authentication context
+  const userEmail = currentUser.email;
+  console.log(userEmail);
 
-  const handleButtonPress = () => {
-    console.log('press');
-    console.log('current here',auth);
+  const handleButtonPress = async () => {
     if (currentUser) {
-      const userRole = currentUser.role; // Assuming you have a 'role' property in the user object
-
-      if (userRole === "מדרי/ך") {
-        // Navigate to the guided homepage
-        // Replace 'Home' with the relevant guided homepage component
-        navigation.navigate("Home");
-      } else if (userRole === "חני/ך") {
-        // Navigate to the pupil homepage
-        // Replace 'HomePupil' with the relevant pupil homepage component
-        navigation.navigate("HomePupil");
+      const userEmail = currentUser.email;
+      try {
+        const usersRef = collection(db, "Users"); // Assuming "Users" is the name of your collection
+        const querySnapshot = await getDocs(query(usersRef, where("email", "==", userEmail)));
+  
+        if (querySnapshot.empty) {
+          console.log("User not found");
+          return;
+        }
+  
+        // Assuming the 'role' field exists in the user document
+        const userDoc = querySnapshot.docs[0];
+        const userRole = userDoc.data().role;
+        console.log(userRole);
+  
+        if (userRole === "מדריך/ה") {
+          // Navigate to the instructor homepage
+          console.log("instructor");
+          navigation.navigate("Home");
+        } else if (userRole === "חניך/ה") {
+          // Navigate to the pupil homepage
+          console.log("pupil");
+          navigation.navigate("HomePupil");
+        }
+      } catch (error) {
+        console.error("Error querying user role:", error);
       }
     }
   };
