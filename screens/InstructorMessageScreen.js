@@ -114,9 +114,10 @@ export default function InstructorMessageScreen({ route }) {
       >
         <Text style={styles.sendButtonText} onPress={ console.log(currentUser)}>Send</Text>
       </TouchableOpacity>
-      <Button title="Show User Info" onPress={showUserInfo} />
+      <Button title="Show User Info" onPress={ console.log(currentUser)} />
     </View>
   );
+
 }
 
 const styles = StyleSheet.create({
@@ -126,6 +127,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
+    paddingTop: 26,
     fontWeight: "bold",
     marginBottom: 16,
   },

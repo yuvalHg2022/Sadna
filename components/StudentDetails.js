@@ -4,10 +4,10 @@ import MyTittle from "./MyTittle";
 import { COLORS } from "../utils/StyleGuide";
 import { FontAwesome } from "@expo/vector-icons";
 import Footer from "../components/Footer";
-import ActionButton from "../components/ActionButton";
+import ActionButton from "./ButtonToPerosnalScreen";
 
 
-const StudentDetails = ({ route }) => {
+const StudentDetails = ({ route, navigation }) => {
   const { student } = route.params;
 
   const handleTransferClick = () => {
@@ -17,7 +17,7 @@ const StudentDetails = ({ route }) => {
   return (
     <>
       <View style={styles.container}>
-        <ActionButton title="אזור אישי" />
+      <ActionButton title="אזור אישי" navigation={navigation} />
         <View style={styles.title}>
           <FontAwesome name="user" size={30} color={COLORS.black} />
           <Text style={styles.titleText}>תיק חניך</Text>

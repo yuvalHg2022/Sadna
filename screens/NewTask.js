@@ -19,14 +19,16 @@ import db from "../config";
 import Footer from "../components/Footer";
 import MyTittle from "../components/MyTittle";
 import Toggle from "react-native-toggle-element";
-import ActionButton from "../components/ActionButton";
+import ActionButton from "../components/ButtonToPerosnalScreen";
 import { COLORS } from "../utils/StyleGuide";
 import { PAST_TASKS } from "../data";
 import PastTaks from "../components/PastTaks";
 import axios from "axios";
 import ForecastItem from "../components/ForecastItem";
 
+
 export default function NewTask() {
+  const navigation = useNavigation();
   const [subject, setSubject] = useState("");
   const [place, setPlace] = useState("");
   const [hour, setHour] = useState("");
@@ -96,7 +98,7 @@ export default function NewTask() {
       <ScrollView>
         <KeyboardAvoidingView style={{ flex: 1 }}>
           <View style={styles.container}>
-            <ActionButton title="אזור אישי" />
+          <ActionButton title="אזור אישי" navigation={navigation} />
             <MyTittle text="יצירת פעולה" styleContainer={styles.title} />
             <View style={styles.labaelAndTextInputCotainer}>
               <Text style={styles.label}>נושא הפעולה</Text>

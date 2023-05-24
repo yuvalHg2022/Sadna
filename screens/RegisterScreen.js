@@ -33,6 +33,12 @@ export default function RegisterScreen({ navigation }) {
       setEmail({ ...email, error: emailError });
       setPassword({ ...password, error: passwordError });
       setDisableButton(true);
+  
+      // Alert the user if role is not chosen
+      if (!role) {
+        alert('Please choose a role');
+      }
+  
       return;
     }
   

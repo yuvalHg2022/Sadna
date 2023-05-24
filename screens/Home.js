@@ -6,7 +6,8 @@ import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import Footer from "../components/Footer";
 import { COLORS } from "../utils/StyleGuide";
-import ActionButton from "../components/ActionButton";
+import ActionButton from "../components/ButtonToPerosnalScreen";
+import LogOut from "../components/LogOut";
 
 const IMAGE_HEIGHT = 288;
 
@@ -23,7 +24,7 @@ export default function Home({ navigation }) {
         resizeMode="cover"
       >
         <View style={{ marginTop: 5 }}>
-          <ActionButton title="התנתקות" onPress={onLogout} />
+        <LogOut title="התנתקות" navigation={navigation} />
         </View>
         <View style={styles.container}>
           <View style={styles.menu}>
@@ -43,6 +44,7 @@ export default function Home({ navigation }) {
               title="הודעות"
               color={COLORS.white}
               icon={<AntDesign name="message1" size={24} />}
+              onPress={() => navigation.navigate("InstructorMessages")}
             />
           </View>
         </View>

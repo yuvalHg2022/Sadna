@@ -1,10 +1,8 @@
 import { View, StyleSheet } from "react-native";
 import React, { useState } from "react";
-import MyButton from "../components/MyButton";
 import Footer from "../components/Footer";
-import EventList from "../components/EventList";
 import { COLORS } from "../utils/StyleGuide";
-import ActionButton from "../components/ActionButton";
+import ActionButton from "../components/ButtonToPerosnalScreen";
 import react, { useEffect } from "react";
 import { getDocs, collection } from "firebase/firestore";
 import db from "../config";
@@ -37,7 +35,7 @@ export default function RecentActivities({ navigation }) {
   return (
     <>
       <View style={styles.container}>
-        <ActionButton title="אזור אישי" />
+      <ActionButton title="אזור אישי" navigation={navigation} />
         <View style={styles.menu}>
           <ActivityList title={"פעילויות קודמות"} list={activities} />
         </View>
@@ -49,6 +47,7 @@ export default function RecentActivities({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
+    paddingTop: 60,
     flex: 1,
     backgroundColor: COLORS.white,
   },

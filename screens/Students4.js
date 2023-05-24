@@ -4,7 +4,7 @@ import MyButton from "../components/MyButton";
 import Footer from "../components/Footer";
 import EventList from "../components/EventList";
 import { COLORS } from "../utils/StyleGuide";
-import ActionButton from "../components/ActionButton";
+import ActionButton from "../components/ButtonToPerosnalScreen";
 import Studentlist from "../components/StudentsList";
  
 export default function Students4({ navigation }) {

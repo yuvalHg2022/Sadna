@@ -11,7 +11,7 @@ export default function StartScreen({ navigation }) {
     <Background>
       <Logo /><Header>ברוכים הבאים</Header>
       <Paragraph>
-      20232W91 © 
+       © 20232W91 
       </Paragraph>
       <Button
         mode="contained"

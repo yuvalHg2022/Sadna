@@ -21,12 +21,14 @@ import ContactUs from "./screens/ContactUs";
 import ChatbotScreen from './screens/ChatbotScreen';
 import InstructorMessageScreen from './screens/InstructorMessageScreen';
 import CloseActivityPupil from "./screens/CloseActivityPupil";
-import Messages from "./components/Messages";
+import Messages from "./components/PupilMessages";
 import GroupSelectionScreenCenter from "./screens/GroupSelectionScreenCenter";
 import GroupSelectionScreenNorth from "./screens/GroupSelectionScreenNorth";
 import GroupSelectionScreenSharon from "./screens/GroupSelectionScreenSharon";
 import GroupSelectionScreenShfelaAndJerusalem from "./screens/GroupSelectionScreenShfelaAndJerusalem";
 import GroupSelectionScreenSouth from "./screens/GroupSelectionScreenSouth";
+import InstructorMessages from "./screens/InstructorMessages";
+import PupilMessages from "./components/PupilMessages";
 
 import { Provider } from 'react-native-paper'
 import { theme } from './core/theme'
@@ -93,6 +95,8 @@ const App = () => {
             <Stack.Screen name="ChatbotScreen" component={ChatbotScreen} />
             <Stack.Screen name="InstructorMessageScreen" component={InstructorMessageScreen} />
             <Stack.Screen name="Messages" component={Messages}/>
+            <Stack.Screen name="InstructorMessages" component={InstructorMessages} />
+            <Stack.Screen name="PupilMessages" component={PupilMessages} />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>

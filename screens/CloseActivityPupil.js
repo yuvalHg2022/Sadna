@@ -3,7 +3,7 @@ import react, { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import EventList from "../components/EventList";
 import { COLORS } from "../utils/StyleGuide";
-import ActionButton from "../components/ActionButton";
+import ActionButton from "../components/ButtonToPerosnalScreen";
 import MyTittle from "../components/MyTittle";
 import { FontAwesome } from "@expo/vector-icons";
 import eventListData from "../assets/mocks/eventList.json";
@@ -45,7 +45,7 @@ export default function CloseActivityPupil({ navigation }) {
   return (
     <>
       <View style={styles.container}>
-        <ActionButton title="אזור אישי" />
+        <ActionButton title="אזור אישי" navigation={navigation}/>
         <View style={styles.content}>
           <View>
             <MyTittle

@@ -3,13 +3,13 @@ import React from "react";
 import MyButton from "../components/MyButton";
 import Footer from "../components/Footer";
 import { COLORS } from "../utils/StyleGuide";
-import ActionButton from "../components/ActionButton";
+import ActionButton from "../components/ButtonToPerosnalScreen";
 
 export default function ContactUs({ navigation }) {
     return (
         <>
             <View style={styles.container}>
-                <ActionButton title="אזור אישי" />
+            <ActionButton title="אזור אישי" navigation={navigation}/>
                 <View style={{ flex: 0.2 }} />
                 <View style={styles.menu}>
                     <MyButton title="שליחת הודעה למדריך" onPress={() => navigation.navigate('InstructorMessageScreen')} />

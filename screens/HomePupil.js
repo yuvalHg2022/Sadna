@@ -6,16 +6,20 @@ import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import Footer from "../components/Footer";
 import { COLORS } from "../utils/StyleGuide";
-import ActionButton from "../components/ActionButton";
+import ActionButton from "../components/ButtonToPerosnalScreen";
+import LogOut from "../components/LogOut";
 import { green } from "@mui/material/colors";
 import { Linking } from "react-native";
+import Button from "../components/Button";
+import { logout } from "react-native-app-auth";
+
 
 
 const IMAGE_HEIGHT = 288;
 
 export default function HomePupil({ navigation }) {
   const onLogout = () => {
-    navigation.navigate("StartScreen");
+    navigation.navigate("LoginScreen");
   };
 
   
@@ -27,8 +31,8 @@ export default function HomePupil({ navigation }) {
         resizeMode="cover"
       >
         <View style={{ marginTop: 5 }}>
-          <ActionButton title="התנתקות" onPress={onLogout} />
-        </View>
+          <LogOut title="התנתקות" navigation={navigation} />
+                </View>
         <View style={styles.container}>
           <View style={styles.menu}>
             <MyButton

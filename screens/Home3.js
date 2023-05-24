@@ -7,13 +7,15 @@ import { AntDesign } from "@expo/vector-icons";
 import Footer from "../components/Footer";
 import { COLORS } from "../utils/StyleGuide";
 import LogOutButton from "../components/LogOutButton";
+import LogOut from "../components/LogOut";
+
 
 
 export default function Home3({ navigation }) {
   return (
     <>
       <View style={styles.container}>
-        <LogOutButton title="התנתקות" />
+          <LogOut title="התנתקות" navigation={navigation} />
         <MyButton
           title="פעילויות"
           color={COLORS.light_gray}
@@ -32,6 +34,7 @@ export default function Home3({ navigation }) {
           title="הודעות"
           color={COLORS.light_gray}
           icon={<AntDesign name="message1" size={24} color={COLORS.black} />}
+          onPress={() => navigation.navigate("InstructorMessages")}
         />
       </View>
       <Footer />

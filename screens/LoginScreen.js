@@ -72,6 +72,9 @@ export default function LoginScreen({ navigation }) {
         console.log(errorMessage);
         alert('This email address is not registered');
         setErrorMessage('User not found');
+      } else if (error.code === 'auth/wrong-password') {
+        alert('Invalid password');
+        setErrorMessage('Wrong password');
       } else {
         setErrorMessage('An error occurred while signing in');
       }
