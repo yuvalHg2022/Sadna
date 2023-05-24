@@ -1,12 +1,12 @@
-import React , { useEffect } from "react";
+import React  from "react";
 import { Text, StyleSheet, TouchableOpacity } from "react-native";
-import { auth } from "../config.js"; // Assuming you have a custom hook for Firebase authentication
+import { auth } from "../config.js"; 
 import  db from '../config';
 import { collection, query, where, getDocs } from "firebase/firestore";
 
 
 
-const ActionButton = ({ title }) => {
+const ActionButton = ({ title, navigation }) => {
   const { currentUser } = auth; // Get the current user from the Firebase authentication context
   const userEmail = currentUser.email;
   console.log(userEmail);
@@ -35,7 +35,7 @@ const ActionButton = ({ title }) => {
         } else if (userRole === "חניך/ה") {
           // Navigate to the pupil homepage
           console.log("pupil");
-          navigation.navigate("HomePupil");
+          navigation.navigate("Home");
         }
       } catch (error) {
         console.error("Error querying user role:", error);

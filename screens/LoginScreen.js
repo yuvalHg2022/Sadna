@@ -21,8 +21,8 @@ export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState({ value: '', error: '' });
   const [password, setPassword] = useState({ value: '', error: '' });
   const [toggleValue, setToggleValue] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const auth = getAuth();
-
 
   async function signIn(email, password) {
     // Validate input fields
@@ -33,11 +33,12 @@ export default function LoginScreen({ navigation }) {
       setPassword({ ...password, error: passwordError });
       return;
     }
-    const userCredential = await signInWithEmailAndPassword(auth, email.value, password.value);
-    // Signed in
-    const user = userCredential.user;
-    const usersRef = collection(db, 'Users');
+    
     try {
+      const userCredential = await signInWithEmailAndPassword(auth, email.value, password.value);
+      // Signed in
+      const user = userCredential.user;
+      const usersRef = collection(db, 'Users');
       const usersQuery = query(usersRef, where('email', '==', email.value));
       const querySnapshot = await getDocs(usersQuery);
       if (querySnapshot.size === 0) {
@@ -55,9 +56,9 @@ export default function LoginScreen({ navigation }) {
           alert('Invalid role for this login');
           return;
         }
-  
+
         let homePage = toggleValue ? 'Home' : 'HomePupil';
-  
+
         navigation.reset({
           index: 0,
           routes: [{ name: homePage }],
@@ -66,15 +67,21 @@ export default function LoginScreen({ navigation }) {
         alert('Invalid email or password');
       }
     } catch (error) {
-      console.log('Error while getting documents:', error);
-      alert('An error occurred while signing in');
+      console.log('Error while signing in:', error);
+      if (error.code === 'auth/user-not-found') {
+        console.log(errorMessage);
+        alert('This email address is not registered');
+        setErrorMessage('User not found');
+      } else {
+        setErrorMessage('An error occurred while signing in');
+      }
     }
   }
-  
 
   function onLoginPressed() {
     signIn(email, password);
   }
+
 
   return (
     <Background>
