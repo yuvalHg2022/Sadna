@@ -11,6 +11,6 @@ export const nameValidator = (name) => {
   }
   
   export const passwordValidator = (password) => {
-    if (!password || password.length < 6) return 'הסיסמה חייבת להיות באורך של 6 תווים לפחות.'
+    if (!password || password.length < 6) return 'הסיסמה חייבת להיות באורך של 6 תווים לפחות'
     return ''
   }

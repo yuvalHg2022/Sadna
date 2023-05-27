@@ -46,11 +46,11 @@ export default function InstructorMessageScreen({ route }) {
               setInstructors(instructorsData);
             }
           } catch (error) {
-            console.error("Error fetching instructors data:", error);
+            console.error("שגיאה בשליפת נתוני מדריכים:", error);
           }
         }
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("שגיאה בשליפת נתונים:", error);
       }
     };
 
@@ -84,7 +84,7 @@ export default function InstructorMessageScreen({ route }) {
         );
       })
       .catch((error) => {
-        console.error("Error sending message: ", error);
+        console.error("שגיאה בשליחת הודעה: ", error);
       });
   };
 

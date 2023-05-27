@@ -47,7 +47,7 @@ export default function GroupSelectionScreenShfelaAndJerusalem({ navigation, rou
         navigation.navigate('LoginScreen');
       } catch (error) {
         console.log('Error while getting documents:', error);
-        alert('An error occurred while saving data to the DB');
+        alert('אירעה שגיאה בעת שמירת נתונים בדאטה בייס');
         return;
       }
     }

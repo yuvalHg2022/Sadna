@@ -60,7 +60,7 @@ export default function NewTask() {
         console.log("Document written with ID: ", docRef?.id);
         window.alert("הפעילות נוספה בהצלחה");
       } else {
-        console.log("subject is not unique record not added");
+        console.log(".הנושא אינו ייחודי. הפעולה לא נוספה");
       }
     } catch (e) {
       console.error("Error adding document: ", e);

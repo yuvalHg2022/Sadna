@@ -36,7 +36,7 @@ export default function RegisterScreen({ navigation }) {
   
       // Alert the user if role is not chosen
       if (!role) {
-        alert('Please choose a role');
+        alert('אנא בחר תפקיד');
       }
   
       return;
@@ -47,13 +47,13 @@ export default function RegisterScreen({ navigation }) {
   
     try {
       const { user } = await createUserWithEmailAndPassword(auth, email.value, password.value);
-      console.log('User created successfully:', user);
+      console.log('המשתמש נוצר בהצלחה:', user);
       
       const usersQuery = query(usersRef, where('email', '==', email.value));
       const querySnapshot = await getDocs(usersQuery);
   
       if (querySnapshot.size > 0) {
-        alert('This email address is already registered');
+        alert('כתובת אימייל זו כבר רשומה');
         return;
       }
     if (role === 'חניך/ה') {
@@ -86,7 +86,7 @@ export default function RegisterScreen({ navigation }) {
         
     } catch (error) {
       console.log('Error while getting documents:', error);
-      alert('An error occurred while checking for existing email');
+      alert('אירעה שגיאה בעת בדיקת אימייל קיים');
     }
   };
 

@@ -119,7 +119,7 @@ const items = [
     }
     } catch (error) {
     console.error(error);
-    alert("An error occurred while navigating to the group selection screen.");
+    alert("אירעה שגיאה בעת ניווט למסך בחירת הקבוצה");
     }
     }
     };

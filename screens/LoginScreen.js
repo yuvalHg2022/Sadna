@@ -42,7 +42,7 @@ export default function LoginScreen({ navigation }) {
       const usersQuery = query(usersRef, where('email', '==', email.value));
       const querySnapshot = await getDocs(usersQuery);
       if (querySnapshot.size === 0) {
-        alert('This email address is not registered');
+        alert('כתובת אימייל זו אינה רשומה');
         return;
       }
       const userDoc = querySnapshot.docs[0];
@@ -50,10 +50,10 @@ export default function LoginScreen({ navigation }) {
       if (password.value === userData.password) {
         // Check if the user's role matches the selected role
         if (toggleValue === true && userData.role !== 'מדריך/ה') {
-          alert('Invalid role for this login');
+          alert('תפקיד לא חוקי עבור התחברות זו');
           return;
         } else if (toggleValue === false && userData.role !== 'חניך/ה') {
-          alert('Invalid role for this login');
+          alert('תפקיד לא חוקי עבור התחברות זו');
           return;
         }
 
@@ -64,19 +64,19 @@ export default function LoginScreen({ navigation }) {
           routes: [{ name: homePage }],
         });
       } else {
-        alert('Invalid email or password');
+        alert('כתובת אימייל או סיסמה לא חוקיים');
       }
     } catch (error) {
-      console.log('Error while signing in:', error);
+      console.log('שגיאה בעת התחברות:', error);
       if (error.code === 'auth/user-not-found') {
         console.log(errorMessage);
-        alert('This email address is not registered');
-        setErrorMessage('User not found');
+        alert('כתובת אימייל זו אינה רשומה');
+        setErrorMessage('משתמש לא נמצא');
       } else if (error.code === 'auth/wrong-password') {
-        alert('Invalid password');
-        setErrorMessage('Wrong password');
+        alert('סיסמה לא חוקית');
+        setErrorMessage('סיסמה שגויה');
       } else {
-        setErrorMessage('An error occurred while signing in');
+        setErrorMessage('אירעה שגיאה בעת ההתחברות');
       }
     }
   }
