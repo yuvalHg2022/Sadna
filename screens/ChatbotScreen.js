@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { View, TextInput, Button, Text, ScrollView, StyleSheet } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const ChatbotScreen = () => {
   const [messages, setMessages] = useState([]);
@@ -36,6 +37,7 @@ const ChatbotScreen = () => {
   };
 
   return (
+    <KeyboardAwareScrollView contentContainerStyle={styles.container}>
     <View style={styles.container}>
       <View style={styles.header}>
         <AntDesign name="arrowleft" size={24} color="black" onPress={handleGoBack} />
@@ -62,6 +64,7 @@ const ChatbotScreen = () => {
         <Button title="Send" onPress={handleSendMessage} />
       </View>
     </View>
+    </KeyboardAwareScrollView>
   );
 };
 

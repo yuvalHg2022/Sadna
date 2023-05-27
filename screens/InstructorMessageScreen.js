@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-import { useCollectionData } from "react-firebase-hooks/firestore";
+import { StyleSheet, Text, TextInput, TouchableOpacity, View, Alert} from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import firebase from "../firebase";
 import "firebase/auth";
-import db from "../config";
-import { Button, Alert } from 'react-native';
-import { cos } from "react-native-reanimated";
+import { useNavigation } from '@react-navigation/native';
+import Footer from "../components/Footer";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { AntDesign } from '@expo/vector-icons';
+
 
 export default function InstructorMessageScreen({ route }) {
+  const navigation = useNavigation();
   const [instructors, setInstructors] = useState([]);
   const [selectedInstructor, setSelectedInstructor] = useState(null);
   const [messageText, setMessageText] = useState("");
@@ -18,91 +20,99 @@ export default function InstructorMessageScreen({ route }) {
     const fetchData = async () => {
       try {
         const user = firebase.auth().currentUser;
-        setCurrentUser(user);
-        cosnole.log(user);
-  
+        console.log(user.email);
+
         if (user) {
-          const studentRef = db.collection("Users").where("email", "==", user.email);
-          const studentSnapshot = await studentRef.get();
-  
-          if (!studentSnapshot.empty) {
-            const studentData = studentSnapshot.docs[0].data();
-            const instructorsRef = db.collection("Users").where("role", "==", "מדריך/ה").where("group", "==", studentData.group);
-            const instructorsSnapshot = await instructorsRef.get();
-            const instructorsData = instructorsSnapshot.docs.map((doc) => ({
-              name: doc.data().name,
-              email: doc.data().email,
-            }));
-            setInstructors(instructorsData);
+          try {
+            const studentSnapshot = await firebase.firestore()
+              .collection("Users")
+              .where("email", "==", user.email)
+              .get();
+
+            if (!studentSnapshot.empty) {
+              const studentData = studentSnapshot.docs[0].data();
+              setCurrentUser(studentData);
+              console.log(studentData.name);
+
+              const instructorsSnapshot = await firebase.firestore()
+                .collection("Users")
+                .where("role", "==", "מדריך/ה")
+                .where("group", "==", studentData.group)
+                .get();
+
+              const instructorsData = instructorsSnapshot.docs.map((doc) => doc.data());
+              console.log(instructorsData);
+
+              setInstructors(instructorsData);
+            }
+          } catch (error) {
+            console.error("Error fetching instructors data:", error);
           }
         }
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
-  
+
     fetchData();
   }, []);
 
-  const showUserInfo = () => {
-    if (currentUser) {
-      Alert.alert(
-        'User Information',
-        `Email: ${currentUser.email}\nUID: ${currentUser.uid}`,
-        [{ text: 'OK' }]
-      );
-    } else {
-      Alert.alert('User Information', 'No user logged in.', [{ text: 'OK' }]);
-    }
-  };
 
   const handleSendMessage = () => {
-    // get the current user's information from Firestore
-    db.collection("Users")
-      .doc(currentUser.uid)
-      .get()
-      .then((doc) => {
-        const currentUserData = doc.data();
-
-        // create a new message document in Firestore
-        db.collection("Messages")
-          .add({
-            senderId: currentUser.uid,
-            senderName: currentUserData.name,
-            recipientId: selectedInstructor,
-            messageText,
-            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-          })
-          .then(() => {
-            // reset the message text input after the message is sent
-            setMessageText("");
-          })
-          .catch((error) => {
-            console.error("Error sending message: ", error);
-          });
+    // create a new message document in Firestore
+    firebase.firestore().collection("Messages")
+      .add({
+        senderEmail: currentUser.email,
+        senderName: currentUser.name,
+        recipientEmail: selectedInstructor,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        content: messageText,
+      })
+      .then(() => {
+        // reset the message text input after the message is sent
+        setMessageText("");
+        // show success message and navigate back
+        Alert.alert(
+          'אישור',
+          'ההודעה נשלחה בהצלחה!',
+          [
+            {
+              text: 'OK',
+              onPress: () => navigation.goBack(),
+            },
+          ]
+        );
       })
       .catch((error) => {
-        console.error("Error getting current user information: ", error);
+        console.error("Error sending message: ", error);
       });
   };
- 
 
+  const handleGoBack = () => {
+    navigation.goBack();
+  };
+ 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Send Message to Instructor</Text>
-      <Text style={styles.label}>To:</Text>
+    <>
+     <KeyboardAwareScrollView contentContainerStyle={styles.container}>
+     <View style={styles.header}>
+        <AntDesign name="arrowleft" size={24} color="black" onPress={handleGoBack} />
+        <Text style={styles.title}>חזרה</Text>
+      </View>
+      <Text style={styles.title}>שליחת הודעה למדריך</Text>
+      <Text style={styles.label}>אל:</Text>
       <Picker
         selectedValue={selectedInstructor}
         onValueChange={(value) => setSelectedInstructor(value)}
       >
-        <Picker.Item label="Select an Instructor" value={null} />
-        {instructors.map((instructor) => (
-          <Picker.Item key={instructor.id} label={instructor.name} value={instructor.id} />
+        <Picker.Item label="בחר את המדריך" value={null} />
+        {instructors.map((instructor, index) => (
+          <Picker.Item key={index} label={instructor.name} value={instructor.email} />
         ))}
       </Picker>
-      <Text style={styles.label}>Message:</Text>
+      <Text style={styles.label}>תוכן ההודעה:</Text>
       <TextInput
-        style={[styles.input, styles.messageInput]}
+        style={styles.input}
         multiline
         value={messageText}
         onChangeText={setMessageText}
@@ -112,12 +122,12 @@ export default function InstructorMessageScreen({ route }) {
         onPress={handleSendMessage}
         disabled={!selectedInstructor || !messageText}
       >
-        <Text style={styles.sendButtonText} onPress={ console.log(currentUser)}>Send</Text>
+        <Text style={styles.sendButtonText}>שליחה</Text>
       </TouchableOpacity>
-      <Button title="Show User Info" onPress={ console.log(currentUser)} />
-    </View>
+    </KeyboardAwareScrollView>
+    <Footer />
+    </>
   );
-
 }
 
 const styles = StyleSheet.create({
@@ -125,17 +135,24 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
   },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 15,
+  },
   title: {
     fontSize: 20,
-    paddingTop: 26,
     fontWeight: "bold",
     marginBottom: 16,
+    textAlign: "center",
+    marginTop: 12,
   },
   label: {
     fontSize: 16,
     fontWeight: "bold",
-    marginTop: 16,
+    marginTop: 8,
     marginBottom: 8,
+    textAlign: "right",
   },
   input: {
     borderWidth: 1,
@@ -143,9 +160,9 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 8,
     marginBottom: 16,
-  },
-  messageInput: {
     height: 120,
+    textAlignVertical: "top",
+    textAlign: "right",
   },
   sendButton: {
     backgroundColor: "blue",
@@ -158,10 +175,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
   },
-  selectContainer: {
-    borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 8,
-    marginBottom: 16,
-  },
 });
+
+
