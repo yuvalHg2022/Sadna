@@ -8,7 +8,7 @@ import Footer from "../components/Footer";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { AntDesign } from '@expo/vector-icons';
 
-export default function InstructorMessageScreen({ route }) {
+export default function InstructorMessagesToStudents({ route }) {
   const navigation = useNavigation();
   const [instructors, setInstructors] = useState([]);
   const [selectedInstructor, setSelectedInstructor] = useState(null);
@@ -36,7 +36,7 @@ export default function InstructorMessageScreen({ route }) {
 
               const instructorsSnapshot = await firebase.firestore()
                 .collection("Users")
-                .where("role", "==", "מדריך/ה")
+                .where("role", "==", "חניך/ה")
                 .where("group", "==", studentData.group)
                 .get();
 
@@ -46,7 +46,7 @@ export default function InstructorMessageScreen({ route }) {
               setInstructors(instructorsData);
             }
           } catch (error) {
-            console.error("שגיאה בשליפת נתוני מדריכים:", error);
+            console.error("שגיאה בשליפת נתוני חניכים:", error);
           }
         }
       } catch (error) {
@@ -100,13 +100,13 @@ export default function InstructorMessageScreen({ route }) {
           <AntDesign name="arrowleft" size={24} color="black" onPress={handleGoBack} />
           <Text style={styles.title}>חזרה</Text>
         </View>
-        <Text style={styles.title}>שליחת הודעה למדריך</Text>
+        <Text style={styles.title}>שליחת הודעה לחניכים</Text>
         <Text style={styles.label}>אל:</Text>
         <Picker
           selectedValue={selectedInstructor}
           onValueChange={(value) => setSelectedInstructor(value)}
         >
-          <Picker.Item label="בחר את המדריך" value={null} />
+          <Picker.Item label="בחר את החניך" value={null} />
           {instructors.map((instructor, index) => (
             <Picker.Item key={index} label={instructor.name} value={instructor.email} />
           ))}
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 8,
     marginBottom: 16,
-    height: 40, // Set the height to a smaller value, such as 40
+    height: 40, 
     textAlignVertical: "top",
     textAlign: "right",
   },

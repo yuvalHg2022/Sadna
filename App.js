@@ -29,6 +29,10 @@ import GroupSelectionScreenShfelaAndJerusalem from "./screens/GroupSelectionScre
 import GroupSelectionScreenSouth from "./screens/GroupSelectionScreenSouth";
 import InstructorMessages from "./screens/InstructorMessages";
 import PupilMessages from "./components/PupilMessages";
+import InstructorMessagesReceived from "./screens/InstructorMessagesReceived";
+import InstructorMessagesToStudents from "./screens/InstructorMessagesToStudents";
+import StudentMessagesReceived from "./screens/StudentMessagesReceived";
+
 
 import { Provider } from 'react-native-paper'
 import { theme } from './core/theme'
@@ -97,6 +101,9 @@ const App = () => {
             <Stack.Screen name="Messages" component={Messages}/>
             <Stack.Screen name="InstructorMessages" component={InstructorMessages} />
             <Stack.Screen name="PupilMessages" component={PupilMessages} />
+            <Stack.Screen name="InstructorMessagesReceived" component={InstructorMessagesReceived} />
+            <Stack.Screen name="InstructorMessagesToStudents" component={InstructorMessagesToStudents} />
+            <Stack.Screen name="StudentMessagesReceived" component={StudentMessagesReceived} />
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>

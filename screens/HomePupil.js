@@ -60,7 +60,7 @@ export default function HomePupil({ navigation }) {
               title="הודעות"
               color={COLORS.white}
               icon={<FontAwesome name="envelope-o" size={24} />}
-              onPress={() => navigation.navigate("Messages")}
+              onPress={() => navigation.navigate("StudentMessagesReceived")}
             />
           </View>
         </View>
