@@ -44,7 +44,7 @@ export default function Home({ navigation }) {
               title="הודעות"
               color={COLORS.white}
               icon={<AntDesign name="message1" size={24} />}
-              onPress={() => navigation.navigate("InstructorMessages")}
+              onPress={() => navigation.navigate("InstructorMessagesReceived")}
             />
           </View>
         </View>
