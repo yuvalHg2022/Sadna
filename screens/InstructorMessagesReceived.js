@@ -3,6 +3,8 @@ import { StyleSheet, Text, TouchableOpacity, View, TextInput } from 'react-nativ
 import firebase from '../firebase';
 import 'firebase/auth';
 import { MaterialIcons } from '@expo/vector-icons';
+import ActionButton from '../components/ButtonToPerosnalScreen';
+import { COLORS } from '../utils/StyleGuide';
 
 const InstructorMessagesReceived = ({ navigation }) => {
   const [messages, setMessages] = useState([]);
@@ -111,74 +113,77 @@ const InstructorMessagesReceived = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.pageTitle}>הודעות מחניכים</Text>
-      {messages.length === 0 ? (
-        <Text style={styles.noMessagesText}>אין הודעות מחניכים</Text>
-      ) : (
-        <View>
-          {messages.map((message) => (
-            <TouchableOpacity
-              key={message.id}
-              style={[
-                styles.messageContainer,
-                selectedMessage === message && styles.selectedMessageContainer,
-              ]}
-              onPress={() => handlePressMessage(message)}
-            >
-              <View style={styles.messageHeader}>
-                <Text style={styles.titleText}>מאת:</Text>
-                <Text style={styles.contentText}>{message.senderName}</Text>
-              </View>
-              <View style={styles.messageHeader}>
-                <Text style={styles.titleText}>נושא:</Text>
-                <Text style={styles.contentText}>{message.subject}</Text>
-              </View>
-              <View style={styles.messageHeader}>
-                <Text style={styles.titleText}>מועד השליחה:</Text>
-                <Text style={styles.contentText}>
-                  {message.createdAt.toString()}
-                </Text>
-              </View>
-              {selectedMessage === message && (
-                <View>
-                  <View style={styles.messageHeader}>
-                    <Text style={styles.titleText}>תוכן ההודעה:</Text>
-                  </View>
-                  <Text style={styles.contentText}>{message.content}</Text>
-                  <TextInput
-                    style={styles.responseInput}
-                    placeholder="Enter your response"
-                    value={response}
-                    onChangeText={setResponse}
-                    multiline
-                  />
-                  <TouchableOpacity
-                    style={styles.sendButton}
-                    onPress={handleSendReply}
-                  >
-                    <Text style={styles.buttonText}>השב</Text>
-                  </TouchableOpacity>
-                  <View style={styles.optionsContainer}>
-                    <TouchableOpacity
-                      style={styles.deleteButton}
-                      onPress={() => handleDelete(message)}
-                    >
-                      <MaterialIcons name="delete" size={18} color="#FFFFFF" />
-                      <Text style={styles.buttonText}>מחק</Text>
-                    </TouchableOpacity>
-                  </View>
+      <ActionButton title="אזור אישי"  navigation={navigation} />
+      <View>
+        <Text style={styles.pageTitle}>הודעות מחניכים</Text>
+        {messages.length === 0 ? (
+          <Text style={styles.noMessagesText}>אין הודעות מחניכים</Text>
+        ) : (
+          <View>
+            {messages.map((message) => (
+              <TouchableOpacity
+                key={message.id}
+                style={[
+                  styles.messageContainer,
+                  selectedMessage === message && styles.selectedMessageContainer,
+                ]}
+                onPress={() => handlePressMessage(message)}
+              >
+                <View style={styles.messageHeader}>
+                  <Text style={styles.titleText}>מאת:</Text>
+                  <Text style={styles.contentText}>{message.senderName}</Text>
                 </View>
-              )}
-            </TouchableOpacity>
-          ))}
-        </View>
-      )}
-      <TouchableOpacity
-        style={styles.createNewButton}
-        onPress={handleCreateNewMessage}
-      >
-        <Text style={styles.buttonText}>יצירת הודעה חדשה</Text>
-      </TouchableOpacity>
+                <View style={styles.messageHeader}>
+                  <Text style={styles.titleText}>נושא:</Text>
+                  <Text style={styles.contentText}>{message.subject}</Text>
+                </View>
+                <View style={styles.messageHeader}>
+                  <Text style={styles.titleText}>מועד השליחה:</Text>
+                  <Text style={styles.contentText}>
+                    {message.createdAt.toString()}
+                  </Text>
+                </View>
+                {selectedMessage === message && (
+                  <View>
+                    <View style={styles.messageHeader}>
+                      <Text style={styles.titleText}>תוכן ההודעה:</Text>
+                    </View>
+                    <Text style={styles.contentText}>{message.content}</Text>
+                    <TextInput
+                      style={styles.responseInput}
+                      placeholder="Enter your response"
+                      value={response}
+                      onChangeText={setResponse}
+                      multiline
+                    />
+                    <TouchableOpacity
+                      style={styles.sendButton}
+                      onPress={handleSendReply}
+                    >
+                      <Text style={styles.buttonText}>השב</Text>
+                    </TouchableOpacity>
+                    <View style={styles.optionsContainer}>
+                      <TouchableOpacity
+                        style={styles.deleteButton}
+                        onPress={() => handleDelete(message)}
+                      >
+                        <MaterialIcons name="delete" size={18} color="#FFFFFF" />
+                        <Text style={styles.buttonText}>מחק</Text>
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                )}
+              </TouchableOpacity>
+            ))}
+          </View>
+        )}
+        <TouchableOpacity
+          style={styles.createNewButton}
+          onPress={handleCreateNewMessage}
+        >
+          <Text style={styles.buttonText}>יצירת הודעה חדשה</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -188,13 +193,14 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 16,
     paddingTop: 16,
+  backgroundColor:COLORS.white,
   },
   pageTitle: {
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: 16,
-    marginTop: 20,
+    marginTop: 110,
   },
   noMessagesText: {
     fontSize: 18,
@@ -224,50 +230,51 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
   contentText: {
-    fontSize: 14,
-    marginBottom: 8,
+    flex: 1,
+    fontSize: 16,
     textAlign: 'right',
   },
   responseInput: {
-    height: 100,
     backgroundColor: '#F0F0F0',
     borderRadius: 8,
     padding: 8,
     marginBottom: 8,
-    textAlignVertical: 'top',
+    minHeight: 100,
   },
   sendButton: {
-    backgroundColor: '#2196F3',
-    borderRadius: 4,
-    padding: 8,
-    flexDirection: 'row',
+    backgroundColor: '#007AFF',
+    borderRadius: 8,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
     alignItems: 'center',
-    justifyContent: 'center',
     marginBottom: 8,
-  },
-  optionsContainer: {
-    flexDirection: 'row-reverse',
-    justifyContent: 'flex-end',
-  },
-  deleteButton: {
-    backgroundColor: '#F44336',
-    borderRadius: 4,
-    padding: 8,
-    flexDirection: 'row',
-    alignItems: 'center',
   },
   buttonText: {
     color: '#FFFFFF',
     fontWeight: 'bold',
-    marginLeft: 4,
-    textAlign: 'center',
+    fontSize: 16,
+  },
+  optionsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
+  deleteButton: {
+    backgroundColor: '#FF3B30',
+    borderRadius: 8,
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: 8,
   },
   createNewButton: {
-    backgroundColor: '#4CAF50',
-    borderRadius: 4,
-    padding: 16,
+    backgroundColor: '#007AFF',
+    borderRadius: 8,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    alignItems: 'center',
     marginTop: 16,
   },
 });
 
-export default InstructorMessagesReceived
+export default InstructorMessagesReceived;

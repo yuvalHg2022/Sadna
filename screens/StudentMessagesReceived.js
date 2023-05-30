@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, TextInput } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, TextInput, PixelRatio } from 'react-native';
 import firebase from '../firebase';
 import 'firebase/auth';
 import { MaterialIcons } from '@expo/vector-icons';
+import { COLORS } from '../utils/StyleGuide';
+import Footer from '../components/Footer';
+import ActionButton from '../components/ButtonToPerosnalScreen';
 
 const StudentMessagesReceived = ({ navigation }) => {
   const [messages, setMessages] = useState([]);
@@ -179,6 +182,9 @@ const StudentMessagesReceived = ({ navigation }) => {
       >
         <Text style={styles.buttonText}>יצירת הודעה חדשה</Text>
       </TouchableOpacity>
+      
+      <ActionButton title="אזור אישי" navigation={navigation} />
+      <Footer />
     </View>
   );
 };
@@ -186,15 +192,16 @@ const StudentMessagesReceived = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 16,
+    paddingHorizontal: 6,
     paddingTop: 16,
+    backgroundColor: '#F0F0F0',
   },
   pageTitle: {
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: 16,
-    marginTop: 20,
+    marginTop: 80,
   },
   noMessagesText: {
     fontSize: 18,
@@ -270,4 +277,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export default StudentMessagesReceived
+export default StudentMessagesReceived;
+

@@ -7,6 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import Footer from "../components/Footer";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { AntDesign } from '@expo/vector-icons';
+import { COLORS } from "../utils/StyleGuide";
 
 export default function InstructorMessageScreen({ route }) {
   const navigation = useNavigation();
@@ -140,6 +141,7 @@ export default function InstructorMessageScreen({ route }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor:COLORS.white,
     padding: 16,
   },
   header: {

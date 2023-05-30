@@ -29,7 +29,7 @@
     "firebase": "^9.19.1",
     "react": "^18.2.0",
     "react-firebase-hooks": "^5.1.1",
-    "react-native": "0.71.6",
+    "react-native": "^0.71.8",
     "react-native-app-auth": "^6.4.3",
     "react-native-calendars": "^1.1295.0",
     "react-native-email": "^2.1.0",
@@ -42,7 +42,9 @@
     "react-native-status-bar-height": "^2.6.0",
     "react-native-switch-selector": "^2.3.0",
     "react-native-toggle-element": "^2.0.1",
-    "sweetalert2": "^11.7.3"
+    "sweetalert2": "^11.7.3",
+    "react-native-web": "~0.18.10",
+    "@expo/webpack-config": "^18.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

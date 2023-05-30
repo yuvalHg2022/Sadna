@@ -22,7 +22,7 @@ export default function Activitiy({ navigation }) {
           <MyButton title="הפעולה הקרובה" onPress={() => navigation.navigate('CloseActivity')} />
           <MyButton title="פעולות קודמות" onPress={() => navigation.navigate('RecentActivities')} />
         </View>
-        <EventList title={"לוח אירועים"} list={eventListData}/>
+        <EventList title={"לוח אירועים"} onPress={alert('עדיין בפיתוח')} list={eventListData}/>
       </View>
       <Footer />
     </>

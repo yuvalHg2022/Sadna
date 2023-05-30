@@ -74,7 +74,7 @@ export default function CloseActivityPupil({ navigation }) {
                   styles.buttonContainer,
                   { backgroundColor: COLORS.green },
                 ]}
-                onPress={() => onActivity("confirm")}
+                onPress={() => onActivity("confirm") + alert('הגעתך נשמרה!')}
               >
                 <Text style={styles.buttonText}>{"מגיע/ה"}</Text>
                 <FontAwesome name="check" size={20} color={COLORS.black} />
@@ -84,7 +84,7 @@ export default function CloseActivityPupil({ navigation }) {
                   styles.buttonContainer,
                   { backgroundColor: COLORS.red },
                 ]}
-                onPress={() => onActivity("reject")}
+                onPress={() => onActivity("reject") + alert('חבל..נשמח לראותך בפעילות הבאה!')}
               >
                 <Text style={styles.buttonText}>{"לא מגיע/ה"}</Text>
                 <FontAwesome name="close" size={20} color={COLORS.black} />

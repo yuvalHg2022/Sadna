@@ -10,8 +10,8 @@ const SCREEN_WIDTH = Dimensions.get("screen").width
 const EventList = (props) => {
 
   const renderItem = useCallback(({ item, index }) => (
-    <TouchableOpacity style={styles.eventItem} onPress={() => { console.log('item pressed:', item) }}>
-      <View style={styles.dateCube}>
+    <TouchableOpacity style={styles.eventItem} onPress={() => { alert(`איזה כיף שהתעיינית באירוע ${item.title}`) }}>
+    <View style={styles.dateCube}>
         <Text style={styles.eventItemText}>{item.day}</Text>
         <Text style={styles.eventItemText}>{item.month}</Text>
       </View>
