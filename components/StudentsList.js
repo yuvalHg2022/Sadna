@@ -1,32 +1,58 @@
 import { View, StyleSheet, FlatList, Text, Dimensions } from "react-native";
-import React, { useCallback } from "react";
+import React, { useEffect, useState, useCallback } from "react";
+import { useNavigation } from "@react-navigation/native";
+import { FontAwesome } from "@expo/vector-icons";
 import MyTittle from "./MyTittle";
 import { COLORS } from "../utils/StyleGuide";
-import { FontAwesome } from "@expo/vector-icons";
-import StudentListData from '../assets/mocks/studentList.json';
 import { TouchableOpacity } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import firebase from '../firebase';
+import 'firebase/auth';
 
-const SCREEN_WIDTH = Dimensions.get("screen").width
+const SCREEN_WIDTH = Dimensions.get("screen").width;
 
 const Studentlist = () => {
   const navigation = useNavigation();
+  const [studentList, setStudentList] = useState([]);
 
-  const renderItem = useCallback(({ item, index }) => (
-    <TouchableOpacity style={styles.eventItem} onPress={() => {
-      navigation.navigate("StudentDetails", { student: item });}}>
-          <View style={styles.arrowContainer}>
-        <FontAwesome name="arrow-left" size={20} color={COLORS.light_blue} />
-      </View>
-      <View style={styles.dateCube}>
-        <Text style={styles.eventItemText}>{index + 1}</Text>
-      </View>
-      <View style={styles.eventDetails}>
-        <Text style={styles.eventItemText}>{item.Name}</Text>
-      </View>
-    </TouchableOpacity>
-  ), [navigation])
+  const fetchData = useCallback(async () => {
+    try {
+      const db = firebase.firestore();
+      const snapshot = await db
+        .collection("Users")
+        .where("role", "==", "חניך/ה")
+        .get();
+      const students = snapshot.docs.map((doc) => doc.data());
+      setStudentList(students);
+    } catch (error) {
+      console.log("Error fetching students:", error);
+    }
+  }, []);
 
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  const renderItem = useCallback(
+    ({ item, index }) => (
+      <TouchableOpacity
+        style={styles.eventItem}
+        onPress={() => {
+          navigation.navigate("StudentDetails", { student: item });
+        }}
+      >
+        <View style={styles.arrowContainer}>
+          <FontAwesome name="arrow-left" size={20} color={COLORS.light_blue} />
+        </View>
+        <View style={styles.dateCube}>
+          <Text style={styles.eventItemText}>{index + 1}</Text>
+        </View>
+        <View style={styles.eventDetails}>
+          <Text style={styles.eventItemText}>{item.name}</Text>
+        </View>
+      </TouchableOpacity>
+    ),
+    [navigation]
+  );
 
   return (
     <View style={styles.container}>
@@ -36,9 +62,9 @@ const Studentlist = () => {
       </View>
       <View style={styles.listContainer}>
         <FlatList
-          data={StudentListData}
+          data={studentList}
           renderItem={renderItem}
-          keyExtractor={(item, index) => item.id}
+          keyExtractor={(item, index) => index.toString()}
         />
       </View>
     </View>
@@ -49,38 +75,39 @@ export default Studentlist;
 
 const styles = StyleSheet.create({
   container: {
-    flex: .4,
+    flex: 1,
     paddingTop: 40,
-    alignItems: 'flex-end',
+    alignItems: "flex-end",
     right: 28,
   },
   title: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    writingDirection: 'rtl'
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    writingDirection: "rtl",
   },
   listContainer: {
     backgroundColor: COLORS.dark_gray,
     borderWidth: 1,
     borderRadius: 25,
-    width: SCREEN_WIDTH - (25 * 2),
-    height: 480,
-    justifyContent: 'center',
-
+    width: SCREEN_WIDTH - 50,
+    height: 600,
+    justifyContent: "center",
+    marginTop: 16,
+    paddingHorizontal: 10,
   },
   eventItem: {
-    flexDirection: 'row-reverse',
-    alignItems: 'center',
+    flexDirection: "row-reverse",
+    alignItems: "center",
     padding: 8,
-    marginHorizontal: 5,
+    marginVertical: 5,
     borderBottomWidth: 2,
     borderBottomColor: COLORS.light_gray,
     height: 75,
-    position: 'relative',
+    position: "relative",
   },
   arrowContainer: {
-    position: 'absolute',
+    position: "absolute",
     left: 320,
     top: 25,
   },
@@ -94,9 +121,12 @@ const styles = StyleSheet.create({
   dateCube: {
     borderRightWidth: 3,
     borderRightColor: COLORS.light_blue,
-    alignItems: 'center'
+    alignItems: "center",
+    paddingHorizontal: 10,
   },
   eventDetails: {
-    alignItems: 'flex-end'
+    alignItems: "flex-end",
+    flex: 1,
+    paddingRight: 10,
   },
 });

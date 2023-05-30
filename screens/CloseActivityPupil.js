@@ -1,4 +1,4 @@
-import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
+import { View, StyleSheet, TouchableOpacity, Text, Alert } from "react-native";
 import react, { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import EventList from "../components/EventList";
@@ -74,7 +74,7 @@ export default function CloseActivityPupil({ navigation }) {
                   styles.buttonContainer,
                   { backgroundColor: COLORS.green },
                 ]}
-                onPress={() => onActivity("confirm") + alert('הגעתך נשמרה!')}
+                onPress={() => onActivity("confirm") + Alert.alert('הגעתך נשמרה!')}
               >
                 <Text style={styles.buttonText}>{"מגיע/ה"}</Text>
                 <FontAwesome name="check" size={20} color={COLORS.black} />
@@ -84,7 +84,7 @@ export default function CloseActivityPupil({ navigation }) {
                   styles.buttonContainer,
                   { backgroundColor: COLORS.red },
                 ]}
-                onPress={() => onActivity("reject") + alert('חבל..נשמח לראותך בפעילות הבאה!')}
+                onPress={() => onActivity("reject") + Alert.alert('פעולתך נשמרה בהצלחה!')}
               >
                 <Text style={styles.buttonText}>{"לא מגיע/ה"}</Text>
                 <FontAwesome name="close" size={20} color={COLORS.black} />

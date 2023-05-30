@@ -6,7 +6,6 @@ import { FontAwesome } from "@expo/vector-icons";
 import Footer from "../components/Footer";
 import ActionButton from "./ButtonToPerosnalScreen";
 
-
 const StudentDetails = ({ route, navigation }) => {
   const { student } = route.params;
 
@@ -17,7 +16,7 @@ const StudentDetails = ({ route, navigation }) => {
   return (
     <>
       <View style={styles.container}>
-      <ActionButton title="אזור אישי" navigation={navigation} />
+        <ActionButton title="אזור אישי" navigation={navigation} />
         <View style={styles.title}>
           <FontAwesome name="user" size={30} color={COLORS.black} />
           <Text style={styles.titleText}>תיק חניך</Text>
@@ -25,27 +24,37 @@ const StudentDetails = ({ route, navigation }) => {
         <View style={styles.listContainer}>
           <View style={styles.eventItem}>
             <View style={styles.eventDetails}>
-              <Text style={styles.eventItemText}>שם החניך: {student.Name}</Text>
+              <Text style={styles.eventItemText}>
+                שם החניך: {student.name}
+              </Text>
             </View>
           </View>
           <View style={styles.eventItem}>
             <View style={styles.eventDetails}>
-              <Text style={styles.eventItemText}>כתובת: {student.Address}</Text>
+              <Text style={styles.eventItemText}>
+                כתובת: {student.Address}
+              </Text>
             </View>
           </View>
           <View style={styles.eventItem}>
             <View style={styles.eventDetails}>
-              <Text style={styles.eventItemText}>כיתה: {student.Grade}</Text>
+              <Text style={styles.eventItemText}>
+                כיתה: {student.Grade}
+              </Text>
             </View>
           </View>
           <View style={styles.eventItem}>
             <View style={styles.eventDetails}>
-              <Text style={styles.eventItemText}>מספר טלפון: {student.Phone}</Text>
+              <Text style={styles.eventItemText}>
+                מספר טלפון: {student.Phone}
+              </Text>
             </View>
           </View>
           <View style={styles.eventItem}>
             <View style={styles.eventDetails}>
-              <Text style={styles.eventItemText}>לשון פנייה: {student.Gender}</Text>
+              <Text style={styles.eventItemText}>
+                לשון פנייה: {student.Gender}
+              </Text>
             </View>
           </View>
         </View>
@@ -70,6 +79,7 @@ const StudentDetails = ({ route, navigation }) => {
 };
 
 export default StudentDetails;
+
 
 const styles = StyleSheet.create({
   ActionButton: {
