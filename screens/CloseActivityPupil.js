@@ -83,8 +83,8 @@ export default function CloseActivityPupil({ navigation }) {
                 style={[
                   styles.buttonContainer,
                   { backgroundColor: COLORS.red },
-                ]}
-                onPress={() => onActivity("reject") + Alert.alert('פעולתך נשמרה בהצלחה!')}
+                ]} 
+                onPress={() => onActivity("reject") + Alert.alert('חבל..נשמח לראותך בפעולה הבאה!')}
               >
                 <Text style={styles.buttonText}>{"לא מגיע/ה"}</Text>
                 <FontAwesome name="close" size={20} color={COLORS.black} />

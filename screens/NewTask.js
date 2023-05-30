@@ -61,6 +61,7 @@ export default function NewTask() {
         window.alert("הפעילות נוספה בהצלחה");
       } else {
         console.log(".הנושא אינו ייחודי. הפעולה לא נוספה");
+        alert(".הנושא אינו ייחודי. הפעולה לא נוספה");
       }
     } catch (e) {
       console.error("Error adding document: ", e);
@@ -239,7 +240,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
     justifyContent: "flex-start",
     alignItems: "center",
-    paddingTop: 35,
+    paddingTop: 65,
   },
   text: {
     borderWidth: 1,

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import {  Alert } from "react-native";
 import Background from '../components/Background'
 import Logo from '../components/Logo'
 import Header from '../components/Header'
@@ -14,6 +15,7 @@ export default function ResetPasswordScreen({ navigation }) {
   const [email, setEmail] = useState({ value: '', error: '' })
 
   const sendResetPasswordEmail = () => {
+    Alert.alert('הוראות נשלחו למייל!')
     const emailError = emailValidator(email.value)
     if (emailError) {
       setEmail({ ...email, error: emailError })
