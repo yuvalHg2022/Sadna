@@ -44,24 +44,7 @@ export default function CloseActivity({ navigation }) {
     ]);
   }, []);
 
-  const onActivity = (action) => {
-    switch (action) {
-      case "confirm":
-        // TODO: send response to server
-        break;
-      case "reject":
-        // TODO: send response to server
-        break;
-      case "thanks":
-        Alert.alert('Thank you');
-        break;
-      case "thanks-a-lot":
-        Alert.alert('Thank you');
-        break;
-      default:
-        break;
-    }
-  };
+
 
   return (
     <>

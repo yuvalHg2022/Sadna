@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 16,
     paddingTop: 16,
-  backgroundColor:COLORS.white,
+    backgroundColor:COLORS.white,
   },
   pageTitle: {
     fontSize: 24,
@@ -213,6 +213,7 @@ const styles = StyleSheet.create({
     padding: 16,
     marginBottom: 16,
     elevation: 2,
+    backgroundColor:COLORS.light_gray,
   },
   selectedMessageContainer: {
     backgroundColor: '#F0F0F0',
