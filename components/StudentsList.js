@@ -119,6 +119,8 @@ const styles = StyleSheet.create({
     lineHeight: 16,
     fontWeight: "700",
     marginHorizontal: 5,
+    borderBottomWidth: 2,
+    borderBottomColor: COLORS.light_gray,
     textAlign: "right", // Align text to the right
   },
   dateCube: {

@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
   eventItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'left',
     padding: 8,
     marginHorizontal: 5,
     borderBottomWidth: 2,
@@ -86,7 +86,8 @@ const styles = StyleSheet.create({
     lineHeight: 16,
     fontWeight: "700",
     marginHorizontal: 5,
-    textAlign: 'right',
+    textAlign: 'left',
+    
   },
   dateCube: {
     borderRightWidth: 3,
@@ -97,6 +98,7 @@ const styles = StyleSheet.create({
 
   },
   eventDetails: {
-    alignItems: 'flex-end',
+    alignItems: 'flex-start',
+    
   },
 });

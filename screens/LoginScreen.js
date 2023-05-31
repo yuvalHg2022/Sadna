@@ -88,7 +88,6 @@ export default function LoginScreen({ navigation }) {
 
   return (
     <Background>
-      <CustomBackButton goBack={navigation.goBack} />
       <Logo />
       <Header>התחברות</Header>
       <FancySwitchSelector value={toggleValue} onChange={setToggleValue} />
