@@ -1,6 +1,44 @@
 [
   {
     "id": 1,
+<<<<<<< HEAD
+    "date": "11/02/2023",
+    "day": "11",
+    "month": "פברואר",
+    "title": "מסיבת פורים ארצית",
+    "location": "כיכר המדינה ת\"א",
+    "url": "https://google.com"
+  },
+  {
+    "id": 2,
+    "date": "05/04/2023",
+    "day": "05",
+    "month": " אפריל ",
+    "title": "ערב פסח",
+    "location": "ויצמן 7, חולון",
+    "url": "https://google.com"
+  },
+  {
+    "id": 3,
+    "date": "25/04/2023",
+    "day": "25",
+    "month": "אפריל ",
+    "title": "טקס יום הזיכרון",
+    "location": "הר הרצל, ירושלים",
+    "url": "https://google.com"
+  },
+  {
+    "id": 4,
+    "date": "06/06/2023",
+    "day": "06",
+    "month": "יוני",
+    "title": "מצעד הגאווה",
+    "location": "פארק הירקון",
+    "url": "https://google.com"
+  },
+  {
+    "id": 5,
+=======
     "date": "27/07/2023",
     "day": "27",
     "month": "יוני",
@@ -10,6 +48,7 @@
   },
   {
     "id": 2,
+>>>>>>> refs/remotes/origin/main
     "date": "12/08/2023",
     "day": "12",
     "month": "אוגוסט",
@@ -35,6 +74,6 @@
     "month": "אוקטובר",
     "title": "בניית סוכה קהילתית",
     "location": "באר שבע",
-    "url": null
+    "url": "https://google.com"
   }
 ]
