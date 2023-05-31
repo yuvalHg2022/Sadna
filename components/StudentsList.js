@@ -43,16 +43,17 @@ const Studentlist = () => {
         <View style={styles.arrowContainer}>
           <FontAwesome name="arrow-left" size={20} color={COLORS.light_blue} />
         </View>
-        <View style={styles.dateCube}>
-          <Text style={styles.eventItemText}>{index + 1}</Text>
-        </View>
         <View style={styles.eventDetails}>
-          <Text style={styles.eventItemText}>{item.name}</Text>
+          <Text style={styles.eventItemText}>
+          {(index + 1).toLocaleString("en-US", { useGrouping: false })}   {item.name} 
+          </Text>
         </View>
       </TouchableOpacity>
     ),
     [navigation]
   );
+  
+  
 
   return (
     <View style={styles.container}>
@@ -77,11 +78,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 40,
-    alignItems: "flex-end",
-    right: 28,
+    alignItems: "flex-start", // Adjust alignment to flex-start
+    left: 28, // Adjust position to left
   },
   title: {
-    flexDirection: "row",
+    flexDirection: "row-reverse",
     justifyContent: "center",
     alignItems: "center",
     writingDirection: "rtl",
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
   },
   arrowContainer: {
     position: "absolute",
-    left: 320,
+    right: 320, // Adjust position to right
     top: 25,
   },
   eventItemText: {
@@ -117,6 +118,7 @@ const styles = StyleSheet.create({
     lineHeight: 16,
     fontWeight: "700",
     marginHorizontal: 5,
+    textAlign: "right", // Align text to the right
   },
   dateCube: {
     borderRightWidth: 3,
@@ -125,8 +127,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   eventDetails: {
-    alignItems: "flex-end",
+    alignItems: "flex-start", // Adjust alignment to flex-start
     flex: 1,
-    paddingRight: 10,
+    paddingLeft: 10, // Adjust padding to left
   },
 });
