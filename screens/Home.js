@@ -1,4 +1,4 @@
-import { View, StyleSheet, ImageBackground } from "react-native";
+import { View, StyleSheet, ImageBackground,I18nManager } from "react-native";
 import React from "react";
 import MyButton from "../components/MyButton";
 import { FontAwesome } from "@expo/vector-icons";
@@ -6,10 +6,10 @@ import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import Footer from "../components/Footer";
 import { COLORS } from "../utils/StyleGuide";
-import ActionButton from "../components/ButtonToPerosnalScreen";
 import LogOut from "../components/LogOut";
 
 const IMAGE_HEIGHT = 288;
+
 
 export default function Home({ navigation }) {
   const onLogout = () => {
@@ -56,6 +56,7 @@ export default function Home({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    direction:'rtl',
     backgroundColor: COLORS.white,
     top: IMAGE_HEIGHT - 50,
     backgroundColor: COLORS.white,
@@ -65,5 +66,10 @@ const styles = StyleSheet.create({
   },
   menu: {
     top: 64,
+    direction:'rtl',
   },
+  title:{
+    flexDirection:'colomn',
+    direction:'rtl',
+  }
 });

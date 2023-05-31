@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     writingDirection: "rtl",
+    paddingTop:10,
   },
   listContainer: {
     backgroundColor: COLORS.dark_gray,

@@ -6,13 +6,13 @@
     "month": "פברואר",
     "title": "מסיבת פורים ארצית",
     "location": "כיכר המדינה ת\"א",
-    "url": null
+    "url": "https://google.com"
   },
   {
     "id": 2,
     "date": "05/04/2023",
     "day": "05",
-    "month": "אפריל",
+    "month": " אפריל ",
     "title": "ערב פסח",
     "location": "ויצמן 7, חולון",
     "url": "https://google.com"
@@ -21,7 +21,7 @@
     "id": 3,
     "date": "25/04/2023",
     "day": "25",
-    "month": "אפריל",
+    "month": "אפריל ",
     "title": "טקס יום הזיכרון",
     "location": "הר הרצל, ירושלים",
     "url": "https://google.com"
@@ -42,6 +42,6 @@
     "month": "אוגוסט",
     "title": "אירוע",
     "location": "באר שבע",
-    "url": null
+    "url": "https://google.com"
   }
 ]

@@ -82,9 +82,6 @@ export default StudentDetails;
 
 
 const styles = StyleSheet.create({
-  ActionButton: {
-    padding: 20,
-  },
   container: {
     flex: 1,
     paddingTop: 140,
@@ -96,7 +93,8 @@ const styles = StyleSheet.create({
     fontSize: 24,
     lineHeight: 28,
     fontWeight: "700",
-    paddingLeft: 10,
+    textAlign: "right",
+    padding:4,
   },
   title: {
     flexDirection: "row",
@@ -104,7 +102,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     writingDirection: "rtl",
     paddingBottom: 10,
-    paddingLeft: 15,
   },
   listContainer: {
     backgroundColor: COLORS.dark_gray,
@@ -116,13 +113,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   eventItem: {
-    flexDirection: "row-reverse",
+    flexDirection: "row",
     alignItems: "center",
     padding: 8,
     marginHorizontal: 5,
     borderBottomWidth: 2,
     borderBottomColor: COLORS.light_gray,
     height: 75,
+    justifyContent: "space-between",
   },
   eventItemText: {
     color: COLORS.white,
@@ -130,9 +128,10 @@ const styles = StyleSheet.create({
     lineHeight: 16,
     fontWeight: "700",
     marginHorizontal: 5,
+    textAlign: "right",
   },
   eventDetails: {
-    alignItems: "flex-end",
+    alignItems: "flex-start",
     flex: 1,
   },
   buttonContainer: {

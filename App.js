@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, Text, StyleSheet, Button,I18nManager  } from "react-native";
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
@@ -33,6 +33,7 @@ import InstructorMessagesReceived from "./screens/InstructorMessagesReceived";
 import InstructorMessagesToStudents from "./screens/InstructorMessagesToStudents";
 import StudentMessagesReceived from "./screens/StudentMessagesReceived";
 
+I18nManager.forceRTL(true);
 
 import { Provider } from 'react-native-paper'
 import { theme } from './core/theme'

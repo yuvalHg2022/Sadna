@@ -263,7 +263,8 @@ const styles = StyleSheet.create({
     marginBottom: 3,
     fontSize: 17,
     marginHorizontal: 20,
-    textAlign: "right",
+    textAlign: "left",
+    
   },
   toggleContainer: {
     marginTop: 10,

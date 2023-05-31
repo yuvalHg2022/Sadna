@@ -145,9 +145,10 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   header: {
-    flexDirection: 'row',
+    flexDirection: 'row-reverse',
     alignItems: 'center',
     marginTop: 15,
+    paddingTop:10
   },
   title: {
     fontSize: 20,
@@ -155,13 +156,16 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     textAlign: "center",
     marginTop: 12,
+    marginRight:10
   },
   label: {
     fontSize: 16,
     fontWeight: "bold",
     marginTop: 8,
     marginBottom: 8,
-    textAlign: "right",
+    textAlign: "left",
+    flexDirection: 'row-reverse',
+
   },
   input: {
     borderWidth: 1,

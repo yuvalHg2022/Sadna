@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
   menu: {
     flex: 1,
-    marginTop: 80,
+    marginTop: 70,
     paddingBottom: "5%",
   },
 });

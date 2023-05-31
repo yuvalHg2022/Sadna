@@ -50,29 +50,29 @@ export default function CloseActivityPupil({ navigation }) {
           <View>
             <MyTittle
               text="הפעילות הקרובה"
-              styleText={{ textAlign: "right", paddingRight: 22 }}
+              styleText={{ textAlign: "left", paddingRight: 22, paddingTop:15 }}
             />
             <View style={styles.activity}>
-              <Text style={[styles.activityText, { fontWeight: 'bold', fontSize: 24 }]}>{closeActivity.subject}</Text>
+              <Text style={[styles.activityText, { fontWeight: 'bold', fontSize: 24, textAlign: 'left' }]}>{closeActivity.subject}</Text>
               <View style={styles.row}>
-                <Text style={styles.activityText}>{closeActivity.date}</Text>
                 <FontAwesome name="calendar" size={26} color={COLORS.black} />
+                <Text style={styles.activityText}>{closeActivity.date}</Text>
               </View>
               <View style={styles.row}>
-                <Text style={styles.activityText}>{closeActivity.hour}</Text>
                 <AntDesign name="clockcircleo" size={24} color="black" />
+                <Text style={styles.activityText}>{closeActivity.hour}</Text>
               </View>
               <View style={styles.row}>
-                <Text style={styles.activityText}>{closeActivity.place}</Text>
                 <FontAwesome name="home" size={26} color={COLORS.black} />
+                <Text style={styles.activityText}>{closeActivity.place}</Text>
               </View>
-              <Text style={styles.activityText} numberOfLines={5}>{closeActivity.details}</Text>
+              <Text style={[styles.activityText, { textAlign: 'left',fontSize:18 }]} numberOfLines={5}>{closeActivity.details}</Text>
             </View>
             <View style={styles.buttonsLine}>
               <TouchableOpacity
                 style={[
                   styles.buttonContainer,
-                  { backgroundColor: COLORS.green },
+                  { backgroundColor: COLORS.green, flexDirection:'row-reverse' },
                 ]}
                 onPress={() => onActivity("confirm") + Alert.alert('הגעתך נשמרה!')}
               >
@@ -82,7 +82,7 @@ export default function CloseActivityPupil({ navigation }) {
               <TouchableOpacity
                 style={[
                   styles.buttonContainer,
-                  { backgroundColor: COLORS.red },
+                  { backgroundColor: COLORS.red,flexDirection:'row-reverse' },
                 ]} 
                 onPress={() => onActivity("reject") + Alert.alert('חבל..נשמח לראותך בפעולה הבאה!')}
               >
@@ -92,7 +92,7 @@ export default function CloseActivityPupil({ navigation }) {
             </View>
           </View>
           <EventList
-            containerStyle={{ flex: .8 }}
+            containerStyle={{ flex: 1, paddingTop:10, paddingRight:20 }}
             title={"לוח אירועים"}
             list={eventListData}
           />
@@ -107,22 +107,27 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.white,
+    alignItems: 'flex-start',
+    justifyContent: "space-between",
+    paddingTop: 90,
+    paddingBottom: 10,
+    paddingHorizontal: 10,
   },
   content: {
     flex: 1,
-    marginTop: 70,
+    width: "100%",
+    justifyContent: "space-between",
   },
   activity: {
-    padding: 5,
-    marginHorizontal: 22,
+    padding: 10,
     backgroundColor: COLORS.light_gray,
     borderRadius: 25,
-    marginBottom: 11,
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-start',
+    marginBottom: 20,
   },
   row: {
     flexDirection: 'row',
-    justifyContent: 'flex-end',
     alignItems: 'center',
     paddingVertical: 2,
     paddingHorizontal: 15,
@@ -131,13 +136,12 @@ const styles = StyleSheet.create({
     color: COLORS.black,
     fontSize: 18,
     paddingHorizontal: 20,
-    textAlign: 'right',
+    textAlign: 'left',
   },
   buttonsLine: {
-    flexDirection: "row-reverse",
+    flexDirection: "row",
     justifyContent: "space-evenly",
     alignItems: "center",
-    marginBottom: 10,
   },
   buttonContainer: {
     flexDirection: "row",

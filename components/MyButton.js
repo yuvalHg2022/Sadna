@@ -17,14 +17,15 @@ const MyButton = ({ title, onPress, color = COLORS.light_gray, icon, style }) =>
 };
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "center",
-    alignItems: "flex-end",
+    justifyContent: "left",
+    alignItems: "flex-start", 
     height: 52,
     width: 312,
     borderRadius: 15,
     marginVertical: 8,
     borderWidth: 1,
     borderColor: COLORS.black,
+    flexDirection: 'row', 
   },
   title: {
     textTransform: "capitalize",
@@ -32,15 +33,16 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     lineHeight: 29,
     color: COLORS.black,
+    textAlign: "right", // Align text to the right
   },
   titleAndIconContainer: {
-    flexDirection: "row",
-    justifyContent: "flex-start",
+    padding:10,
+    flexDirection: "row-reverse",
+    justifyContent: "flex-end", // Adjust alignment to flex-end
     alignItems: "center",
   },
   icon: {
-    // marginVertical: 6,
-    marginHorizontal: 20,
+    marginHorizontal: 10,
   },
 });
 

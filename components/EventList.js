@@ -10,8 +10,14 @@ const SCREEN_WIDTH = Dimensions.get("screen").width
 const EventList = (props) => {
 
   const renderItem = useCallback(({ item, index }) => (
-    <TouchableOpacity style={styles.eventItem} onPress={() => { alert(`איזה כיף שהתעיינית באירוע ${item.title}`) }}>
-    <View style={styles.dateCube}>
+    <TouchableOpacity
+      style={styles.eventItem}
+      onPress={() => {
+        const eventDetails = `פרטי האירוע:\nיום: ${item.day}\nחודש: ${item.month}\nכותרת: ${item.title}\nמיקום: ${item.location}`;
+        alert(eventDetails);
+      }}
+    >
+      <View style={styles.dateCube}>
         <Text style={styles.eventItemText}>{item.day}</Text>
         <Text style={styles.eventItemText}>{item.month}</Text>
       </View>
@@ -21,7 +27,7 @@ const EventList = (props) => {
       </View>
       {item.url ? <FontAwesome name="arrow-left" size={18} color={COLORS.light_gray} /> : <View />}
     </TouchableOpacity>
-  ), [])
+  ), []);
 
   return (
     <View style={[styles.container, props.containerStyle]}>
@@ -45,14 +51,15 @@ export default EventList;
 const styles = StyleSheet.create({
   container: {
     flex: .4,
-    alignItems: 'flex-end',
-    right: 28,
+    alignItems: 'flex-start',
+    right: -25,
   },
   title: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
+    flexDirection: 'row-reverse',
+    justifyContent: 'center',
     alignItems: 'center',
-    writingDirection: 'rtl'
+    writingDirection: 'rtl',
+    marginBottom: 2,
   },
   listContainer: {
     backgroundColor: COLORS.dark_gray,
@@ -62,14 +69,13 @@ const styles = StyleSheet.create({
     width: SCREEN_WIDTH - (25 * 2),
   },
   eventItem: {
-    flexDirection: 'row-reverse',
+    flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: 8,
     marginHorizontal: 5,
     borderBottomWidth: 2,
     borderBottomColor: COLORS.light_gray,
-
   },
   eventItemText: {
     color: COLORS.white,
@@ -77,13 +83,17 @@ const styles = StyleSheet.create({
     lineHeight: 16,
     fontWeight: "700",
     marginHorizontal: 5,
+    textAlign: 'right',
   },
   dateCube: {
     borderRightWidth: 3,
     borderRightColor: COLORS.light_blue,
-    alignItems: 'center'
+    alignItems: 'right',
+    width:"20%",
+    paddingRight:10,
+
   },
   eventDetails: {
-    alignItems: 'flex-end'
+    alignItems: 'flex-end',
   },
 });

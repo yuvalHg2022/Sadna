@@ -52,27 +52,29 @@ export default ActivityList;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: "flex-end",
-    right: 28,
+    flex: .4,
+    alignItems: 'flex-start',
+    right: -25,
   },
   title: {
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    alignItems: "center",
-    writingDirection: "rtl",
+    flexDirection: 'row-reverse',
+    justifyContent: 'center',
+    alignItems: 'center',
+    writingDirection: 'rtl',
+    marginBottom: 2,
   },
   listContainer: {
     backgroundColor: COLORS.dark_gray,
     padding: 10,
     borderWidth: 1,
     borderRadius: 25,
-    width: SCREEN_WIDTH - 25 * 2,
+    width: SCREEN_WIDTH - (25 * 2),
+    height:'128%',
   },
   eventItem: {
-    flexDirection: "row-reverse",
-    justifyContent: "flex-start",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     padding: 8,
     marginHorizontal: 5,
     borderBottomWidth: 2,
@@ -84,14 +86,17 @@ const styles = StyleSheet.create({
     lineHeight: 16,
     fontWeight: "700",
     marginHorizontal: 5,
+    textAlign: 'right',
   },
   dateCube: {
     borderRightWidth: 3,
     borderRightColor: COLORS.light_blue,
-    alignItems: "center",
+    alignItems: 'right',
+    width:"35%",
+    paddingRight:10,
+
   },
   eventDetails: {
-    alignItems: "flex-end",
-    paddingRight: 30,
+    alignItems: 'flex-end',
   },
 });

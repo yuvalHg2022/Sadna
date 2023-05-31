@@ -44,8 +44,6 @@ export default function CloseActivity({ navigation }) {
     ]);
   }, []);
 
-
-
   return (
     <>
       <View style={styles.container}>
@@ -54,42 +52,43 @@ export default function CloseActivity({ navigation }) {
           <View>
             <MyTittle
               text="הפעילות הקרובה"
-              styleText={{ textAlign: "right", paddingRight: 22 }}
+              styleText={{ textAlign: "left", paddingLeft:22, paddingTop:20 }}
             />
             <View style={styles.activity}>
-              <Text style={[styles.activityText, { fontWeight: 'bold', fontSize: 24 }]}>{closeActivity.subject}</Text>
+              <Text style={[styles.activityText, { fontWeight: 'bold', fontSize: 24, textAlign: 'left' }]}>{closeActivity.subject}</Text>
               <View style={styles.row}>
-                <Text style={styles.activityText}>{closeActivity.date}</Text>
                 <FontAwesome name="calendar" size={26} color={COLORS.black} />
+                <Text style={styles.activityText}>{closeActivity.date}</Text>
               </View>
               <View style={styles.row}>
-                <Text style={styles.activityText}>{closeActivity.hour}</Text>
                 <AntDesign name="clockcircleo" size={24} color="black" />
+                <Text style={styles.activityText}>{closeActivity.hour}</Text>
               </View>
               <View style={styles.row}>
-                <Text style={styles.activityText}>{closeActivity.place}</Text>
                 <FontAwesome name="home" size={26} color={COLORS.black} />
+                <Text style={styles.activityText}>{closeActivity.place}</Text>
               </View>
-              <Text style={styles.activityText} numberOfLines={5}>{closeActivity.details}</Text>
+              <Text style={[styles.activityText, { textAlign: 'left',fontSize:18 }]} numberOfLines={5}>{closeActivity.details}</Text>
             </View>
             <View style={styles.arrivingPupilsContainer}>
-              <Text style={[styles.arrivingPupilsTitle, { textAlign: 'right' }]}>חניכים שאישרו הגעה:</Text>
+              <Text style={[styles.arrivingPupilsTitle, { textAlign: 'left' }]}>חניכים שאישרו הגעה:</Text>
               <View>
                 {arrivingPupils.map((pupil) => (
                   <View key={pupil.id} style={styles.pupilContainer}>
-                    <FontAwesome name="check" size={20} color="green" />
-                    <Text style={[styles.pupilName, { textAlign: 'right' }]}>{pupil.name}</Text>
+                    <FontAwesome name="check" size={20} color="green" marginRight={10}/>
+                    <Text style={[styles.pupilName, { textAlign: 'left' }]}>{pupil.name}</Text>
+                  
                   </View>
                 ))}
               </View>
             </View>
             <View style={styles.nonArrivingPupilsContainer}>
-              <Text style={[styles.nonArrivingPupilsTitle, { textAlign: 'right' }]}>חניכים שלא אישרו הגעה:</Text>
+              <Text style={[styles.nonArrivingPupilsTitle, { textAlign: 'left' }]}>חניכים שלא אישרו הגעה:</Text>
               <View>
                 {nonArrivingPupils.map((pupil) => (
                   <View key={pupil.id} style={styles.pupilContainer}>
-                    <FontAwesome name="times" size={20} color="red" />
-                    <Text style={[styles.pupilName, { textAlign: 'right' }]}>{pupil.name}</Text>
+                   <FontAwesome name="times" size={20} color="red" marginRight={10}/>
+                    <Text style={[styles.pupilName, { textAlign: 'left' }]}>{pupil.name}</Text>
                   </View>
                 ))}
               </View>
@@ -98,7 +97,7 @@ export default function CloseActivity({ navigation }) {
           <View style={styles.buttonsContainer}>
             <TouchableOpacity
               style={[styles.buttonContainer, { backgroundColor: COLORS.gray_blue }]}
-              onPress={() => Alert.alert('פעולתך נשמרה בהצלחה!')}
+              onPress={() => navigation.navigate('NewTask')}
             >
               <Text style={styles.buttonText}>עדכון פרטי פעילות</Text>
             </TouchableOpacity>
@@ -120,26 +119,27 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.white,
-    alignItems: "center",
+    alignItems: 'flex-start',
     justifyContent: "space-between",
     paddingTop: 90,
-    paddingBottom: 20,
+    paddingBottom: 10,
+    paddingHorizontal: 10,
   },
   content: {
     flex: 1,
-    width: "90%",
+    width: "100%",
     justifyContent: "space-between",
   },
   activity: {
     padding: 5,
     backgroundColor: COLORS.light_gray,
     borderRadius: 25,
-    // marginBottom: 11,
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-start',
+    marginBottom: 10,
   },
   row: {
     flexDirection: 'row',
-    justifyContent: 'flex-end',
     alignItems: 'center',
     paddingVertical: 2,
     paddingHorizontal: 15,
@@ -148,41 +148,44 @@ const styles = StyleSheet.create({
     color: COLORS.black,
     fontSize: 18,
     paddingHorizontal: 20,
-    textAlign: 'right',
+    textAlign: 'left',
   },
   arrivingPupilsContainer: {
-    borderRadius: 10,
+    paddingLeft: 20,
     paddingRight: 20,
-    paddingTop:20,
+    alignItems: 'flex-start',
   },
   nonArrivingPupilsContainer: {
-    borderRadius: 10,
-    borderRadiusColor:lightBlue,
-    paddingRight: 20,
+    paddingLeft: 20,
+    alignItems: 'flex-start',
   },
   arrivingPupilsTitle: {
     fontSize: 22,
     fontWeight: "bold",
-    marginBottom: 10,
+    marginBottom: 5,
+    textAlign: 'left',
   },
   nonArrivingPupilsTitle: {
     fontSize: 22,
     fontWeight: "bold",
+    marginBottom: 5,
     marginTop: 20,
-    marginBottom: 10,
+    textAlign: 'left',
   },
   pupilContainer: {
-    flexDirection: "row-reverse",
+    flexDirection: "row",
     alignItems: "center",
     marginBottom: 10,
+
   },
   pupilName: {
     marginRight: 10,
-    fontSize:18,
+    fontSize: 18,
   },
   buttonsContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: 'center',
   },
   buttonContainer: {
     flex: 1,

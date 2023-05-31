@@ -6,12 +6,9 @@ import { Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import Footer from "../components/Footer";
 import { COLORS } from "../utils/StyleGuide";
-import ActionButton from "../components/ButtonToPerosnalScreen";
 import LogOut from "../components/LogOut";
-import { green } from "@mui/material/colors";
 import { Linking } from "react-native";
 import Button from "../components/Button";
-import { logout } from "react-native-app-auth";
 
 
 
@@ -30,6 +27,7 @@ export default function HomePupil({ navigation }) {
         style={{ height: IMAGE_HEIGHT, width: "100%", flex: 1 }}
         resizeMode="cover"
       >
+        
         <View style={{ marginTop: 5 }}>
           <LogOut title="התנתקות" navigation={navigation} />
                 </View>

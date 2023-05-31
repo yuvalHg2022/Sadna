@@ -188,6 +188,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 16,
     paddingTop: 16,
+    direction: 'rtl',
   },
   pageTitle: {
     fontSize: 24,
@@ -195,11 +196,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 16,
     marginTop: 60,
+    writingDirection: 'rtl',
   },
   noMessagesText: {
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
+    writingDirection: 'rtl',
   },
   messageContainer: {
     backgroundColor: '#FFFFFF',
@@ -207,14 +210,16 @@ const styles = StyleSheet.create({
     padding: 16,
     marginBottom: 16,
     elevation: 2,
+    direction: 'rtl',
   },
   selectedMessageContainer: {
     backgroundColor: '#F0F0F0',
   },
   messageHeader: {
-    flexDirection: 'row-reverse',
+    flexDirection: 'row',
     alignItems: 'flex-start',
     marginBottom: 8,
+    justifyContent: 'flex-start',
   },
   titleText: {
     fontSize: 14,
@@ -222,11 +227,13 @@ const styles = StyleSheet.create({
     color: '#888888',
     marginLeft: 8,
     textAlign: 'right',
+    writingDirection: 'rtl',
   },
   contentText: {
     fontSize: 14,
     marginBottom: 8,
-    textAlign: 'right',
+    textAlign: 'left',
+    writingDirection: 'rtl',
   },
   responseInput: {
     height: 100,
@@ -235,12 +242,14 @@ const styles = StyleSheet.create({
     padding: 8,
     marginBottom: 8,
     textAlignVertical: 'top',
+    direction: 'rtl',
+    textAlign: 'right', // Add this line to set the text alignment to right-to-left
   },
   sendButton: {
     backgroundColor: '#2196F3',
     borderRadius: 4,
     padding: 8,
-    flexDirection: 'row',
+    flexDirection: 'row-reverse',
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 8,
@@ -253,7 +262,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F44336',
     borderRadius: 4,
     padding: 8,
-    flexDirection: 'row',
+    flexDirection: 'row-reverse',
     alignItems: 'center',
   },
   buttonText: {
@@ -269,5 +278,7 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
 });
+
+
 
 export default InstructorMessagesReceived
