@@ -27,7 +27,6 @@ import GroupSelectionScreenNorth from "./screens/GroupSelectionScreenNorth";
 import GroupSelectionScreenSharon from "./screens/GroupSelectionScreenSharon";
 import GroupSelectionScreenShfelaAndJerusalem from "./screens/GroupSelectionScreenShfelaAndJerusalem";
 import GroupSelectionScreenSouth from "./screens/GroupSelectionScreenSouth";
-import InstructorMessages from "./screens/InstructorMessages";
 import PupilMessages from "./components/PupilMessages";
 import InstructorMessagesReceived from "./screens/InstructorMessagesReceived";
 import InstructorMessagesToStudents from "./screens/InstructorMessagesToStudents";
@@ -100,7 +99,6 @@ const App = () => {
             <Stack.Screen name="ChatbotScreen" component={ChatbotScreen} />
             <Stack.Screen name="InstructorMessageScreen" component={InstructorMessageScreen} />
             <Stack.Screen name="Messages" component={Messages}/>
-            <Stack.Screen name="InstructorMessages" component={InstructorMessages} />
             <Stack.Screen name="PupilMessages" component={PupilMessages} />
             <Stack.Screen name="InstructorMessagesReceived" component={InstructorMessagesReceived} />
             <Stack.Screen name="InstructorMessagesToStudents" component={InstructorMessagesToStudents} />
