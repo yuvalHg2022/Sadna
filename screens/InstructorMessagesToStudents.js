@@ -143,6 +143,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
     backgroundColor:COLORS.white,
+    direction: 'ltr',
   },
   header: {
     flexDirection: 'row',
