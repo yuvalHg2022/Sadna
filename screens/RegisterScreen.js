@@ -92,6 +92,7 @@ export default function RegisterScreen({ navigation }) {
 
   return (
     <Background>
+          <CustomBackButton goBack={navigation.goBack} />
       <Header>הרשמה</Header>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
   <Text style={[styles.label,]}>תפקיד:</Text>
