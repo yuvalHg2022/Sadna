@@ -1,13 +1,14 @@
 {
   "expo": {
-    "name": "demoApp",
-    "slug": "demoApp",
+    "name": "Igy App",
+    "slug": "Igy-app",
+    "description": "A new application for the youth and volunteers in the Iggy organization",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/IGI.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splash-igy.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
