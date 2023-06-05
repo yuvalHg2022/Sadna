@@ -10,7 +10,6 @@ import LogOutButton from "../components/LogOutButton";
 import LogOut from "../components/LogOut";
 
 
-
 export default function Home3({ navigation }) {
   return (
     <>

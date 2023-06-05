@@ -52,7 +52,9 @@ const InstructorMessagesReceived = ({ navigation }) => {
   };
 
   const handleSendReply = async () => {
+    
     try {
+      Alert.alert('תגובתך נשלחה בהצלחה!')
       // Check if a message is selected
       if (!selectedMessage) {
         return;

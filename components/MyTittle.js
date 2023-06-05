@@ -19,6 +19,5 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontWeight: "700",
     paddingHorizontal: 10,
-    // paddingTop:20
   },
 });

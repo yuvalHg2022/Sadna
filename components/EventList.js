@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     borderRightWidth: 3,
     borderRightColor: COLORS.light_blue,
     alignItems: 'right',
-    width:"20%",
+    width:"30%",
     paddingRight:10,
 
   },
