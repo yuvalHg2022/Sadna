@@ -26,7 +26,6 @@ export default function ResetPasswordScreen({ navigation }) {
 
   return (
     <Background>
-      <CustomBackButton goBack={navigation.goBack} />
       <Logo />
       <Header>שחזור סיסמה</Header>
       <TextInput
@@ -45,7 +44,7 @@ export default function ResetPasswordScreen({ navigation }) {
       <Button
         mode="contained"
         onPress={sendResetPasswordEmail}
-        style={{ marginTop: 16 }}
+        style={{ marginTop: 160 }}
       >
         שלח הוראות
       </Button>

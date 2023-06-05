@@ -1,13 +1,15 @@
 {
   "expo": {
-    "name": "demoApp",
-    "slug": "demoApp",
+    "name": "Igy App",
+    "slug": "Igy-app",
+    "privacy": "public",
+    "description": "A new application for the youth and volunteers in the Iggy organization",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/IGI.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splash-igy.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -25,6 +27,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "927da740-4307-499b-a75c-e3e2074f2b28"
+      }
     }
   }
 }

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, TextInput } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, TextInput, ScrollView} from 'react-native';
 import firebase from '../firebase';
 import 'firebase/auth';
 import { MaterialIcons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
+
 
 const InstructorMessagesReceived = ({ navigation }) => {
   const [messages, setMessages] = useState([]);
@@ -110,8 +112,12 @@ const InstructorMessagesReceived = ({ navigation }) => {
     // Navigate to the create new message page
     navigation.navigate('InstructorMessagesToStudents');
   };
+  const handleGoBack = () => {
+    navigation.goBack();
+  };
 
   return (
+    <ScrollView>
     <View style={styles.container}>
       <Text style={styles.pageTitle}>הודעות מחניכים</Text>
       {messages.length === 0 ? (
@@ -182,6 +188,7 @@ const InstructorMessagesReceived = ({ navigation }) => {
         <Text style={styles.buttonText}>יצירת הודעה חדשה</Text>
       </TouchableOpacity>
     </View>
+    </ScrollView>
   );
 };
 
@@ -190,21 +197,25 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 16,
     paddingTop: 16,
-    direction: 'rtl',
+    direction: 'ltr',
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 15,
   },
   pageTitle: {
     fontSize: 24,
+    paddingTop: 26,
     fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: 16,
-    marginTop: 60,
-    writingDirection: 'rtl',
+    marginTop: 20,
   },
   noMessagesText: {
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
-    writingDirection: 'rtl',
   },
   messageContainer: {
     backgroundColor: '#FFFFFF',
@@ -212,16 +223,14 @@ const styles = StyleSheet.create({
     padding: 16,
     marginBottom: 16,
     elevation: 2,
-    direction: 'rtl',
   },
   selectedMessageContainer: {
     backgroundColor: '#F0F0F0',
   },
   messageHeader: {
-    flexDirection: 'row',
+    flexDirection: 'row-reverse',
     alignItems: 'flex-start',
     marginBottom: 8,
-    justifyContent: 'flex-start',
   },
   titleText: {
     fontSize: 14,
@@ -229,13 +238,11 @@ const styles = StyleSheet.create({
     color: '#888888',
     marginLeft: 8,
     textAlign: 'right',
-    writingDirection: 'rtl',
   },
   contentText: {
     fontSize: 14,
     marginBottom: 8,
-    textAlign: 'left',
-    writingDirection: 'rtl',
+    textAlign: 'right',
   },
   responseInput: {
     height: 100,
@@ -244,14 +251,12 @@ const styles = StyleSheet.create({
     padding: 8,
     marginBottom: 8,
     textAlignVertical: 'top',
-    direction: 'rtl',
-    textAlign: 'right', // Add this line to set the text alignment to right-to-left
   },
   sendButton: {
     backgroundColor: '#2196F3',
     borderRadius: 4,
     padding: 8,
-    flexDirection: 'row-reverse',
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 8,
@@ -264,7 +269,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F44336',
     borderRadius: 4,
     padding: 8,
-    flexDirection: 'row-reverse',
+    flexDirection: 'row',
     alignItems: 'center',
   },
   buttonText: {
@@ -278,9 +283,8 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     padding: 16,
     marginTop: 16,
+    marginBottom: 8,
   },
 });
-
-
 
 export default InstructorMessagesReceived

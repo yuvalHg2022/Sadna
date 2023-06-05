@@ -136,7 +136,6 @@ const items = [
 
     return (
       <Background>
-      <CustomBackButton goBack={navigation.goBack} />
       <View style={styles.form}>
       <Header style={styles.header}>פרטים אישיים חניך/ה</Header>
       <Text style={[styles.label, styles.highlight]}>עיר מגורים:</Text>

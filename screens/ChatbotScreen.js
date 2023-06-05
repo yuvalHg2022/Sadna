@@ -39,10 +39,7 @@ const ChatbotScreen = () => {
   return (
     <KeyboardAwareScrollView contentContainerStyle={styles.container}>
     <View style={styles.container}>
-      <View style={styles.header}>
-        <AntDesign name="arrowleft" size={24} color="black" onPress={handleGoBack} />
-        <Text style={styles.title}>חזרה</Text>
-      </View>
+      
       <ScrollView
         style={styles.messagesContainer}
         ref={scrollViewRef}
@@ -74,6 +71,7 @@ const styles = StyleSheet.create({
     marginTop: 40,
     backgroundColor: '#f0f0f0',
     padding: 10,
+    direction: 'ltr',
   },
   header: {
     flexDirection: 'row',

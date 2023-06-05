@@ -7,7 +7,6 @@ import Header from '../components/Header';
 import Button from '../components/Button';
 import TextInput from '../components/TextInput';
 import { theme } from '../core/theme';
-import CustomBackButton from '../components/CustomBackButton';
 import db from '../config';
 import { addDoc, collection, where, query, getDocs, } from 'firebase/firestore';
 import { emailValidator } from '../helpers/emailValidator';
@@ -38,7 +37,6 @@ export default function RegisterScreen({ navigation }) {
       if (!role) {
         alert('אנא בחר תפקיד');
       }
-  
       return;
     }
   
@@ -92,6 +90,7 @@ export default function RegisterScreen({ navigation }) {
 
   return (
     <Background>
+      
       <Header>הרשמה</Header>
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
   <Text style={[styles.label,]}>תפקיד:</Text>
@@ -130,7 +129,6 @@ export default function RegisterScreen({ navigation }) {
         autoCapitalize="none"
         autoCompleteType="email"
         textContentType="emailAddress"
-        keyboardType="email-address"
       />
       <TextInput
         label="סיסמה"

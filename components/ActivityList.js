@@ -87,7 +87,6 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     marginHorizontal: 5,
     textAlign: 'left',
-    
   },
   dateCube: {
     borderRightWidth: 3,

@@ -98,8 +98,6 @@ export default function InstructorMessageScreen({ route }) {
     <>
       <KeyboardAwareScrollView contentContainerStyle={styles.container}>
         <View style={styles.header}>
-          <AntDesign name="arrowleft" size={24} color="black" onPress={handleGoBack} />
-          <Text style={styles.title}>חזרה</Text>
         </View>
         <Text style={styles.title}>שליחת הודעה למדריך</Text>
         <Text style={styles.label}>אל:</Text>
@@ -148,7 +146,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row-reverse',
     alignItems: 'center',
     marginTop: 15,
-    paddingTop:10
+    paddingTop:30
   },
   title: {
     fontSize: 20,

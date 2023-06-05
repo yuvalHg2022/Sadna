@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, ScrollView, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, ScrollView, View, TouchableOpacity,Alert } from 'react-native';
 import { Text } from 'react-native-paper';
 import Background from '../components/Background';
 import CustomBackButton from '../components/CustomBackButton';
@@ -25,6 +25,7 @@ export default function GroupSelectionScreenNorth({ navigation, route }) {
   ];
 
   const onSubmitPressed = async () => {
+    Alert.alert('הרשמתך בוצעה בהצלחה! מיד תעבור לעמוד התחברות...')
     if (selectedValue) {
       const usersRef = collection(db, 'Users');
       console.log(route.params.Grade);

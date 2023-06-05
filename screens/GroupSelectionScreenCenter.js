@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { StyleSheet, ScrollView, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, ScrollView, View, TouchableOpacity, Alert } from 'react-native';
 import { Text } from 'react-native-paper';
 import Background from '../components/Background';
 import CustomBackButton from '../components/CustomBackButton';
 import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Footer from '../components/Footer'
 import Button from '../components/Button';
 import { theme } from '../core/theme';
 import { collection, addDoc } from 'firebase/firestore';
 import db from '../config';
+import { useAuth } from '../components/AuthContext';
 
 export default function GroupSelectionScreenCenter({ navigation, route }) {
   const [selectedValue, setSelectedValue] = useState('');
@@ -22,52 +23,30 @@ export default function GroupSelectionScreenCenter({ navigation, route }) {
     'סניף גבעתיים',
   ];
 
-  const { role } = route.params; // Extract 'role' from route params
-
   const onSubmitPressed = async () => {
-    if (role === 'חניך/ה') {
-      if (selectedValue) {
-        const usersRef = collection(db, 'Users');
-        try {
-          const docRef = await addDoc(usersRef, {
-            name: route.params.name,
-            email: route.params.email,
-            password: route.params.password,
-            role: route.params.role,
-            Address: route.params.Address,
-            Phone: route.params.Phone,
-            Grade: route.params.Grade,
-            Gender: route.params.Gender,
-            Region: route.params.Region,
-            group: selectedValue,
-          });
-          console.log(`Document written with ID: ${docRef.id}`);
-          navigation.navigate('LoginScreen');
-        } catch (error) {
-          console.log('Error while getting documents:', error);
-          alert('אירעה שגיאה בעת שמירת נתונים בדאטה בייס');
-        }
-      }
-    } else if (role === 'מדריך/ה') {
-      if (selectedValue) {
-        const usersRef = collection(db, 'Users');
-        try {
-          const docRef = await addDoc(usersRef, {
-            name: route.params.name,
-            email: route.params.email,
-            password: route.params.password,
-            role: route.params.role,
-            Address: route.params.Address,
-            Phone: route.params.Phone,
-            Region: route.params.Region,
-            group: selectedValue,
-          });
-          console.log(`Document written with ID: ${docRef.id}`);
-          navigation.navigate('LoginScreen');
-        } catch (error) {
-          console.log('Error while getting documents:', error);
-          alert('אירעה שגיאה בעת שמירת נתונים בדאטה בייס');
-        }
+    Alert.alert('הרשמתך בוצעה בהצלחה! מיד תעבור לעמוד התחברות...')
+    if (selectedValue) {
+      const usersRef = collection(db, 'Users');
+      console.log(route.params.Grade);
+      try {
+        const docRef = await addDoc(usersRef, {
+          name: route.params.name,
+          email: route.params.email,
+          password: route.params.password,
+          role: route.params.role,
+          Address: route.params.Address,
+          Phone: route.params.Phone,
+          Grade: route.params.Grade,
+          Gender: route.params.Gender,
+          Region: route.params.Region,
+          group: selectedValue,
+        });
+        console.log(`Document written with ID: ${docRef.id}`);
+        navigation.navigate('LoginScreen');
+      } catch (error) {
+        console.log('Error while getting documents:', error);
+        alert('אירעה שגיאה בעת שמירת נתונים בדאטה בייס');
+        return;
       }
     }
   };
@@ -77,7 +56,7 @@ export default function GroupSelectionScreenCenter({ navigation, route }) {
       <CustomBackButton goBack={navigation.goBack} />
       <Header>בחירת קבוצה</Header>
       <View style={styles.contentContainer}>
-        <Text style={[styles.title, { textAlign: 'center' }]}>מחוז מרכז:</Text>
+      <Text style={[styles.title, {textAlign: 'center'}]}>מחוז מרכז:</Text>
         {groups.map((group) => (
           <TouchableOpacity
             key={group}
@@ -139,7 +118,7 @@ const styles = StyleSheet.create({
   radioButton: {
     borderWidth: 2,
     borderRadius: 50,
-    borderColor: theme.colors.primary,
+    borderColor:  theme.colors.primary,
     height: 24,
     width: 24,
     justifyContent: 'center',

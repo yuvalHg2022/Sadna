@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, TextInput, PixelRatio } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, TextInput, ScrollView } from 'react-native';
 import firebase from '../firebase';
 import 'firebase/auth';
 import { MaterialIcons } from '@expo/vector-icons';
-import { COLORS } from '../utils/StyleGuide';
-import Footer from '../components/Footer';
-import ActionButton from '../components/ButtonToPerosnalScreen';
+import { AntDesign } from '@expo/vector-icons';
 
 const StudentMessagesReceived = ({ navigation }) => {
   const [messages, setMessages] = useState([]);
@@ -111,9 +109,14 @@ const StudentMessagesReceived = ({ navigation }) => {
     // Navigate to the create new message page
     navigation.navigate('InstructorMessageScreen');
   };
+  const handleGoBack = () => {
+    navigation.goBack();
+  };
 
   return (
+    <ScrollView>
     <View style={styles.container}>
+
       <Text style={styles.pageTitle}>הודעות ממדריכים</Text>
       {messages.length === 0 ? (
         <Text style={styles.noMessagesText}>אין הודעות ממדריכים</Text>
@@ -183,6 +186,7 @@ const StudentMessagesReceived = ({ navigation }) => {
         <Text style={styles.buttonText}>יצירת הודעה חדשה</Text>
       </TouchableOpacity>
     </View>
+    </ScrollView>
   );
 };
 
@@ -193,12 +197,18 @@ const styles = StyleSheet.create({
     paddingTop: 16,
     direction: 'rtl',
   },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 15,
+  },
   pageTitle: {
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: 16,
-    marginTop: 60,
+    paddingTop: 26,
+    marginTop: 30,
     writingDirection: 'rtl',
   },
   noMessagesText: {

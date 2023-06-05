@@ -52,7 +52,8 @@ const styles = StyleSheet.create({
   },
   menu: {
     flex: 1,
-    marginTop: 70,
+    marginTop: 80,
     paddingBottom: "5%",
+    height: "100%",
   },
 });

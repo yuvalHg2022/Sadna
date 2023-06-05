@@ -97,10 +97,10 @@ export default function InstructorMessagesToStudents({ route }) {
   return (
     <>
       <KeyboardAwareScrollView contentContainerStyle={styles.container}>
-        <View style={styles.header}>
+        {/* <View style={styles.header}>
           <AntDesign name="arrowleft" size={24} color="black" onPress={handleGoBack} />
           <Text style={styles.title}>חזרה</Text>
-        </View>
+        </View> */}
         <Text style={styles.title}>שליחת הודעה לחניכים</Text>
         <Text style={styles.label}>אל:</Text>
         <Picker
@@ -143,6 +143,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
     backgroundColor:COLORS.white,
+    direction: 'ltr',
   },
   header: {
     flexDirection: 'row',
